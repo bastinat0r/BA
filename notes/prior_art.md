@@ -38,7 +38,7 @@ highly non-cientific overview http://en.wikipedia.org/wiki/Indoor_positioning_sy
 	* AT86RF233
 	* https://www.dresden-elektronik.de/funktechnik/produkte/boards-und-kits/development-kits/devkit-positioning/?L=0
 	* SAM3
-
+* DecaWave http://www.decawave.com/products/trek1000
 
 ## Additional Sources
 * AR-Drone: http://cas.ensmp.fr/~petit/papers/ifac11/PJB.pdf
