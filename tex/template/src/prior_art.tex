@@ -1,3 +1,22 @@
-\section{Foobar}
+\section{Finken Robots}
 
-\lipsum[2]
+The Finken project aims to create a swarm of autonomously flying quadrocopters to research swarm intelligence beheaviour on robots.
+Many algorithems in swarm intelligence are based on distance-values.
+For this reason it is necessary to find a sensor that is capable to measure distances and integrate it into the Finken robots. 
+
+The Finken-robots are already existing and of course it is necessary to know wich kind of hardware on the robots could interfere with the ranging sensors that shall be integrated into those robots.
+It is also important to note that weight and size of the sensore nodes are important factors to the usability in our robots.
+
+\begin{itemize}
+	\item[IMU] Inertial Measurement Unit with accelerometer, magnetometer and barometer
+	\item[Sonar Sensors] Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right)
+	\item[IR-Sensor] Sensor to measure distance to ground with high frequency
+	\item[Optical Flow] Optical flow sensor, that can be integrated to measure x-y-velocity over ground
+	\item[Motors] Four brushless motors that may cause RF-interfercene and noise
+	\item[Telemetry] BTLE-/Zigbee modules to exchange data with the ground station
+	\item[RC-Control] 2.4GHz based Radio Control to manually control the robots
+	\item[Power-Supply] Lithium polymer batteries with nominally 6.6V output voltage that is converted to 5V and 3.3V by the power distribution hardware
+\end{itemize}
+
+\section{Evaluation of Existing Ranging Solutions}
+
