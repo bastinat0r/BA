@@ -42,7 +42,7 @@ RF-Signals travel at the speed of light and therefore you need to be able to mea
 Sound however travels at a speed much slower than RF.
 Cricket and Active Bat use this to measure the time difference an RF-signal and an ultrasound pulse need to travel from transmitter to reciever to calculate the range between two sensor nodes. \todo{thunderstorm and ligthning very very frightning}
 
-\todo{accuracy / price}
+\todo{accuracy / price, moving objects, medium access (number of nodes)}
 
 
 There are two big problems with this approach that stem from the current setup of the Finken-Robots.
@@ -53,6 +53,21 @@ Another problem is the noise created by motors and propellers.
 The sound made by the quadrocopters is not ending in the hearable spectrum but also extends to the ultrasound range.
 \todo{measure noise, PWM-frequency of speedcontrollers}
 
+\subsection{RSSI-based ranging}
+
+A property that can be used to do RF-based ranging is signal strength.
+The further the source of the signal is away the weaker the signal gets.
+RSSI-based ranging is done for serveral different technologies: Bluetooth\todo{quelle}, WLAN\todo{quelle}, RFID\todo{quelle} –
+There are even approaches using maps created of different RSSI-ranging sources. http://www.gnss.com.au/JoGPS/v9n2/JoGPS\_v9n2p122-130.pdf \todo{quellify}
+
+The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
+Antenna-orientation might have a much bigger impact on signal strength than distance.
+Additionally radio waves might be weakend when travelling through the Finken-Robots and by doing so passing wires and electronic components.
 
 \subsection{External Tracking}
+
+
+
+
 \subsection{Atmel RTB, Dresden Elektronik, Meterionic}
+
