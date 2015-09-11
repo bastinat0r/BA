@@ -7,6 +7,7 @@ highly non-cientific overview http://en.wikipedia.org/wiki/Indoor_positioning_sy
 
 - Interial
 * Time of Flight
+	* http://robotics.eecs.berkeley.edu/~pister/publications/2006/Lanzisera%20RF%20TOF.pdf
   * Electro-Magnetic
 	* Sonar
 * Signal Strength
@@ -23,6 +24,9 @@ highly non-cientific overview http://en.wikipedia.org/wiki/Indoor_positioning_sy
 * Active Bat
 	* https://www.cl.cam.ac.uk/research/dtg/attarchive/bat/
 	* 720 receivers to cover an area of around 1000m2 on three floors. The system can determine the positions of up to 75 objects each second, accurate to around 3cm in three dimensions.
+* Indoor Time-Of-Flight-Ranging
+	* http://conferences2.sigcomm.org/co-next/2014/CoNEXT_papers/p13.pdf
+	* http://robotics.eecs.berkeley.edu/~pister/290Q/Papers/Location/Lanzisera%20RF%20TOF%20WISES06.pdf
 * Indoor-GPS 
   * IGPS http://porto.polito.it/2438175/2/IJAMT_iGPS_and_LT.pdf
   	* Angular measurement -> No ranging

@@ -25,7 +25,34 @@ For that reason it is interesting to search for positioning applications that us
 
 The usual technologies used for ranging are based on time of flight measurments, signal strength, optical tracking, and phase diffence measurments in signals.
 
-\subsection{Indoor GPS}
+\subsection{Indor Time of Flight}
+The obvious approach for replacing the GPS signal that is aviable outdoors is to use a simmilar approach indoors.
+http://robotics.eecs.berkeley.edu/~pister/290Q/Papers/Location/Lanzisera\%20RF\%20TOF\%20WISES06.pdf \todo{quellify} states, that an accuracy of $2.6m_{RMS}$ was achieved indoors.
+With an operating area only $2m$ wide this approach is not suited for our robots.
+However this research is focused on using cheap sensor-nodes.
+ \todo{find commercial solutions with better accuracy}
+
+http://www.researchgate.net/profile/Bardia\_Alavi/publication/224315086\_Measurement\_and\_Modeling\_of\_Ultrawideband\_TOA-Based\_Ranging\_in\_Indoor\_Multipath\_Environments/links/0912f50b396c340971000000.pdf \todo{quellify}
+
+Another approach to provide an indoor GPS-like solution is iGPS. http://www.nikonmetrology.com/de\_EU/Produkte/Grossvolumige-Messaufgaben/iGPS/iGPS \todo{quellify} however is not ranging-based but uses angulation as underlying technology and is therefore useless to us.
+  * IGPS http://porto.polito.it/2438175/2/IJAMT\_iGPS\_and\_LT.pdf
 \subsection{Cricket / Active Bat}
+A very clever approach to ranging is used by ranging solutions like cricket and active bat\todo{Quelle, Quelle}. 
+RF-Signals travel at the speed of light and therefore you need to be able to measure very short timings in time of flight scenarios.
+Sound however travels at a speed much slower than RF.
+Cricket and Active Bat use this to measure the time difference an RF-signal and an ultrasound pulse need to travel from transmitter to reciever to calculate the range between two sensor nodes. \todo{thunderstorm and ligthning very very frightning}
+
+\todo{accuracy / price}
+
+
+There are two big problems with this approach that stem from the current setup of the Finken-Robots.
+The Finken Robots use ultrasound sensors to measure the distances to nearby objects.
+Those technologies would interfere with the ultrasound sensors already used and a replacement would be needed.
+
+Another problem is the noise created by motors and propellers.
+The sound made by the quadrocopters is not ending in the hearable spectrum but also extends to the ultrasound range.
+\todo{measure noise, PWM-frequency of speedcontrollers}
+
+
 \subsection{External Tracking}
 \subsection{Atmel RTB, Dresden Elektronik, Meterionic}
