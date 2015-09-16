@@ -1,7 +1,28 @@
 
 \section{Hardware}
 
+\subsection{Ranging Hardware}
 
+\subsection{Autopilot}
+
+\section{Interconnect}
+There are diffrent solutions to connecting the ranging board to the Paparazzi autopilot.
+
+\subsection{Pulse width modulation / Analog value}
+Using a single GPIO pin or analog value is completely impractical, but a good example to explain the problems the honest solutions need to address.
+First of all there is a limited number of GPIO or ADC-pins on both boards.
+On the autopilot board those pins are quite rare, especially because they cannot be shared easily between components.
+The second problem is that we do not only need to read a range value from the sensor but we also need to tell the sensor which value to fetch.
+Therefore some kind of bidirectional communication between autopilot and sensor need to take place.
+The big advantage of using a GPIO pin would be that only one single wire\footnote{Plus two wires for voltage supply} would be needed to connect autopilot and sensor.
+
+\subsection{UART}
+
+\subsection{SPI}
+
+\subsection{CAN bus}
+
+\subsection{I2C}
 
 \section{Communication Protocol}
 
