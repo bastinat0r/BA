@@ -1,16 +1,30 @@
-\section{Finken Robots}
+\section{The Finken Robot Platform}
+
 
 The Finken project aims to create a swarm of autonomously flying quadrocopters to research swarm intelligence beheaviour on robots.
 Many algorithems in swarm intelligence are based on distance-values. \todo{source}
 For this reason it is reasonable to search for a sensor that is capable to measure distances and integrate it into the Finken robots. 
 
-The Finken robots are already existing and of course it is necessary to know wich kind of hardware on the robots could interfere with the ranging sensors that shall be integrated into those robots.
+\subsection{Actuators and Dynamic}
+The Finken Robot is a quadrocopter.
+Like most quadrocopters the Finken Robots are propelled by four rotors that are directly attached to a brushless motor.
+In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
+The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
+
+\subsection{Environment}
+The Finken Robots fly in an area of 2m by 3m that can be expanded to about 4m by 3m and in 50cm to 1m height.
+The flight area is enclosed by netting and ultrasound-reflecting foil.
+It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
+This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
+
+\subsection{Sensor Concept}
+
+\subsection{Hardware interfering with ranging}
+There are different ranging technologies that might be used in a Finken quadrocopter.
+However there are different components that can interfere with the new sensor that shall be integrated e.g. by disturbing the measurments made by the new sensor.
 
 \begin{itemize}
-	\item[IMU] Inertial Measurement Unit with accelerometer, magnetometer and barometer
 	\item[Sonar Sensors] Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right)
-	\item[IR-Sensor] Sensor to measure distance to ground with high frequency
-	\item[Optical Flow] Optical flow sensor, that can be integrated to measure x-y-velocity over ground
 	\item[Motors] Four brushless motors that may cause RF-interfercene and noise
 	\item[Telemetry] BTLE-/Zigbee modules to exchange data with the ground station
 	\item[RC-Control] 2.4GHz based Radio Control to manually control the robots
