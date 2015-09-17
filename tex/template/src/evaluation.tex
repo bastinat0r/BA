@@ -1,3 +1,31 @@
-\section{Method(s)}
 
-\section{Result(s)}
+
+
+\section{Ranging Accuracy}
+\subsection{Influence of Distance}
+
+\subsection{Moving Nodes}
+
+\subsection{Ranging on Finken Robots}
+
+\section{Properties of a Distance Function}
+The ranging sensor on the Finken robot shall be used to provide a distance between two quadrocopters, similar to a distance measure used in swarm intelligence algorithms.
+In the pure mathematical sense a distance function has to fullfill certian properties.
+
+If $f(x, y)$ is a distance function it has to have the following properties.
+\begin{eqnarray}
+f(x, y) \ge 0 \\
+f(x, y) = 0 \iff x = y \\ 
+f(x, y) = f(y, x) \\ 
+f(x, z) \le f(x, y) + f(y, z)
+\end{eqnarray}
+
+Of course the value measured by any real sensor will not completly accomplish to satisfy those conditions.
+For use in swarm robotics it is therefore very interesting to know in which way the range values break the pattern of a mathematical distance function.
+
+\subsection{Non-negativity and Coincidence}
+
+\subsection{Symmetry}
+
+\subsection{Triangle Inequality}
+
