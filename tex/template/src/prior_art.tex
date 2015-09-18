@@ -5,7 +5,7 @@ The Finken project aims to create a swarm of autonomously flying quadrocopters t
 Many algorithems in swarm intelligence are based on distance-values. \todo{source}
 For this reason it is reasonable to search for a sensor that is capable to measure distances and integrate it into the Finken robots. 
 
-\subsection{Actuators and Dynamic}
+\subsection{Actuators and Dynamic} \todo{put this subchapter into introduction}
 The Finken Robot is a quadrocopter.
 Like most quadrocopters the Finken Robots are propelled by four rotors that are directly attached to a brushless motor.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
@@ -34,6 +34,7 @@ However there are different components that can interfere with the new sensor th
 \end{itemize}
 
 \section{Evaluation of Existing Ranging Solutions}
+\todo{mehr fokus auf andere copter projekte}
 There are some technologies that can be used for ranging, however the usual application for most of those technologies in research is positioning.
 For that reason it is interesting to search for positioning applications that use range measurements, however many of those positioning technologies are base on other principles than multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which is what we are interested in because only ranging measurments are used, \emph{multiangular}—which is no use  to us, because angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions–which is also no use to us.}.
 \cite{_multilateration_2015}
@@ -51,6 +52,8 @@ http://www.researchgate.net/profile/Bardia\_Alavi/publication/224315086\_Measure
 
 Another approach to provide an indoor GPS-like solution is iGPS. http://www.nikonmetrology.com/de\_EU/Produkte/Grossvolumige-Messaufgaben/iGPS/iGPS \todo{quellify} however is not ranging-based but uses angulation as underlying technology and is therefore useless to us.
   * IGPS http://porto.polito.it/2438175/2/IJAMT\_iGPS\_and\_LT.pdf
+
+\todo{deka-wave}
 \subsection{Cricket / Active Bat}
 A very clever approach to ranging is used by ranging solutions like cricket and active bat\todo{Quelle, Quelle}. 
 RF-Signals travel at the speed of light and therefore you need to be able to measure very short timings in time of flight scenarios.
