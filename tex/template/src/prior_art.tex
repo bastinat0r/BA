@@ -1,18 +1,18 @@
-\section{The Finken Robot Platform}
+\section{The FINken Robot Platform}
 
 
-The Finken project aims to create a swarm of autonomously flying quadrocopters to research swarm intelligence beheaviour on robots.
+The FINken project aims to create a swarm of autonomously flying quadcopters to research swarm intelligence beheaviour on robots.
 Many algorithems in swarm intelligence are based on distance-values. \todo{source}
-For this reason it is reasonable to search for a sensor that is capable to measure distances and integrate it into the Finken robots. 
+On this occasion it is important to find a sensor that is capable to measure distances and to integrate it into the FINken robots. 
 
 \subsection{Actuators and Dynamic} \todo{put this subchapter into introduction}
-The Finken Robot is a quadrocopter.
-Like most quadrocopters the Finken Robots are propelled by four rotors that are directly attached to a brushless motor.
+The FINken Robot is a quadcopter.
+Like most quadcopters the FINken Robots are propelled by four rotors that are directly attached to a brushless motor.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
 The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
 
 \subsection{Environment}
-The Finken Robots fly in an area of 2m by 3m that can be expanded to about 4m by 3m and in 50cm to 1m height.
+The FINken Robots fly in an area of 2m by 3m that can be expanded to about 4m by 3m and in 50cm to 1m height.
 The flight area is enclosed by netting and ultrasound-reflecting foil.
 It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
 This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
@@ -20,7 +20,7 @@ This virtual environment can be used assign a certain task to the robot, e.g. fi
 \subsection{Sensor Concept}
 
 \subsection{Hardware interfering with ranging}
-There are different ranging technologies that might be used in a Finken quadrocopter.
+There are different ranging technologies that might be used in a FINken quadcopter.
 However there are different components that can interfere with the new sensor that shall be integrated e.g. by disturbing the measurments made by the new sensor.
 
 \begin{itemize}
@@ -63,12 +63,12 @@ Cricket and Active Bat use this to measure the time difference an RF-signal and 
 \todo{accuracy / price, moving objects, medium access (number of nodes)}
 
 
-There are two big problems with this approach that stem from the current setup of the Finken-Robots.
-The Finken Robots use ultrasound sensors to measure the distances to nearby objects.
+There are two big problems with this approach that stem from the current setup of the FINken-Robots.
+The FINken Robots use ultrasound sensors to measure the distances to nearby objects.
 Those technologies would interfere with the ultrasound sensors already used and a replacement would be needed.
 
 Another problem is the noise created by motors and propellers.
-The sound made by the quadrocopters is not ending in the hearable spectrum but also extends to the ultrasound range.
+The sound made by the quadcopters is not ending in the hearable spectrum but also extends to the ultrasound range.
 \todo{measure noise, PWM-frequency of speedcontrollers}
 
 \subsection{RSSI-based ranging}
@@ -80,7 +80,7 @@ There are even approaches using maps created of different RSSI-ranging sources. 
 
 The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
 Antenna-orientation might have a much bigger impact on signal strength than distance.
-Additionally radio waves might be weakend when travelling through the Finken-Robots and by doing so passing wires and electronic components.
+Additionally radio waves might be weakend when travelling through the FINken robots and by doing so passing wires and electronic components.
 
 \subsection{External Tracking}
 

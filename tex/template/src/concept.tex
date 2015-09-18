@@ -1,0 +1,39 @@
+\section{Hardware}
+
+\subsection{Ranging Hardware}
+
+\subsection{Autopilot}
+
+\section{Interconnect}
+There are diffrent solutions to connecting the ranging board to the Paparazzi autopilot.
+
+\subsection{Pulse width modulation / Analog value}
+Using a single GPIO pin or analog value is completely impractical, but a good example to explain the problems the honest solutions need to address.
+First of all there is a limited number of GPIO or ADC-pins on both boards.
+On the autopilot board those pins are quite rare, especially because they cannot be shared easily between components.
+The second problem is that we do not only need to read a range value from the sensor but we also need to tell the sensor which value to fetch.
+Therefore some kind of bidirectional communication between autopilot and sensor need to take place.
+The big advantage of using a GPIO pin would be that only one single wire\footnote{Plus two wires for voltage supply} would be needed to connect autopilot and sensor.
+
+\subsection{UART}
+The "Universal Asynchronous Receiver/Transmitter"-Protocol uses two wires to establish communication between devices.
+\cite{wingen_automatic_2004}
+
+The Disadvantage of UART-style Protocols is that it is a bidirectional connection.
+That two pins are needed on sender and reciever side and if another device should be connected two new pins are needed.
+On the Lisa/MX autopilot there are 4 dedicated UART connections that might be used, but already 3 of them are used.
+
+\subsection{SPI}
+
+\subsection{CAN bus}
+
+\subsection{I2C}
+I2C is a two wired bus protocol that can be used to connect multiple slave devices to one master device.
+There already are multiple sensors connected to the autopilot via I2C.
+All of the ultrasound-sensors and also the optionalcolorsensor use I2C to communicate with the autopilot.
+The autopilot board also supports to have two independent i2c-networks.
+
+Especially the fact that there already is a sensor network on the Finken makes it the best choice as a communication protocol for the new sensor.
+
+\todo{problem: slaves can block the bus}
+
