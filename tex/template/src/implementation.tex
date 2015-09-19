@@ -1,5 +1,18 @@
+
+Somehow the sensordata needs to find its way into the control loops of the autopilot.
+We have established that i2c is the hardware solution to transmit the data.
+
+Now it is important to pin down in which way the measurements get triggert and when and how the result is transmitted back.
+
 \section{Communication Protocol}
 
+There are two possible ways to talk to the sensor.
+You can define independent commands to start a measurement and retrieve data.
+The obvious disatvantage of this method is, that there is a bit of communication overhead and the master device won't read the data from the sensor as soon as it is possible—the master might event start a new measurement without even reading the result at all.
+
+The other way to do things is that the slave device writes the data onto the bus as soon as it is arriving.
+This way of sending results however has disatvantages that ar e far worse then reading measurements a bit later and even missing some measurements.
+Those disatvantages are caused by the way i2c handles slave writes.
 \todo{polling vs writing to the bus, when data is available}
 
 \todo{"TWI", "Phillips-I2C", "..."}
@@ -10,3 +23,7 @@
 \todo{(optional)Treiber für Pseudo GPS}
 
 \section{Python Scripts}
+
+For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as i2c master.
+Using this setup for testing has proven really effective even before integrating attaching the sensor nodes to one of the finken robots.
+Python might also be a very powerfull tool to prototype mathematical processing of the sensor inputs like filtering and fusion of different ranging results.
