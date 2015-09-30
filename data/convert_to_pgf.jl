@@ -14,7 +14,7 @@ function parseComandline()
 		"--pgf", "-p"
 			help="output filename for pgf"
 			arg_type = String	
-		"--sgv", "-s"
+		"--svg", "-s"
 		  help="output filename for svg"
 			arg_type = String
 	end
@@ -30,11 +30,15 @@ function main()
 	p = plot(df, x="dqf", y="range")
 	if haskey(parsed_args,"pgf")
 		pgf=parsed_args["pgf"]
-		draw(PGF(pgf, 10cm, 10cm, true),p)
+		if pgf != nothing
+			draw(PGF(pgf, 10cm, 10cm, true),p)
+		end
 	end
 	if haskey(parsed_args,"svg")
 		svg=parsed_args["svg"]
-		draw(SVG(svg, 10cm, 10cm),p)
+		if svg != nothing
+			draw(SVG(svg, 10cm, 10cm),p)
+		end
 	end
 end
 
