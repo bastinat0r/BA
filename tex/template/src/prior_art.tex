@@ -5,19 +5,51 @@ The FINken project aims to create a swarm of autonomously flying quadcopters to 
 Many algorithems in swarm intelligence are based on distance-values. \todo{source}
 On this occasion it is important to find a sensor that is capable to measure distances and to integrate it into the FINken robots. 
 
+\subsection{Environment}
+Creating a swarm of flying robots is a rather difficult task.
+Therefore the environment for the FINken robots is created to protect the robots from mechanical damage and to function well with the sensors the robot uses.
+
+The FINken robots fly in an enclosed area of 2m by 3m that can be expanded to about 4m by 3m.
+The flight area is enclosed by netting and ultrasound-reflecting foil.
+Usually the altitude of operation is between 50cm to 1m.
+To prevent damage when the quadcopters crash the floor is coverd with mats that work well with ultrasound and infrared sensors.
+It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
+This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
+\todo{foto}
+
 \subsection{Actuators and Dynamic} \todo{put this subchapter into introduction}
 The FINken Robot is a quadcopter.
 Like most quadcopters the FINken Robots are propelled by four rotors that are directly attached to a brushless motor.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
 The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
 
-\subsection{Environment}
-The FINken Robots fly in an area of 2m by 3m that can be expanded to about 4m by 3m and in 50cm to 1m height.
-The flight area is enclosed by netting and ultrasound-reflecting foil.
-It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
-This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
+The robots are highly dynamic-the robots have enough acceleration to leave the operating environment in any possible direction.
+This is mainly because the robots need lots of payload capacity to carry different sensors and computing power, with enough headroom to make changes in the future.
+
 
 \subsection{Sensor Concept}
+The sensors used by the FINken robots are usually used for two purposes: To enable the robots to fly autonomsly and to interact with other robots and the environment.
+
+\subsubsection{Autonomous Flying}
+To form a swarm the robots need to function as single individuals first-that means not crashing into walls, ceiling, floor or other robots.
+Of course the sensors needed for autonoms flight must not be disturbed by anything else. 
+
+\todo{height control}
+\todo{wall avoid}
+
+\subsubsection{Interaction}
+
+The FINken robots shall be able to do more than simply not crashing.
+Of course sensor values needed for autonomous flight can also be used to interact with the robots environment, but there are also senors that are exclusively used for interaction.
+
+To interact with an environment a solution is necessary that works well in the laboratry.
+The environment of the robots shall be changed without changing the physical layout of the lab.
+An environmental factor that can be easily changed is the lighting of the flying area.
+In the swarmlab a projector can be used to affect the quadcopters.
+To measure the current lighting situation an rgb color sensor is mounted on top of the copter.
+
+The range-sensor is also mainly used for interaction.
+Ranging values enable the FINken robots to implement attraction-repulsion-beheaviour.
 
 \subsection{Hardware interfering with ranging}
 There are different ranging technologies that might be used in a FINken quadcopter.
