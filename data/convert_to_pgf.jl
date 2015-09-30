@@ -11,9 +11,12 @@ function parseComandline()
 			help="csv file to be parsed"
 			arg_type = String
 			required = true
-		"--outfile", "-o"
-			help="output filename"
+		"--pgf", "-p"
+			help="output filename for pgf"
 			arg_type = String	
+		"--sgv", "-s"
+		  help="output filename for svg"
+			arg_type = String
 	end
 
 	return parse_args(args_settings)
@@ -21,13 +24,18 @@ end
 
 function main()
 	parsed_args = parseComandline()
-	println(parsed_args)
 	s = parsed_args["csv"]
 	df = readtable(s)
 	df = df[ df[:dqf] .> 0, :]
-	p = plot(df, x=["dqf"], y=["range"])
-	outfile=parsed_args["outfile"]
-	draw(PGF(outfile, 10cm, 10cm, true),p)
+	p = plot(df, x="dqf", y="range")
+	if haskey(parsed_args,"pgf")
+		pgf=parsed_args["pgf"]
+		draw(PGF(pgf, 10cm, 10cm, true),p)
+	end
+	if haskey(parsed_args,"svg")
+		svg=parsed_args["svg"]
+		draw(SVG(svg, 10cm, 10cm),p)
+	end
 end
 
 main()
