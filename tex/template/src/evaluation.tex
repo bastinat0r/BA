@@ -3,6 +3,7 @@
 
 For use in the FINken robots not only the quality of the measurements is relevant.
 
+
 \subsection{Bus hangup}
 I2C is an easy to implement and use bus protocol.
 One of the drawbacks of I2C is that misbehaving clients are able to block the whole bus.
@@ -18,6 +19,12 @@ Another problem that may occure is that i2c data packets can get lost.
 
 
 \section{Ranging Accuracy}
+
+\subsection{Frequency Selection}
+The frequencys used by the ranging can be chosen.
+Especially because normal 2.4GHz wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
+
+\todo{measere differnt frequencys, difference between meeting, empty lab and open field}
 
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
@@ -92,6 +99,11 @@ Of course the value measured by any real sensor will not completly accomplish to
 For use in swarm robotics it is therefore very interesting to know in which way the range values break the pattern of a mathematical distance function.
 
 \subsection{Non-negativity and Coincidence}
+
+The first property of a mathematical distance measure to look at is non-negativity. This is quite easy: The values yielded by the ranging modules are clearly positiv.
+Also the property of coincidence is always given.
+Each module has a unique address and is therefore able to check, if it is ranging itself.
+Having two modules occupy the same physical spot is obviosly not possible so there cannot be two different modules that are equvivalent in a mathematical sense.
 
 \subsection{Symmetry}
 
