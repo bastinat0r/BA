@@ -107,8 +107,18 @@ Having two modules occupy the same physical spot is obviosly not possible so the
 
 \subsection{Symmetry}
 
-\subsection{Triangle Inequality}
+In this section the following notation will be used: $A \rightarrow B$ means a range reading is taken from node A with B as reflector node.
 
+Symmetry is a property that can not be achieved by the ranging sensors because of noise. 
+A range reading $A \rightarrow B$ will not be equal to the reading for $B \rightarrow A$ just because the two readings will be altered by noise.
+The question that remains is: Do we have the same error for both directions.
+
+\todo{measure, plot, evaluate}
+
+
+\subsection{Triangle Inequality}
+The Triangle Inequality will also be broken by noise.
+I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might as well break the condition of the Triangle Inequality.
 
 
 \section{Conclusion}
