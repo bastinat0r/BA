@@ -2,13 +2,27 @@
 
 \subsection{Ranging Hardware}
 
+There are several different possible hardware plattforms for the Atmel ranging software.
+At the time this thesis started however we only had a precompiled libary for the Atmel ranging modules \todo{exact name}.
+For the evaluation scenario those modules are quite useable, but there are better options available with the binaries for other hardware plattforms.
+On the copters we want to use \$Module from dresden elektronik which is already integrated into the new hardware revision of the FINken robots.
+
+The disadvantage of the Atmel sensors is that they are not designed for production use but as development plattforms and therefore are quite big and heavy and not really suited to be used on the FINken quadcopters.
+It is possible however to build a simmilar hardware setup that is much smaller by using smaller packages of the same chips, leaving lots of unused PCB area and unused connectors.
+
 \subsection{Autopilot}
+The FINken robots use the LISA/MX autopilot board in hardware revision 2.1.
+This board is used for higher level auto pilot functions as well as pure stabilization–unlike other UAV projects where there are different units for stabilization control and higher levelfunctions like pathfinding.
+This means that all sensors are connected to this board; every computation from evaluation of sensor input to the output of PWM signals to the motors controllers is done on this board.
 
 \section{Interconnect}
 There are diffrent solutions to connecting the ranging board to the Paparazzi autopilot.
+All of the following methods of connecting hardware are supported by the LISA/MX board and one has to be chosen for the new ranging sensors.
+
 
 \subsection{Pulse width modulation / Analog value}
 Using a single GPIO pin or analog value is completely impractical, but a good example to explain the problems the honest solutions need to address.
+
 First of all there is a limited number of GPIO or ADC-pins on both boards.
 On the autopilot board those pins are quite rare, especially because they cannot be shared easily between components.
 The second problem is that we do not only need to read a range value from the sensor but we also need to tell the sensor which value to fetch.

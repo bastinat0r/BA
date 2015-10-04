@@ -1,5 +1,8 @@
 \section{Formation Flying using Swarm Behaviour}
 \todo{get simulation data}
+One of the next steps is to \todo{übertragen} algorithms from swarm intelligence to the FINken robots.
+The robots should be able to form a stable formation by using virtual attraction and repulsion forces to hold a given distance to their neighbors.
+If those distances are stable enough formations like triangle meshes can be formed.
 
 \subsection{Direction}
 A value that the ranging sensors don't yield is the direction of the other sensor it is ranging with.
@@ -12,4 +15,4 @@ One of the things that can be done with ranging is position estimation via multi
 Even if the FINken project is mainly interested in gaining a viable distance measure between individuals in a swarm a position estimate would be beneficial for the performance of the autopilot-especially as the normal usecase for the Paparazzi autopilot is outdoors and with a GPS reciever attatched.
 
 To integrate positional data into the FINken two steps are needed: Implementing the multilateration algorithm on the sensors and writing a new GPS module that uses the data from the sensor.
-An aditional benefit of using anchor nodes to compute a position estimate is that we can find out our current heading and the direction of other swarm entities much easier.
+An aditional benefit of using anchor nodes to compute a position estimate is that we can find out our current heading and the direction of other swarm entities much easier
