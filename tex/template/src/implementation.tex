@@ -29,6 +29,9 @@ The registers and the format of the range response are described by \emph{i2c\_i
 \todo{Treiber für  Ranging}
 \todo{(optional)Treiber für Pseudo GPS}
 
+Addressing is done using the unique aircraft id of the indivdual robots.
+Because the short addresses for the ranging nodes are 16 bit long and the aircraft ids are 8 bit values it is feasable to use a fixed prefix together with the ac-id as node addresses.
+
 \section{Python Scripts}
 
 For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as i2c master.
