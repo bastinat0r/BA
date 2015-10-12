@@ -18,14 +18,14 @@ This virtual environment can be used assign a certain task to the robot, e.g. fi
 \todo{foto}
 
 \subsection{Actuators and Dynamic} \todo{put this subchapter into introduction}
-The FINken Robot is a quadcopter.
 Like most quadcopters the FINken Robots are propelled by four rotors that are directly attached to a brushless motor.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
 The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
 
 The robots are highly dynamic-the robots have enough acceleration to leave the operating environment in any possible direction.
 This is mainly because the robots need lots of payload capacity to carry different sensors and computing power, with enough headroom to make changes in the future.
-
+Even if the high power of the motors is not utilized stability is a problem.
+If the copter is angled by only $6\degree$ and it's height is kept stable it is accelerating at about $1\frac{m}{s^2}$
 
 \subsection{Sensor Concept}
 The sensors used by the FINken robots are usually used for two purposes: To enable the robots to fly autonomsly and to interact with other robots and the environment.
@@ -34,8 +34,19 @@ The sensors used by the FINken robots are usually used for two purposes: To enab
 To form a swarm the robots need to function as single individuals first-that means not crashing into walls, ceiling, floor or other robots.
 Of course the sensors needed for autonoms flight must not be disturbed by anything else. 
 
-\todo{height control}
-\todo{wall avoid}
+The flight dynamics of the FINken robots shall be as simple as possible.
+The robots shall be able to fly at a given height and navigate in x-y-direction to perform their given tasks.
+Highly dynamic maneuvers are possible for the airframe, but are not realizable with the sensor data we currently get. \todo{ref to christophs ba}
+
+For flying autonomously two major problems have to be solved: Height control and navigation.
+For controlling the height of the copters either the ultrasound distance measurement of the optical flow sensors are used, alternativly the height is measured by an infrared sensor that must be equipped when the optical flow sensors are not.
+
+Navigating the x-y-plane is a much harder task.
+Because sensors are not perfect the copter will drift in any given direction and precise speed and position measurements are hard to get by.
+As a consequence implementing a position hold mode is quite a challenge. \todo{wording}
+Assuming that a stable position can not be kept there is still something that can be done to fly for longer time periods.
+With an ultrasound distance sensor in each direction the robot can sense its surroundings and avoid any obstacles in its vicinity.
+An essential precondition for navigating around obstacles that way is a certian level of stability and avoiding highly dynamic maneuvers.
 
 \subsubsection{Interaction}
 
