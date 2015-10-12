@@ -2,17 +2,22 @@
 \section{Robustness of Implementation}
 
 For use in the FINken robots not only the quality of the measurements is relevant.
+The sensor also needs to be well integrated into the autopilot framework.
 
+With the current hardware this integration can not be done completly, because the current hardware plattform is simply to big to fly.
+This step of integration will be done with the \todo{de-modules}.
 
 \subsection{Bus hangup}
 I2C is an easy to implement and use bus protocol.
 One of the drawbacks of I2C is that misbehaving clients are able to block the whole bus.
+As a consequence a malfunctioning sensor might render the others sensors useless, in worst case crashing the copter.
 
 At the moment the ranging sensors cause bus hangups, when rangings are requested to often.
 \todo{measure}
 
 \subsection{i2c errors per time}
 Another problem that may occure is that i2c data packets can get lost.
+This would mean the autopilot has to rely on expired data and it might break any kind of derivate computed from the range value \todo{jaja, als ob man da was sinvolles ausrechnen könnte :(}.
 \todo{measure}
 
 \subsection{Integration Test for Quadcopter}
