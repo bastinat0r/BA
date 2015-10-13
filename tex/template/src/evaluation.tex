@@ -27,7 +27,7 @@ This would mean the autopilot has to rely on expired data and it might break any
 
 \subsection{Frequency Selection}
 The frequencys used by the ranging can be chosen.
-Especially because normal 2.4GHz wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
+Especially because normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
 
 \todo{measere differnt frequencys, difference between meeting, empty lab and open field}
 
@@ -36,14 +36,14 @@ One value the ranging api provides is the DQF\footnote{Data Quality Factor}-valu
 It is reasonable to expect a huge amount of scatter for lower DQF values.
 As \autoref{1m_scatterplot} shows this is not how the range value behaves.
 
-For the values measured with 1m real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
+For the values measured with \SI{1}{\metre} real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
 Also values measured with lower quality are closer to each other than those with higher signal quality.
-As long as we only look at the values taken at 1m real distance it seams like we could be able to improve the range estimate by including the dqf value into the computation of the distance.
-To do that this behaviour would need to be stable accross different distances, i.e. no matter if the measurement is taken at 1m or 3m distance the when the dqf is low the measured range is lower and if dqf is high the measured range is higher.
+As long as we only look at the values taken at \SI{1}{\metre} real distance it seams like we could be able to improve the range estimate by including the dqf value into the computation of the distance.
+To do that this behaviour would need to be stable accross different distances, i.e. no matter if the measurement is taken at \SI{1}{\metre} or \SI{3}{\metre} distance the when the dqf is low the measured range is lower and if dqf is high the measured range is higher.
 \begin{figure}[H]
 	\centering
 	\input{figures/scatterplot_1000_1m.pgf}
-	\caption{1000 values measured at 1m distance}
+	\caption{1000 values measured at \SI{1}{\metre} distance}
 	\label{1m_scatterplot}
 \end{figure}
 
@@ -53,14 +53,14 @@ This leads to bad consequences.
 \begin{figure}[H]
 	\centering
 	\input{figures/range_05_to_2m.pgf}
-	\caption{values measured at 0.5 to 2m real distance}
+	\caption{values measured at \SI{0.5}{\metre} to \SI{2}{\metre} real distance}
 	\label{range_05_to_2m}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\input{figures/2m.pgf}
-	\caption{100 values measured at 2m distance}
+	\caption{100 values measured at \SI{2}{\metre} distance}
 	\label{2m}
 \end{figure}
 
