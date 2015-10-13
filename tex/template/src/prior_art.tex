@@ -2,16 +2,16 @@
 
 
 The FINken project aims to create a swarm of autonomously flying quadcopters to research swarm intelligence beheaviour on robots.
-Many algorithems in swarm intelligence are based on distance-values. \todo{source}
+Many algorithms in swarm intelligence are based on distance values. \todo{source}
 On this occasion it is important to find a sensor that is capable to measure distances and to integrate it into the FINken robots. 
 
 \subsection{Environment}
 Creating a swarm of flying robots is a rather difficult task.
-Therefore the environment for the FINken robots is created to protect the robots from mechanical damage and to function well with the sensors the robot uses.
+The environment for the FINken robots is created to protect the robots from mechanical damage and to function well with the sensors the robot uses.
 
-The FINken robots fly in an enclosed area of 2m by 3m that can be expanded to about 4m by 3m.
-The flight area is enclosed by netting and ultrasound-reflecting foil.
-Usually the altitude of operation is between 50cm to 1m.
+The FINken robots fly in an area of \SI{2}{\metre} by \SI{3}{\metre} that can be expanded to about \SI{3}{\metre} by \SI{4}{\metre}.
+The flight area is enclosed by netting and ultrasound-reflecting foil those barriers act the same way a wall would without damaging the robots if they fail to elude them.
+Usually the altitude of operation is between \SI{0.5}{\metre} to \SI{1}{\metre}.
 To prevent damage when the quadcopters crash the floor is coverd with mats that work well with ultrasound and infrared sensors.
 It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
 This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
@@ -25,7 +25,7 @@ The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cit
 The robots are highly dynamic-the robots have enough acceleration to leave the operating environment in any possible direction.
 This is mainly because the robots need lots of payload capacity to carry different sensors and computing power, with enough headroom to make changes in the future.
 Even if the high power of the motors is not utilized stability is a problem.
-If the copter is angled by only $6\degree$ and it's height is kept stable it is accelerating at about $1\frac{m}{s^2}$
+If the copter is angled by only $6\degree$ and it's height is kept stable it is accelerating at about \SI{1}{\metre\per\square\second} 
 
 \subsection{Sensor Concept}
 The sensors used by the FINken robots are usually used for two purposes: To enable the robots to fly autonomsly and to interact with other robots and the environment.
