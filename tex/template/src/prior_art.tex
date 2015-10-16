@@ -139,3 +139,15 @@ For swarm robotics this is not an ideal solution as using external tracking woul
 \todo{price}
 \subsection{Atmel RTB, Dresden Elektronik, Meterionic}
 
+Another thing that can be measured phase shift.
+This is a principle that is used by some of the ultrasonic methods.
+However the phase difference can also be measured in radio waves.
+This is utilized by the ranging hardware from the Atmel Ranging Toolbox.
+Multiple frequencys are used to measure a phase difference.
+Because the wave length changes with different frequencys you can take all of the measured phase differences and compute a distance.
+\todo{quelle}
+Similar hardware using the same software stack is also sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
+
+Using phase differences in RF discards the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
+Therefore it seems like a feasible approach for the FINken robots.
+
