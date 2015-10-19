@@ -105,16 +105,15 @@ The same principle can be applied when you measuring the distance of a lightning
 Cricket and Active Bat also measure the time difference an RF-signal and an ultrasound pulse need to travel from transmitter to reciever to calculate the range between two sensor nodes.
 
 A bad side effect of using sound as medium to the ranging method is that there is an upper bound to the update frequency for all nodes sharing the medium (i.e. close enough to sense each other). \cite{active_bat} claims that one ranging measurement can be done in a \SI{20}{\milli\second} slot.
-\todo{accuracy / price, moving objects, medium access (number of nodes)}
-
-
-There are two big problems with this approach that stem from the current setup of the FINken-Robots.
-The FINken Robots use ultrasound sensors to measure the distances to nearby objects.
-Ultrasonic ranging technologies would interfere with the ultrasound sensors already used and a replacement would be needed.
+That means we can have 50 range updates per second. Assuming we have a swarm of five robots that form a fully connected graph we would need at least ten range measurements to get all swarm distances.
+So the upper boundary for ranging update frequency in a swarm of five robots is \SI{5}{\hertz}.
+Considering that this is the upper limit this is a solid disadvantage of this method.
+Furthermore the FINken robots currently use sonar based distance sensor to measure the distance to the nearest object in some direction so either the update frequency would be diminished much further or the sonar sensors needed to be replaced
+\todo{accuracy / price, moving objects}
 
 Another problem is the noise created by motors and propellers.
 The sound made by the quadcopters is not ending in the hearable spectrum but also extends to the ultrasound range.
-\todo{measure noise, PWM-frequency of speedcontrollers}
+In conclusion ultrasound based ranging is a very neat approach that could be integrated into the FINken robots, but the current setup that already includes sonar sensors make this approach impractical.
 
 \subsection{RSSI-based ranging}
 
