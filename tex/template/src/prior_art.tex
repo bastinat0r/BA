@@ -98,12 +98,13 @@ Another approach to provide an indoor GPS-like solution is iGPS. http://www.niko
 
 \todo{deka-wave}
 \subsection{Cricket / Active Bat}
-A very clever approach to ranging is used by ranging solutions like cricket\cite{cricket_01} and active bat\todo{Quelle, Quelle}. 
+A very clever approach to ranging is used by ranging solutions like cricket\cite{cricket_01} and active bat\cite{active_bat}. 
 RF-Signals travel at the speed of light and therefore you need to be able to measure very short timings in time of flight scenarios.
 Sound however travels at a speed much slower than radio waves.
 The same principle can be applied when you measuring the distance of a lightning strike by measuring the time between thunder and lightning.
 Cricket and Active Bat also measure the time difference an RF-signal and an ultrasound pulse need to travel from transmitter to reciever to calculate the range between two sensor nodes.
 
+A bad side effect of using sound as medium to the ranging method is that there is an upper bound to the update frequency for all nodes sharing the medium (i.e. close enough to sense each other). \cite{active_bat} claims that one ranging measurement can be done in a \SI{20}{\milli\second} slot.
 \todo{accuracy / price, moving objects, medium access (number of nodes)}
 
 
