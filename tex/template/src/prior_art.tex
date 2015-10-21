@@ -5,6 +5,15 @@ The FINken project aims to create a swarm of autonomously flying quadcopters to 
 Many algorithms in swarm intelligence are based on distance values. \todo{source}
 On this occasion it is important to find a sensor that is capable to measure distances and to integrate it into the FINken robots. 
 
+
+\subsection{Robot Description}
+The FINken 3 robots are quadcopters controlled by the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
+The robots are propelled by four rotors that are directly attached to a brushless motor.
+In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
+The airframe contains all the actuators, processors and batteries needed for flight.
+Additionally it carries a multitude of sensors used for operating autonomsly.
+
+
 \subsection{Environment}
 Creating a swarm of flying robots is a rather difficult task.
 The environment for the FINken robots is created to protect the robots from mechanical damage and to function well with the sensors the robot uses.
@@ -17,11 +26,7 @@ It is possible to create virtual environmental factors by using a projector and 
 This virtual environment can be used assign a certain task to the robot, e.g. finding the brightest spot.
 \todo{foto}
 
-\subsection{Actuators and Dynamic} \todo{put this subchapter into introduction}
-Like most quadcopters the FINken Robots are propelled by four rotors that are directly attached to a brushless motor.
-In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
-The speed of each motor is controlled by an the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
-
+\subsection{Dynamic Beheavior} \todo{put this subchapter into introduction}
 The robots are highly dynamic-the robots have enough acceleration to leave the operating environment in any possible direction.
 This is mainly because the robots need lots of payload capacity to carry different sensors and computing power, with enough headroom to make changes in the future.
 Even if the high power of the motors is not utilized stability is a problem.
