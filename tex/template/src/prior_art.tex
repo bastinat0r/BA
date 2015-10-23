@@ -90,16 +90,18 @@ For that reason it is interesting to search for positioning applications that us
 The usual technologies used for ranging are based on time of flight measurments, signal strength, optical tracking, and phase diffence measurments in signals.
 
 \subsection{Indor Time of Flight}
-The obvious approach for replacing the GPS signal that is aviable outdoors is to use a simmilar approach indoors.
-http://robotics.eecs.berkeley.edu/~pister/290Q/Papers/Location/Lanzisera\%20RF\%20TOF\%20WISES06.pdf \todo{quellify} states, that an accuracy of $2.6m_{RMS}$ was achieved indoors.
-With an operating area only $2m$ wide this approach is not suited for our robots.
-However this research is focused on using cheap sensor-nodes.
- \todo{find commercial solutions with better accuracy}
+The obvious approach for replacing the GPS signal is to use a simmilar approach indoors.
 
-http://www.researchgate.net/profile/Bardia\_Alavi/publication/224315086\_Measurement\_and\_Modeling\_of\_Ultrawideband\_TOA-Based\_Ranging\_in\_Indoor\_Multipath\_Environments/links/0912f50b396c340971000000.pdf \todo{quellify}
+The problem is that very short timespans have to be measured accuratly, because radio waves are so damn fast. \todo{wording}
+\cite{lanzisera2006} states, that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} was measured in different indoor scenarios.
+With an operating area only \SI{3}{\metre} wide this approach is not suited for our robots.
 
-A project that looks very suitable for the FINken is decaWave. \cite{uwb_decawave} claims that an accuracy of \SI{10}{\centi\metre} can be achieved and the nodes are aviable for purchase at reasonable prices. \todo{begründen warum wir das nicht benutzen}
-\cite{uwb_localisation_copter} \todo{wiederspruch mit den 10cm, more like 50cm}
+
+% \cite{uwb_decawave} claims that an accuracy of \SI{10}{\centi\metre} can be achieved and the nodes are aviable for purchase at reasonable prices. \todo{begründen warum wir das nicht benutzen} \todo{wiederspruch mit den 10cm, more like 50cm}
+A project that looks more promising is decaWave.
+According to \cite{uwb_localisation_copter} the measurement error is generally under \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
+The proposed method of filtering needs 27 measurements to compute one range value.\todo{wording}
+However the decaWave project was unkown to us when we started looking for ranging possibilities so \todo{blabla}
 
 \subsection{Cricket / Active Bat}
 A very clever approach to ranging is used by ranging solutions like cricket\cite{cricket_01} and active bat\cite{active_bat}. 
