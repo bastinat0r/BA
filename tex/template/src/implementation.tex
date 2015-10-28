@@ -17,10 +17,32 @@ Those disatvantages are caused by the way i2c handles slave writes.
 The sensor has different functions described by i2c-registers that can be written to by the master device.
 The registers and the format of the range response are described by \emph{i2c\_interface.h}.
 
-\begin{itemize}
-	\item[I2C\_START\_RANGING] start ranging
-	\item[I2C\_SET\_I2C\_ADDRESS] set new i2c address
-\end{itemize}
+
+\begin{table}
+	
+	\begin{tabularx}{\columnwidth}{l | l | X}
+	Byte & Name & Description \\ \hline
+	0x0  & ECHO & return payload byte\\
+	0x1  & START\_RANGING & trigger range measurement\\
+	0x3  & START\_REMOTE\_RANGING & trigger remote measurement\\
+	0x2  & READ\_LAST\_RANGING & read measured distance\\
+	0xFE & SET\_I2C\_ADDRESS & set new i2c address\\
+	0xFD & SET\_SHORT\_ADDRESS & set new ranging short address\\
+	0xFC & SET\_REFLECTOR\_ADDRESS & set reflector address\\
+	0xFB & SET\_INITIATOR\_ADDRESS & set initiator address\\
+	0xED & GET\_SHORT\_ADDRESS & get ranging address\\
+	0xEC & GET\_REFLECTOR\_ADDRESS & get reflector address\\
+	0xEB & GET\_INITIATOR\_ADDRESS & get initiator address\\
+	0xFF & CLEAR\_BUFFER & clear i2c write buffer\\
+	0xCA & SET\_FREQ\_START & set lower ranging frequency\\
+	0xCB & SET\_FREQ\_STEP & set ranging frequency spacing\\
+	0xCC & I2C\_SET\_FREQ\_STOP & set upper frequency\\
+	0xCD & SET\_DIVERSITY & turn on/off antenna bdiversity\\
+	\end{tabularx}
+
+	\caption{Implemented I2C-Commands and Description}
+	
+\end{table}
 
 \todo{"TWI", "Phillips-I2C", "..."}
 
