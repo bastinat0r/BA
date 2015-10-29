@@ -1,5 +1,20 @@
 \section{Misc}
 \todo{find better caption}
+
+\subsection{Improve Range Values}
+
+Of course the range values can also be improved mathematically.
+In this work no filtering of valid measurements was performed.
+However the results might be improved by computing range values based on multiple measurements.
+A good way of dooing this would be to find a “clever” way of filtering, that takes into consideration the distribution of the values.
+To exploit the distribution of the values a better theoretical model for this distribution would be needed.
+
+\todo{filtering -> papers}
+
+\subsection{Further Integration}
+
+\todo{integration testing, optitrack}
+
 \subsection{Flying with Pseudo-GPS}
 One of the things that can be done with ranging is position estimation via multilateration.
 Even if the FINken project is mainly interested in gaining a viable distance measure between individuals in a swarm a position estimate would be beneficial for the performance of the autopilot-especially as the normal use case for the Paparazzi autopilot is outdoors and with a GPS reciever attatched.
@@ -13,7 +28,7 @@ Those could be replaced by ranging beacons that enclose the operating area, eith
 This could be a nice setup for mobile deployment of the FINken robots.
 
 
-\section{Swarm Robotics}
+\section{Applications in Swarm Robotics}
 
 \subsection{Direction}
 A value that the ranging sensors don't yield is the direction of the other sensor it is ranging with.
