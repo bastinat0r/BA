@@ -44,6 +44,21 @@ The registers and the format of the range response are described by \emph{i2c\_i
 	
 \end{table}
 
+Another design decision that has to be made is how the data structure for ranging results should look like.
+\todo{status, dqf, range, addresses, message id}
+Obviously the measured distance needs to be included in the message, but instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} can be expressed that way.
+
+The dqf value also needs to be transmitted, as the sensor node can not decide in wich way the values should be used by the master device, i.e. making application dependent filtering more accurate\footnote{
+	An application were the dqf-value is of much use is a Kalman-State-Filter, which could gain accuracy by using the dqf value to estimate the reliability of the range values.
+}.
+In secenarios with multiple ranging nodes or remote ranging the addresses of both nodes taking part in the range measurement also need to be included into the message.
+This information enables the master device to assign the range values to the right pair of devices, even if one of the messages gets lost or the order of measurements changes.
+
+Depending on the setup the sensor nodes do not communicate measurement failures, but retransmit the old values again.
+As a consequence two more values should be transmitted: The status of the measurement and a message id.
+Those values enable the client to discard erroneous measurements and duplicate readings. 
+
+
 \todo{"TWI", "Phillips-I2C", "..."}
 
 \section{Paparazzi Module for Ranging}
