@@ -26,8 +26,9 @@ This would mean the autopilot has to rely on expired data and it might break any
 \section{Ranging Accuracy}
 
 \subsection{Frequency Selection}
-The frequencys used by the ranging can be chosen.
-Especially because normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
+The frequencys used by the ranging can be chosen by the user of the ranging nodes,
+however frequency selection greatly influences the quality of the measurements.
+This is especially because normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
 In \autoref{spectrum2437} there is an analysis on the frequency utilization on wifi channel 6.
 A download was started and then ended which is noticable in the waterfall plot.
 
@@ -39,6 +40,15 @@ You can already see that the peak can still be lost in noise like it is shown in
 
 Because of the lower utilization of those frequencys a range of \SI{2.480}{\giga\hertz} to \SI{2.500}{\giga\hertz} has been chosen.
 All the frequencys in this range look quite simmilar to the sample taken at \autoref{spectrum2483}.
+This values have to be taken with a grain of salt.
+It is really hard to reproduce what kind of RF-noise interfering with the nodes is currently generated in the swarmlab.
+
+There are other factors that impact ranging quality that can not be measured that easily – at least the quality of the antennas for different frequencies and the impact of the number of aviable channels in the frequency range and channel spacing are variables that can not be directly measured in our lab\footnote{The sourcecode and algorithms used by the modules is closed source, so we are not able to infere the effect of channel spacing and number of channels from that.}. 
+\todo{Find out antanna measurements / calibrated antennas}
+In the end this means finding the right parameters for ranging frequency settings is a really hard problem, especially because measuring the ranging error over many frequencys takes lots of labtime. \todo{wording}
+It is not viable to measure all aviable combinations for those parameters.
+\todo{labtime + lab utilization ... ? or is this to mimimi}
+
 
 \begin{figure}[H]
 	\centering
