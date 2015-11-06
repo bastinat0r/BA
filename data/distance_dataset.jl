@@ -12,3 +12,11 @@ zdf = reduce(vcat, dfs)
 acsv = filter(x -> ismatch(r"^a.*\.csv", x), filelist)
 dfs = [readtable(x) for x in acsv]
 adf = reduce(vcat, dfs)
+
+a = adf[ adf[:dqf] .> 0, :]
+a = a[ a[:range] .< 500, :]
+
+function bucketplot(df, bsize)
+	df[:bucket] = bsize * div( df[:distance], bsize )
+	plot(df, x=:bucket, y=:range, Geom.boxplot)
+end
