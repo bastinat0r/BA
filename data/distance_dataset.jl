@@ -1,4 +1,4 @@
-#!/usr/bin/julia -i
+#!/usr/bin/julia 
 using Gadfly, DataFrames
 set_default_plot_format(:svg)
 set_default_plot_size(32cm, 20cm)
@@ -18,5 +18,8 @@ a = a[ a[:range] .< 500, :]
 
 function bucketplot(df, bsize)
 	df[:bucket] = bsize * div( df[:distance], bsize )
-	plot(df, x=:bucket, y=:range, Geom.boxplot)
+	return plot(df, x=:bucket, y=:range, Geom.boxplot)
 end
+
+draw(PGF("accurate_all.pgf", 25cm, 16cm, true, texfonts=true), bucketplot(a, 2))
+draw(SVG("accurate_all.svg", 16cm, 10cm), bucketplot(a, 2))
