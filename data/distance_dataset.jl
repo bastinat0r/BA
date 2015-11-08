@@ -22,4 +22,5 @@ function bucketplot(df, bsize)
 end
 
 draw(PGF("accurate_all.pgf", 25cm, 16cm, true, texfonts=true), bucketplot(a, 2))
+draw(PGF("buckets.pgf", 25cm, 16cm, true, texfonts=true), bucketplot(a, 20))
 draw(SVG("accurate_all.svg", 16cm, 10cm), bucketplot(a, 2))
