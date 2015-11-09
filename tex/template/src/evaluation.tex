@@ -130,20 +130,19 @@ Additionaly the mean values are not even nearly monotone, there are some irregul
 	\begin{figure}[h]
 		\centering
 		\input{figures/buckets.pgf}
-		\caption{Range values with \SI{1}{\centi\metre} resolution, with bucket size of \SI{20}{\centi\metre}}
+		\caption{Range values with \SI{1}{\centi\metre} resolution each bar represents all the values in the range, with bucket size of \SI{20}{\centi\metre}}
 		\label{buckets}
 	\end{figure}
 \end{landscape}
+\todo{caption for buckets (wording)}
 
 Looking at a smaller resolution of distance values you can see exactly the same thing.
 This seems very bad at first glance.
 However the values look much better when multiple readings are combined.
 The result of this approach is shown in \autoref{buckets}.
 
-A filter needs to be implemented to compute the right range value if a usable range estimate should be given.
 However we can not simply measure 20 values to compute a filtered value at once, especially as the values must not be measured at the same distance.
 As long as the quadcopter is moving measurements could be taken continuously.
-This would diminish introduce a time delay into the measurement which is not desireable. \todo{wording, move to conclusions?}
 
 \subsection{Antenna Orientation}
 \todo{ (diversity, no diversity) * (parallel, perpendicular) }
@@ -201,3 +200,8 @@ I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement e
 
 \section{Conclusion}
 
+The measured range values are not as good as was hoped for.
+A filter needs to be implemented to compute a usable range estimate should be given.
+This would introduce a time delay into the measurement which is not desireable. \todo{wording}
+
+If the right method for filtering is applied the sensor nodes can still be usefull for the FINken robots.
