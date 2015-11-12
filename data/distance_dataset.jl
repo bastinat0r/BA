@@ -12,14 +12,14 @@ zdf = reduce(vcat, dfs)
 acsv = filter(x -> ismatch(r"^a.*\.csv", x), filelist)
 dfs = [readtable(x) for x in acsv]
 adf = reduce(vcat, dfs)
-scsv = filter(x -> ismatch(r"^s.*\.csv", x), filelist)
-dfs = [readtable(x) for x in scsv]
-sdf = reduce(vcat, dfs)
+#scsv = filter(x -> ismatch(r"^s.*\.csv", x), filelist)
+#dfs = [readtable(x) for x in scsv]
+#sdf = reduce(vcat, dfs)
 
 a = adf[ adf[:dqf] .> 0, :]
 a = a[ a[:range] .< 500, :]
-s = sdf[ sdf[:dqf] .> 0, :]
-s = s[ s[:range] .< 500, :]
+#s = sdf[ sdf[:dqf] .> 0, :]
+#s = s[ s[:range] .< 500, :]
 
 function bucketplot(df, bsize)
 	df[:bucket] = bsize * div( df[:distance], bsize )
