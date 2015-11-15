@@ -12,7 +12,7 @@ The mathematical distance-property might not actually need to be something as cl
 Goal of the FINken project is to do research on how swarm beheaviour can be executed by flying robots.
 Therefore suitable robots need to be constructed.
 The robots need to fly in an stable manner on their own and be capable of interacting without disrupting the operation of the other swarm members.
-Those robots shall perform given tasks defined to encurage swarm based interaction, that can be evaluated and compared to the theoretical models taken from swarm intelligence research.
+Those robots shall perform given tasks defined to encurage swarm based interaction, their beheaviour can be evaluated and compared to the theoretical models developed by swarm intelligence research.
 
 \subsection{Robot Description}
 \todo{ein bild sagt mehr als tausend worte}
@@ -80,17 +80,20 @@ Ranging values enable the FINken robots to implement attraction-repulsion-beheav
 There are different ranging technologies that might be used in a FINken quadcopter.
 However there are different components that can interfere with the new sensor that shall be integrated e.g. by disturbing the measurments made by the new sensor.
 
-\todo{list -> table of hardware components}
 %The FINken 3 robots are quadcopters controlled by the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
-\begin{itemize}
-	\item[Sonar Sensors] Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right)
-	\item[Motors] Four brushless motors that may cause RF-interfercene and noise
-	\item[Telemetry] BTLE-/Zigbee modules to exchange data with the ground station
-	\item[RC-Control] 2.4GHz based Radio Control to manually control the robots
-	\item[Power-Supply] Lithium polymer batteries with nominally 6.6V \todo{fink3?} output voltage that is converted to 5V and 3.3V by the power distribution hardware
-	\item[Payload] The overall weight of the copter in the current configuration is about \todo{weight}g with about \todo{payload}g headroom for additional equipment
-	\item[Size] The copter has a rotor to rotor distance of 10cm, and a sensor tower that is about 4cm by 4cm wide to use the existing mounting holes would be favourable
-\end{itemize}
+\begin{table}[H]
+	\begin{tabularx}{\columnwidth}{l | X}
+	Part & Description \\ \hline
+	Sonar Sensors & Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right) \\
+	Motors & Four brushless motors that may cause RF-interfercene and noise \\
+	Telemetry & BTLE-/Zigbee modules to exchange data with the ground station \\
+	RC-Control &  2.4GHz based Radio Control to manually control the robots \\
+	Power-Supply & Lithium polymer batteries with nominally \SI{11.1}{\volt} output voltage that is converted to 5V and 3.3V by the power distribution hardware \\
+	Payload & The overall weight of the copter in the current configuration is about \\ %\todo{weight}g with about \todo{payload}g headroom for additional equipment \\
+	Size & The copter has a rotor to rotor distance of 10cm, and a sensor tower that is about 4cm by 4cm wide to use the existing mounting holes would be favourable \\
+	\end{tabularx}
+	\caption{Hardware Components of the FIKen 3 robots}
+\end{table}
 
 \section{Evaluation of Existing Ranging Solutions}
 \todo{mehr fokus auf andere copter projekte}
