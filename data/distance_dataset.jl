@@ -12,12 +12,17 @@ zdf = reduce(vcat, dfs)
 acsv = filter(x -> ismatch(r"^a.*\.csv", x), filelist)
 dfs = [readtable(x) for x in acsv]
 adf = reduce(vcat, dfs)
+kcsv = filter(x -> ismatch(r"^low_noise\/.*\.csv", x), filelist)
+dfs = [readtable(x) for x in kcsv]
+kdf = reduce(vcat, dfs)
 #scsv = filter(x -> ismatch(r"^s.*\.csv", x), filelist)
 #dfs = [readtable(x) for x in scsv]
 #sdf = reduce(vcat, dfs)
 
 a = adf[ adf[:dqf] .> 0, :]
 a = a[ a[:range] .< 500, :]
+k = kdf[ kdf[:dqf] .> 0, :]
+k = k[ k[:range] .< 500, :]
 #s = sdf[ sdf[:dqf] .> 0, :]
 #s = s[ s[:range] .< 500, :]
 
