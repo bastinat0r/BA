@@ -71,6 +71,14 @@ It is not viable to measure all aviable combinations for those parameters.
 \end{figure}
 
 
+Even with those frequencies the measurement is only really working when the lab is empty, as basically every person in the lab uses several devices that use the \SI{2.4}{GHz} frequency range.
+To create a usefull evaluation all the following measurements have been made with an empty lab out of the working hours of the computer scientists in the buliding.
+However this problem must be addressed before the sensors can be used in a real world application.
+This is especially true because the remote control is causing the worst interference with the ranging nodes.
+
+There are two possible solutions to the general problem: Either the noise in the environment needs to be reduced or the ranging nodes need to use different frequencies.
+
+
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
 It is reasonable to expect a huge amount of scatter for lower DQF values.
