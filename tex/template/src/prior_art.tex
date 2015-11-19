@@ -85,13 +85,15 @@ However there are different components that can interfere with the new sensor th
 \begin{table}[H]
 	\begin{tabularx}{\columnwidth}{l | X}
 	Part & Description \\ \hline
-	Sonar Sensors & Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right) \\
+	Frame & The Frame is made of GFK material and plastic and rotor to rotor distance is \SI{10}{\centi\metre} \\
+	Propellers & The FINken use \SI{5}{"}x\SI{3}{"} propellers \\
 	Motors & Four brushless motors that may cause RF-interfercene and noise \\
+	Power-Supply & Lithium polymer batteries with nominally \SI{11.1}{\volt} output voltage that is converted to 5V and 3.3V by the power distribution hardware \\
+	Sonar Sensors & Sonar sensors to measure distances of the nearest object in four directions (front, back, left, right) \\
+	Optical Flow & PX4 Optical flow sensor to measure x- and y- velocity and distance to ground \\
+	IR-Sensor & IR-Distance sensor measuring distance to ground, alternativ to optical flow sensor \\
 	Telemetry & BTLE-/Zigbee modules to exchange data with the ground station \\
 	RC-Control &  2.4GHz based Radio Control to manually control the robots \\
-	Power-Supply & Lithium polymer batteries with nominally \SI{11.1}{\volt} output voltage that is converted to 5V and 3.3V by the power distribution hardware \\
-	Payload & The overall weight of the copter in the current configuration is about \\ %\todo{weight}g with about \todo{payload}g headroom for additional equipment \\
-	Size & The copter has a rotor to rotor distance of 10cm, and a sensor tower that is about 4cm by 4cm wide to use the existing mounting holes would be favourable \\
 	\end{tabularx}
 	\caption{Hardware Components of the FIKen 3 robots}
 \end{table}
