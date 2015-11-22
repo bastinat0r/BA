@@ -4,8 +4,7 @@ The FINken project aims to create a swarm of autonomously flying quadcopters to 
 Many algorithms in swarm intelligence are based on distance values. \todo{source}
 On this occasion it is important to find a sensor that is capable to measure distances and to integrate it into the FINken robots.
 An obvious choice for this distance is measuring the spacial distance in between the robots\footnote{
-The mathematical distance-property might not actually need to be something as close to a real \emph{physikalische Größe}, but it is great to be able to measure and watch the robots interacting with their physical environment.}.
-\todo{wording}
+The mathematical distance-property might not actually need to be something as close to a physical property, but it is beneficial to be able to measure and watch the robots interacting with their physical environment.}.
 
 \section{The FINken Robot Platform}
 
@@ -22,18 +21,19 @@ Those robots shall perform given tasks defined to encurage swarm based interacti
 \caption{The FINken robot.}
 \end{figure}
 
-\todo{ein bild sagt mehr als tausend worte}
 The robots are propelled by four rotors that are directly attached to a brushless motor.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
 The airframe houses all the actuators, processors and batteries needed for flight.
 Additionally it carries a multitude of sensors used for operating autonomsly.
 
+\todo{überleitung}
+
 The robots are capable of highly dynamic flight maneuvers–the robots have enough acceleration to leave the operating environment in any possible direction in under one second.
 This is mainly because the robots need lots of payload capacity to carry different sensors and computing power, with enough headroom to make changes in the future.
 However the capability for dynamic beheaviour is not usefull for our research.
-Even if the high power of the motors is not utilized stability \todo{find better word} is a problem.
+Of course the high power of the motors can also be used to stabilize the copter better, which is exactly what is needed for the FINken research.
 If the copter is angled by only $6\degree$ and it's height is kept stable it is accelerating at about \SI{1}{\metre\per\square\second} if the height stays the same during that time.
-This means the copter reaches a velocity of over \SI{2}{\metre\per\second} when travelling through the arena at this pretty small angle.
+This means the copter reaches a velocity of over \SI{2}{\metre\per\second} when travelling through the arena at this pretty small angle. \todo{kleine störung-> rel. großer effekt}
 
 \subsection{Environment}
 When doing research things do not always work perfectly.
@@ -65,7 +65,7 @@ For controlling the height of the copters either the ultrasound distance measure
 
 Navigating the x-y-plane is a much harder task.
 Because sensors are not perfect the copter will drift in any given direction and precise speed and position measurements are hard to get by.
-As a consequence implementing a position hold mode is quite a challenge. \todo{wording}
+As a consequence implementing a position hold mode is simply not possible.
 Assuming that a stable position can not be kept there is still something that can be done to fly for longer time periods.
 With an ultrasound distance sensor in each direction the robot can sense its surroundings and avoid any obstacles in its vicinity.
 An essential precondition for navigating around obstacles that way is a certian level of stability and avoiding highly dynamic maneuvers.
