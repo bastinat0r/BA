@@ -13,6 +13,6 @@ adf = reduce(vcat, dfs)
 a = adf[ adf[:dqf] .> 0, :]
 a = a[ a[:range] .< 500, :]
 function bucketplot(df, bsize)
-	df[:bucket] = bsize * div( df[:distance], bsize )
+	df[:bucket] = bsize * div( df[:distance], bsize ) + bsize / 2
 	return plot(df, x=:bucket, y=:range, Geom.boxplot)
 end
