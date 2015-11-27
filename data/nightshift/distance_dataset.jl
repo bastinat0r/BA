@@ -20,13 +20,15 @@ end
 function compute_conf_intervalls(df, confidence)
 	lower = ((1 - confidence) / 2)
 	upper = confidence + lower
-	ret = DataFrame(range = [], lower=[],upper=[],samples=[])
+	println("comping confidence intervalls from $(lower)-quantile to $(upper)-quantile")
+	ret = DataFrame(range = [], lower=[],upper=[],median=[],samples=[])
 	for r in eachrow(df)
 		if(!(r[:range] in ret[:range]))
 			push!(ret, [
 				r[:range],
 				quantile(df[ df[:range] .== r[:range],:][:distance], lower),
 				quantile(df[ df[:range] .== r[:range],:][:distance], upper),
+				median(df[ df[:range] .== r[:range],:][:distance]),
 				size(df[ df[:range] .== r[:range],:],1)
 			])
 		end
@@ -36,5 +38,29 @@ end
 
 function plot_corridor(df, confidence)
 	x = compute_conf_intervalls(df, confidence)
-	return plot(x, layer(x=:range, y=:lower, Geom.point, Geom.line, Theme(default_color=color("green"))), layer(x=:range, y=:upper, Geom.point, Geom.line, Theme(default_color=color("red"))), layer(x=:range, y=:samples, Geom.line))
+	return plot(x[x[:samples] .> 10,:], layer(x=:range, y=:lower, Geom.point, Geom.line, Theme(default_color=color("green"))), layer(x=:range, y=:upper, Geom.point, Geom.line, Theme(default_color=color("red"))), layer(x=:range, y=:range, Geom.line))
+end
+
+function test_vector(model, v)
+	right = 0
+	wrong = 0
+	for row in eachrow(v)
+		if row[:range] in model[:range]
+			if (model[ model[:range] .== row[:range],:][:lower][1] .<= row[:distance] .<= model[ model[:range] .== row[:range],:][:upper][1])
+				right += 1
+			else
+				wrong += 1
+			end
+		end
+	end
+	return right / (right + wrong)
+end
+
+function test_samples_cross_validation(a, confidence)
+	scores = cross_validate(
+       inds -> compute_conf_intervalls(a[inds,:], confidence),
+       (c, inds) -> test_vector(c, a[inds,:]),
+       size(a,1),
+       Kfold(size(a,1), 5))
+	return scores
 end
