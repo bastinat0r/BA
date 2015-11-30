@@ -38,7 +38,9 @@ end
 
 function plot_corridor(df, confidence)
 	x = compute_conf_intervalls(df, confidence)
-	return plot(x[x[:samples] .> 10,:], layer(x=:range, y=:lower, Geom.point, Geom.line, Theme(default_color=color("green"))), layer(x=:range, y=:upper, Geom.point, Geom.line, Theme(default_color=color("red"))), layer(x=:range, y=:range, Geom.line))
+	return plot(x[x[:samples] .> 10,:],
+	layer(x=:range, y=:range, Geom.line),
+	layer(x=:range, ymin=:lower, ymax=:upper, Geom.ribbon, Theme(default_color=color("green"))))
 end
 
 function test_vector(model, v)
