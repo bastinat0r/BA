@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {2}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {3}{Ranging \IeC {\textendash } Prior Art}{6}{0}{2}
+\beamer@sectionintoc {4}{Konzept}{9}{0}{3}
+\beamer@sectionintoc {5}{Messreihen und Evaluation}{10}{0}{4}
+\beamer@sectionintoc {6}{Ausblick}{13}{0}{5}

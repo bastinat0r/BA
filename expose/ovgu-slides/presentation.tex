@@ -1,0 +1,176 @@
+ \documentclass{beamer}
+
+\usetheme{MagdeburgFIN}
+\usefonttheme{structurebold}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+
+
+\title{Exposé: Wireless Ranging in Swarm Robotics}
+\author{Sebastian Mai}
+\date{03. 12. 2015}
+%\institute{Student Conference on Software Engineering and Database Systems}
+
+\begin{document}
+
+\begin{frame}[plain]
+ \titlepage
+\end{frame}
+
+
+
+\section[Agenda]{}
+\begin{frame}
+	\frametitle{Agenda}
+	\tableofcontents
+\end{frame}
+
+\section{Motivation}
+\begin{frame}
+	\frametitle{Motivation}
+	\framesubtitle{Problem}
+	\begin{columns}
+		\column{.4\textwidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.9\textwidth]{img/copter.png}
+			\caption{FINken 3 Roboter}
+		\end{figure}
+		\column{.6\textwidth}
+		\begin{itemize}
+			\item Ziel: Schwarmverhalten auf Fliegenden Robotern
+			\item Aber: Schwarmverhalten basiert oft auf Distanzfunktion
+			\item Mögliche Quellen für Distanzen: Abstands Sensoren, Ranging
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Motivation}
+	\framesubtitle{Ranging Node$\leftrightarrow$Enviroment}
+	Entfernungswerte der Ultraschallsensoren
+	\begin{itemize}
+		\item Keine Unterscheidung zwischen Umgebung und Schwarm
+		\item Entfernugsmessewerte $\neq$ Mathematische Distanz
+		\item Mehrere Distanzen für eine Dimension
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Motivation}
+	\framesubtitle{Ranging Node$\leftrightarrow$Node}
+	\begin{itemize}
+		\item Messung Addressbasiert
+		\item Entferungsmesswerte ähnlich zu Mathematischer Distanz
+		\item Distanz ist eindimensional
+	\end{itemize}
+\end{frame}
+
+\section{Ranging – Prior Art}
+\begin{frame}
+	\frametitle{Ranging – Prior Art}
+	\framesubtitle{Abgrenzung}
+	\begin{itemize}
+		\item Sensor misst physikalischen Abstand
+		\item Messung von Knoten zu Knoten
+		\item Anwendung von Ranging Hardware ist fast ausschließlich Postitionsbestimmung
+		\item Anwendung im Schwarm: Distanzen zwischen Individuen, oder Anchor-Nodes
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ranging – Prior Art}
+	\framesubtitle{Anforderungen}
+	\begin{itemize}
+		\item In Copter integrierbar 
+		\item Interaktion zwischen Copter und Sensoren minimal
+		\item Brauchbare Entfernungsmessung
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ranging — Prior Art}
+	\framesubtitle{Technologien}
+	\begin{itemize}
+		\item Optisches Tracking - extern, teuer
+		\item Ultraschallbasiertes Ranging - interagiert mit Ultraschall-Sensoren
+		\item RSSI-Ranging - unpräziese, richtungsabhängig
+	\end{itemize}
+	\begin{itemize}
+		\item Time-of-Flight-Ranging - Dekawave
+		\item Phasendifferenzmessung - ATMEL-RTB
+	\end{itemize}
+\end{frame}
+
+\section{Konzept}
+\begin{frame}
+	\frametitle{Konzept}
+	\framesubtitle{Kommunikation}
+	
+\begin{description}
+	\item[ Idee ] Ranging-API über Sensorbus verfügbar machen.
+	\item[ Interface ] Messung auslösen und Messwerte Abfragen per I2C
+	\item[ Hardware ] Integration mit anderer Hardware der Selben Technologie
+\end{description}
+\end{frame}
+
+\section{Messreihen und Evaluation}
+\begin{frame}
+	\frametitle{Messreihen und Evaluation}
+	\framesubtitle{Ziele der Evaluation}
+	Ziel der Evaluation
+	\begin{itemize}
+		\item Funkstörungen
+		\item Zusammenhang Distanz-Messwert
+		\item Einfluss von Drehung
+		\item Eigenschaften eines Distanzmaßes
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Messreihen und Evaluation}
+	\framesubtitle{Funkstörungen}
+
+	\begin{columns}
+		\column{ .4\textwidth }
+
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.9\textwidth]{img/ch6.png}
+			\caption{Funkspektrum 2.437GHz}
+		\end{figure}
+		\column{ .6\textwidth }
+		\begin{itemize}
+			\item Schwer quantifizierbar – dafür wäre andere Hardware nötig.
+			\item Finden eines wenig Benutzen Frequenzbereiches mit SDR soll Einfluss von Funkstörungen verringen
+			\item Messungen während guter Bedingungen
+			\item Fernbedienungslink verursacht starke Störungen
+		\end{itemize}
+
+	\end{columns}	
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Messreihen und Evaluation}
+	\framesubtitle{Zussammenhang Distanz – Messwert}
+	\input{img/corridor_09.pgf}
+
+
+\end{frame}
+
+
+\section{Ausblick}
+
+\section*{Fragen}
+\begin{frame}
+ \frametitle{Danke für eure Aufmerksamkeit!}
+\end{frame}
+
+
+\end{document}
