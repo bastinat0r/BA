@@ -1,0 +1,72 @@
+\begin{tikzpicture}[x=1mm,y=-1mm]
+\definecolor{mycolor000000}{rgb}{0,0,0}
+\definecolor{mycolor000000}{rgb}{0,0,0}
+\definecolor{mycolor00BFFF}{rgb}{0,0.75,1}
+\definecolor{mycolor564A55}{rgb}{0.34,0.29,0.33}
+\definecolor{mycolorD1EAC7}{rgb}{0.82,0.92,0.78}
+\definecolor{mycolorD0D0E0}{rgb}{0.82,0.82,0.88}
+\definecolor{mycolor6C606B}{rgb}{0.42,0.38,0.42}
+\begin{scope}
+\begin{scope}
+\draw (67.32,68.39) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={-0: (0,1.81)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{range}$};
+\end{scope}
+\begin{scope}
+\draw (21.63,61.72) node [text=mycolor6C606B,rotate around={-0: (45.68,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (39.91,61.72) node [text=mycolor6C606B,rotate around={-0: (27.41,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (58.18,61.72) node [text=mycolor6C606B,rotate around={-0: (9.14,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (76.45,61.72) node [text=mycolor6C606B,rotate around={-0: (-9.14,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\draw (94.73,61.72) node [text=mycolor6C606B,rotate around={-0: (-27.41,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{200}$};
+\draw (113,61.72) node [text=mycolor6C606B,rotate around={-0: (-45.68,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{250}$};
+\end{scope}
+\begin{scope}
+\clip  (19.63,5) -- (115,5) -- (115,60.72) -- (19.63,60.72);
+\begin{scope}
+\clip  (19.63,5) -- (115,5) -- (115,60.72) -- (19.63,60.72);
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor000000,draw opacity=0] (19.63,5) rectangle +(95.37,55.72);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,58.72) -- (115,58.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,48.37) -- (115,48.37);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,38.03) -- (115,38.03);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,27.69) -- (115,27.69);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,17.34) -- (115,17.34);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (19.63,7) -- (115,7);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (21.63,5) -- (21.63,60.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (39.91,5) -- (39.91,60.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (58.18,5) -- (58.18,60.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (76.45,5) -- (76.45,60.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (94.73,5) -- (94.73,60.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (113,5) -- (113,60.72);
+\end{scope}
+\begin{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (39.91,57.47) -- (41.73,55.41) -- (43.56,51.27) -- (45.39,51.47) -- (47.21,49.2) -- (49.04,44.03) -- (50.87,36.17) -- (52.7,33.06) -- (54.52,35.34) -- (56.35,38.03) -- (58.18,46.92) -- (60.01,47.34) -- (61.83,50.44) -- (63.66,53.13) -- (65.49,50.65) -- (67.32,52.72) -- (69.14,51.89) -- (70.97,50.85) -- (72.8,48.37) -- (74.63,48.79) -- (76.45,47.13) -- (78.28,47.34) -- (80.11,45.68) -- (81.93,50.65) -- (83.76,49.2) -- (85.59,50.23) -- (87.42,49.2) -- (89.24,53.34) -- (91.07,53.54) -- (92.9,52.3) -- (94.73,54.37) -- (96.55,54.78) -- (98.38,56.23) -- (100.21,56.03) -- (102.04,56.65);
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolorD1EAC7,draw=mycolor000000,draw opacity=0]  (102.04,27.69) -- (100.21,27.69) -- (98.38,27.69) -- (96.55,27.69) -- (94.73,27.69) -- (92.9,27.69) -- (91.07,27.69) -- (89.24,27.69) -- (87.42,27.69) -- (85.59,27.69) -- (83.76,27.69) -- (81.93,27.69) -- (80.11,27.69) -- (78.28,27.69) -- (76.45,27.69) -- (74.63,34.41) -- (72.8,38.03) -- (70.97,38.03) -- (69.14,38.03) -- (67.32,38.03) -- (65.49,39.06) -- (63.66,45.27) -- (61.83,48.37) -- (60.01,48.37) -- (58.18,48.37) -- (56.35,48.37) -- (54.52,48.37) -- (52.7,48.37) -- (50.87,48.37) -- (49.04,48.37) -- (47.21,48.37) -- (45.39,48.37) -- (43.56,48.37) -- (41.73,40.61) -- (39.91,38.03) -- (39.91,38.03) -- (41.73,38.03) -- (43.56,38.03) -- (45.39,38.03) -- (47.21,38.03) -- (49.04,38.03) -- (50.87,27.69) -- (52.7,38.03) -- (54.52,33.89) -- (56.35,27.69) -- (58.18,27.69) -- (60.01,27.69) -- (61.83,27.69) -- (63.66,27.69) -- (65.49,27.69) -- (67.32,27.69) -- (69.14,17.34) -- (70.97,17.34) -- (72.8,17.34) -- (74.63,17.34) -- (76.45,17.34) -- (78.28,17.34) -- (80.11,17.34) -- (81.93,17.34) -- (83.76,17.34) -- (85.59,17.34) -- (87.42,17.34) -- (89.24,17.34) -- (91.07,17.34) -- (92.9,17.34) -- (94.73,17.34) -- (96.55,17.34) -- (98.38,17.34) -- (100.21,17.34) -- (102.04,17.34) -- cycle;
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (39.91,48.37) -- (41.73,47.34) -- (43.56,46.3) -- (45.39,45.27) -- (47.21,44.23) -- (49.04,43.2) -- (50.87,42.17) -- (52.7,41.13) -- (54.52,40.1) -- (56.35,39.06) -- (58.18,38.03) -- (60.01,36.99) -- (61.83,35.96) -- (63.66,34.93) -- (65.49,33.89) -- (67.32,32.86) -- (69.14,31.82) -- (70.97,30.79) -- (72.8,29.75) -- (74.63,28.72) -- (76.45,27.69) -- (78.28,26.65) -- (80.11,25.62) -- (81.93,24.58) -- (83.76,23.55) -- (85.59,22.51) -- (87.42,21.48) -- (89.24,20.45) -- (91.07,19.41) -- (92.9,18.38) -- (94.73,17.34) -- (96.55,16.31) -- (98.38,15.27) -- (100.21,14.24) -- (102.04,13.21);
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (18.63,58.72) node [text=mycolor6C606B,rotate around={-0: (-2.51,-25.86)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (18.63,48.37) node [text=mycolor6C606B,rotate around={-0: (-2.51,-15.51)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (18.63,38.03) node [text=mycolor6C606B,rotate around={-0: (-2.51,-5.17)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (18.63,27.69) node [text=mycolor6C606B,rotate around={-0: (-2.51,5.17)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\draw (18.63,17.34) node [text=mycolor6C606B,rotate around={-0: (-2.51,15.51)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{200}$};
+\draw (18.63,7) node [text=mycolor6C606B,rotate around={-0: (-2.51,25.86)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{250}$};
+\end{scope}
+\begin{scope}
+\draw (8.81,30.86) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{range}$};
+\end{scope}
+\end{scope}
+\end{tikzpicture}
