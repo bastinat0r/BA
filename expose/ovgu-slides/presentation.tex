@@ -1,4 +1,4 @@
- \documentclass{beamer}
+\documentclass{beamer}
 
 \usetheme{MagdeburgFIN}
 \usefonttheme{structurebold}
@@ -18,7 +18,7 @@
 \begin{document}
 
 \begin{frame}[plain]
- \titlepage
+	\titlepage
 \end{frame}
 
 
@@ -109,12 +109,12 @@
 \begin{frame}
 	\frametitle{Konzept}
 	\framesubtitle{Kommunikation}
-	
-\begin{description}
-	\item[ Idee ] Ranging-API über Sensorbus verfügbar machen.
-	\item[ Interface ] Messung auslösen und Messwerte Abfragen per I2C
-	\item[ Hardware ] Integration mit anderer Hardware der gleichen Technologie
-\end{description}
+
+	\begin{description}
+		\item[ Idee ] Ranging-API über Sensorbus verfügbar machen.
+		\item[ Interface ] Messung auslösen und Messwerte Abfragen per I2C
+		\item[ Hardware ] Integration mit anderer Hardware der gleichen Technologie
+	\end{description}
 \end{frame}
 
 \section{Messreihen und Evaluation}
@@ -150,10 +150,28 @@
 			\item Messungen während guter Bedingungen
 			\item Fernbedienungslink verursacht starke Störungen
 		\end{itemize}
-
 	\end{columns}	
+\end{frame}
+\section{Motivation}
 
-
+\begin{frame}
+	\frametitle{Messreihen und Evaluation}
+	\framesubtitle{Messaufbau}
+	\begin{columns}
+		\column{.4\textwidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.9\textwidth]{img/messaufbau.png}
+			\caption{Messaufbau}
+		\end{figure}
+		\column{.6\textwidth}
+		\begin{itemize}
+			\item Vom Boden entfernt – Multipatheffekte minimieren
+			\item Mit Netzteil – Einfluss der Batterien ausschließen
+			\item Nachts – Funkstörungen minimieren
+			\item Messergebnisse — CSV-Dateien auf dem RaspberryPi
+		\end{itemize}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -168,14 +186,12 @@
 	\frametitle{Messreihen und Evaluation}
 	\framesubtitle{Zussammenhang Winkel – Messwert}
 	\input{img/angle.pgf}
-
 \end{frame}
 
 \begin{frame}
 	\frametitle{Messreihen und Evaluation}
 	\framesubtitle{Zussammenhang Winkel – Messwert}
 	\input{img/angle_30.pgf}
-
 \end{frame}
 
 
@@ -183,11 +199,7 @@
 	\frametitle{Messreihen und Evaluation}
 	\framesubtitle{Zussammenhang Winkel – Messwert}
 	\input{img/angle_120.pgf}
-
 \end{frame}
-
-
-
 
 \section{Ausblick}
 \begin{frame}
@@ -199,9 +211,20 @@
 		\item Brauchbare Entfernungsmessung – nicht ohne erheblichen Aufwand
 	\end{itemize}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Ausblick}
+	\framesubtitle{Status der Arbeit}
+	\begin{itemize}
+		\item Konzept und Implementierung sind abgeschlossen
+		\item Die meisten Messwerte sind aufgenommen
+		\item	Noch zu tun: Schreiben der Arbeit – v.a. Evaluation
+		\item Metrik für Evaluation verbesserungswürdig
+	\end{itemize}	
+\end{frame}
 \section*{Fragen}
 \begin{frame}
- \frametitle{Danke für eure Aufmerksamkeit!}
+	\frametitle{Danke für eure Aufmerksamkeit!}
 \end{frame}
 
 
