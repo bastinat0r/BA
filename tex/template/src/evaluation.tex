@@ -79,6 +79,25 @@ This is especially true because the remote control is causing the worst interfer
 There are two possible solutions to the general problem: Either the noise in the environment needs to be reduced or the ranging nodes need to use different frequencies.
 
 
+\subsection{Measurement Setup}
+
+All the following evaluation is done by analysing data gathered by the ranging nodes.
+However the measurements are done in a very specific manner to improve the quality of the measured data.
+\begin{itemize}
+	\item the nodes are lifted from the table to minimize multipath effects
+	\item a stable 3.3V input voltage is provided by different voltage regulators, the battery slots are not used
+	\item antennas are always used in the same orientation
+	\item measurements are not taken in the working hours of the faculty (mostly deep at night) when the least ammount of RF interference by \SI{2.4}{GHz} devices can be expected
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/messaufbau.png}
+	\caption{Measurement Setup}
+	\label{aufbau}
+\end{figure}
+
+
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
 It is reasonable to expect a huge amount of scatter for lower DQF values.
@@ -112,11 +131,11 @@ This leads to bad consequences.
 	\label{2m}
 \end{figure}
 
-\subsection{Influence of Input Voltage}
-
-The input voltage has a huge impact on the quality of range values.
-This especially means that the battery compartment of the ranging modules must not be used.
-\todo{messreihe}
+%\subsection{Influence of Input Voltage}
+%
+%The input voltage has a huge impact on the quality of range values.
+%This especially means that the battery compartment of the ranging modules must not be used.
+%\todo{messreihe}
 
 \subsection{Influence of Distance}
 
@@ -204,8 +223,16 @@ Symmetry is a property that can not be achieved by the ranging sensors because o
 A range reading $A \rightarrow B$ will not be equal to the reading for $B \rightarrow A$ just because the two readings will be altered by noise.
 The question that remains is: Do we have the same error for both directions.
 
-\todo{measure, plot, evaluate}
+\todo{plot, evaluate, spoiler alert: Nope!}
 
+
+However the lack of symmetry might be utilized.
+\begin{equation}
+\frac{ d(A \rightarrow B) + d(B \rightarrow A) }{2}
+\label{symavg}
+\end{equation}
+The remote ranging ability of the nodes can be exploited to gather both values $A \rightarrow B$ and $B \rightarrow A$ by averaging those values the error might be lowered. \todo{data}
+The new value shown in \autoref{symavg} will be symmetric.
 
 \subsection{Triangle Inequality}
 The Triangle Inequality will also be broken by noise.
