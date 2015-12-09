@@ -235,8 +235,15 @@ The remote ranging ability of the nodes can be exploited to gather both values $
 The new value shown in \autoref{symavg} will be symmetric.
 
 \subsection{Triangle Inequality}
-The Triangle Inequality will also be broken by noise.
+The triangle inequality will also be broken by noise.
 I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might as well break the condition of the Triangle Inequality.
+
+\begin{figure}[H]
+	\centering
+	\input{figures/triangle.pgf}
+	\caption[Density functions for 3 nodes]{Density functions for 3 nodes, Nodes were placed in a straight line with numbers 1, 2, 3. Distance 1-2 was \SI{150}{cm}, distance 2-3 was \SI{50}{cm}. }
+	\label{triangle}
+\end{figure}
 
 
 \section{Conclusion}
