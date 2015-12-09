@@ -106,12 +106,28 @@ However there are different components that can interfere with the new sensor th
 \end{table}
 
 \section{Evaluation of Existing Ranging Solutions}
-\todo{mehr fokus auf andere copter projekte}
-There are some technologies that can be used for ranging, however the usual application for most of those technologies in research is positioning.
-For that reason it is interesting to search for positioning applications that use range measurements, however many of those positioning technologies are base on other principles than multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which is what we are interested in because only ranging measurments are used, \emph{multiangular}—which is no use  to us, because angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions–which is also no use to us.}.
-\cite{_multilateration_2015}
+There are basically three requirements for the ranging nodes.
 
-The usual technologies used for ranging are based on time of flight measurments, signal strength, optical tracking, and phase diffence measurments in signals.
+\begin{enumerate}
+	\item the ranging needs to be integrated into the copter
+	\item interaction between the copter and the ranging modules shall be minimal
+	\item the values yielded by ranging shall be of usable quality
+\end{enumerate}
+
+Requirement 3 seems to be trivial but is actually the hardest requirement of all three.
+Integrating a sensor into the FINken might be a lot of effort but can be done.
+Hardware that interacts with the ranging might be substituted by other hardware that does not.
+However it is still sensible to pick a ranging method that does not break the current beheaviour of the FINken.
+
+\todo{mehr fokus auf andere copter projekte}
+Keeping that in mind  there are some technologies that can be used for ranging.
+The usual application for most of those technologies in research is positioning, which makes it difficult to find comparable numbers for ranging-only applications.
+
+
+
+It is still interesting to search for positioning applications that use range measurements, however many of those positioning technologies are base on other principles than multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which is what we are interested in because only ranging measurments are used, \emph{multiangular}—which is no use  to us, because angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions–which is also no use to us.}.
+\cite{_multilateration_2015}
+\todo{keep it or throw it away?}
 
 \subsection{Indor Time of Flight}
 The obvious approach for replacing the GPS signal is to use a simmilar approach indoors.
