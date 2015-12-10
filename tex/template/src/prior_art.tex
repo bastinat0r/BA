@@ -6,6 +6,19 @@ On this occasion it is important to find a sensor that is capable to measure dis
 An obvious choice for this distance is measuring the spacial distance in between the robots\footnote{
 The mathematical distance-property might not actually need to be something as close to a physical property, but it is beneficial to be able to measure and watch the robots interacting with their physical environment.}.
 
+There are basically three requirements for this sensor.
+
+\begin{enumerate}
+	\item the ranging needs to be integrated into the copter
+	\item interaction between the copter and the ranging modules shall be minimal
+	\item the values yielded by ranging shall be of usable quality
+\end{enumerate}
+
+Requirement 3 seems to be trivial but is actually the hardest requirement of all three.
+Integrating a sensor into the FINken might be a lot of effort but can be done.
+Hardware that interacts with the ranging might be substituted by other hardware that does not.
+However it is still sensible to pick a ranging method that does not break the current beheaviour of the FINken.
+
 \section{The FINken Robot Platform}
 
 Goal of the FINken project is to do research on how swarm beheaviour can be executed by flying robots.
@@ -106,18 +119,6 @@ However there are different components that can interfere with the new sensor th
 \end{table}
 
 \section{Evaluation of Existing Ranging Solutions}
-There are basically three requirements for the ranging nodes.
-
-\begin{enumerate}
-	\item the ranging needs to be integrated into the copter
-	\item interaction between the copter and the ranging modules shall be minimal
-	\item the values yielded by ranging shall be of usable quality
-\end{enumerate}
-
-Requirement 3 seems to be trivial but is actually the hardest requirement of all three.
-Integrating a sensor into the FINken might be a lot of effort but can be done.
-Hardware that interacts with the ranging might be substituted by other hardware that does not.
-However it is still sensible to pick a ranging method that does not break the current beheaviour of the FINken.
 
 \todo{mehr fokus auf andere copter projekte}
 Keeping that in mind  there are some technologies that can be used for ranging.
