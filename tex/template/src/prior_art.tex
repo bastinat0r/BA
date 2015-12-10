@@ -155,6 +155,21 @@ It is still interesting to search for positioning applications that use range me
 \cite{_multilateration_2015}
 \todo{keep it or throw it away?}
 
+\subsection{Optical Tracking}
+
+Most projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
+However this approach is exactly the multi agent systems approach to provide global knowlegde that has been gathered by the tracking system to the agents in contrast to swarm beheaviour that is relying on local information.
+
+The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
+The price is justified by the superior performance of this method. \todo{price}
+This means tracking accuracy as well as the possibility to measure orientation at a very high update frequency.
+\todo{research performance statistics for ranging solutions}
+
+\todo{ETH, tracking, sensorik foo}
+
+%A huge drawback to this method is that many components are used that need to be integrated into the environment and cannot be carried by the robots themselves.
+%For swarm robotics this is not an ideal solution as using external tracking would mean communicating with some kind of centralized tracking interface-destroying the scalability and the priciple of local interaction leading to global beheaviour.
+
 \subsection{Indor Time of Flight}
 The obvious approach for replacing the GPS signal is to use a simmilar approach indoors.
 
@@ -200,21 +215,6 @@ The main factor that rules out RSSI-based ranging is that radio-waves are not pr
 Antenna-orientation might have a much bigger impact on signal strength than distance.
 Additionally radio waves might be weakend when travelling through the FINken robots and by doing so passing wires and electronic components.
 
-\subsection{External Tracking}
-
-Most projects use external tracking to measure the position and orientation of the quadcopters. \todo{refs}
-The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
-This price is justified by the superior performance of this method.
-
-This means tracking accuracy as well as the possibility to measure orientation.
-All that at a high update frequency.
-\todo{research performance statistics for ranging solutions}
-
-\todo{ETH, tracking, sensorik foo}
-
-A huge drawback to this method is that many components are used that need to be integrated into the environment and cannot be carried by the robots themselves.
-For swarm robotics this is not an ideal solution as using external tracking would mean communicating with some kind of centralized tracking interface-destroying the scalability and the priciple of local interaction leading to global beheaviour.
-\todo{price}
 \subsection{Atmel RTB, Dresden Elektronik, Meterionic}
 
 Another thing that can be measured phase shift.
