@@ -248,6 +248,14 @@ I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement e
 
 \section{Conclusion}
 
+Let's take a look at the requirements from \autoref{req}.\todo{-> unpersonal lingo}
+It is possible to integrate the sensor nodes into the FINken robots, however not in the current hardware setup.
+The interference of copters and sensors is not as easy as was thought.
+RF-Interference disturbes the function of our distance sensor.
+At least the functionality of the copters does not seem to be disrupted by the ranging nodes.
+It is still possible to solve this problem by changing the hardware on the copter or the frequency the ranging nodes operate at.
+
+In the end the quality of the range measurements is deciding\todo{wording?} if the requirements are met.
 The measured range values are not as good as was hoped for.
 A filter needs to be implemented to compute a usable range estimate should be given.
 This would introduce a time delay into the measurement which is not desireable. \todo{wording}

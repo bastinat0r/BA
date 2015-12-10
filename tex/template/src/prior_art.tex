@@ -7,6 +7,7 @@ An obvious choice for this distance is measuring the spacial distance in between
 The mathematical distance-property might not actually need to be something as close to a physical property, but it is beneficial to be able to measure and watch the robots interacting with their physical environment.}.
 
 \section{Requirements}
+\label{req}
 There are basically three requirements for this sensor. 
 Those requirements will act as a base to choose and to evaluate the new sensor.
 
@@ -17,6 +18,7 @@ Those requirements will act as a base to choose and to evaluate the new sensor.
 \end{enumerate}
 
 \subsection{Interaction between Copter and Ranging}
+\label{req1}
 The copter shall not influence the function of the ranging modules and vice versa.
 I.e. using an ultrasonic ranging method might not be a good idea as the copter already uses multiple ultrasonic sensors.
 If no measures are taken to counteract medium access problems both sensors will disrupt each other to a point where the sensor values are completely useless.
@@ -24,19 +26,22 @@ However this requirements is bendable to a certain degree.
 If there is interaction between copter and ranging sensors the copter might be changed to elimnate this interaction.
 
 \subsection{Integration of the Ranging Modules}
-
+\label{req2}
 In order to be used in the FINken robots the sensors obviously need to be integrated into the robot.
 This means the ranging modules need to be lightweight and small enough to fit on a flying robot and there needs to be an interface that can transmit the data from the new sensor to the copter software.
 One of the aspects of integration is that the robots shall interact locally to form a swarm in contrast to multi agent systems that rely on global information.
 
 \subsection{Yielding Usefull Values}
+\label{req3}
 Yielding usefull values seems to be a trivial requirement, but is actually the hardest of all three.
+The area of operation for the FINken robots is only \SI{3}{m} by \SI{4}{m} so the range measurements need to be pretty accurate in this scenario. \todo{provide metric for hypothesis}
+Additionally the update frequency needs to be quite high as the copters are able to move with great accelarations and velocities.
 
 
 \section{The FINken Robot Platform}
 
-Goal of the FINken project is to do research on how swarm beheaviour can be executed by flying robots.
-Therefore suitable robots need to be constructed.
+
+Goal of the FINken project is to implement intelligent swarm beheaviour on flying robots and research how swarm collaboration works in a real world application.
 The robots need to fly in an stable manner on their own and be capable of interacting without disrupting the operation of the other swarm members.
 Those robots shall perform given tasks defined to encurage swarm based interaction, their beheaviour can be evaluated and compared to the theoretical models developed by swarm intelligence research.
 
@@ -81,35 +86,41 @@ The sensors used by the FINken robots serve two purposes: To enable the robots t
 
 \subsubsection{Autonomous Flying}
 To form a swarm the robots need to function as single individuals first-that means not crashing into walls, ceiling, floor or other robots.
-Of course the sensors needed for autonoms flight must not be disturbed by anything else. 
+Of course the sensors needed for autonoms flight must not be disturbed by the other componets of the quadcopter.
 
-The flight dynamics of the FINken robots shall be as simple as possible.
+To simplify the control of the quadcopters no complex movements shall be made.
 The robots shall be able to fly at a given height and navigate in x-y-direction to perform their given tasks.
-Highly dynamic maneuvers are possible for the airframe, but are not realizable with the sensor data we currently get. \todo{ref to christophs ba}
+%Highly dynamic maneuvers are possible for the airframe, but are not realizable with the sensor data we currently get. \todo{ref to christophs ba}
+Flying autonomously like this requires to solve two major problems: Height control and navigation.
 
-For flying autonomously two major problems have to be solved: Height control and navigation.
-For controlling the height of the copters either the ultrasound distance measurement of the optical flow sensors are used, alternativly the height is measured by an infrared sensor that must be equipped when the optical flow sensors are not.
+For controlling the height of the copters either the ultrasound distance measurement of the optical flow sensors are used, alternativly the height is measured by an infrared sensor that needs to be equipped when the optical flow sensors are not.
+
+%The flight dynamics of the FINken robots shall be as simple as possible.
 
 Navigating the x-y-plane is a much harder task.
-Because sensors are not perfect the copter will drift in any given direction and precise speed and position measurements are hard to get by.
-As a consequence implementing a position hold mode is simply not possible.
-Assuming that a stable position can not be kept there is still something that can be done to fly for longer time periods.
-With an ultrasound distance sensor in each direction the robot can sense its surroundings and avoid any obstacles in its vicinity.
-An essential precondition for navigating around obstacles that way is a certian level of stability and avoiding highly dynamic maneuvers.
+Because sensors are not perfect the copter will drift in any given direction and precise speed and position measurements are lacking with the current sensor setup.
+As a consequence implementing a position hold or navigation by waypoints is not possible.
+Even without those navigation methods there is a well working strategie for flying for longer time periods.
+With its ultrasound distance sensors the robot can sense its surroundings and is able to stay in the arena by maintaining a safe distance from the walls of the arena and other objects in the way. \todo{link to christophs ba}
+An essential precondition for navigating around obstacles that way is avoiding highly dynamic maneuvers.
 
 \subsubsection{Interaction}
 
-The FINken robots shall be able to do more than simply not crashing.
+The FINken robots shall be able to do more than randomly flying around without crashing.
+The robot shall interact with its environment and it's neighbours in the swarm.
 Of course sensor values needed for autonomous flight can also be used to interact with the robots environment, but there are also senors that are exclusively used for interaction.
 
-To interact with an environment a solution is necessary that works well in the laboratry.
-The environment of the robots shall be changed without changing the physical layout of the lab.
-An environmental factor that can be easily changed is the lighting of the flying area.
-In the swarmlab a projector can be used to affect the quadcopters.
-To measure the current lighting situation an rgb color sensor is mounted on top of the copter.
+To interact with it's environment the robot has different sensors.
+The ultrasound distance sensors are used to measure distances to near objects.
+However those sensors are not able to distinguish between those objects and are in this respect very different from the new ranging sensors.
+To research interaction with an environment a solution is necessary to create a modifyable environmental factors that can be acted upon by the robots.
+Those environmental factors shall be changed without altering the physical layout of the lab.
+In the swarmlab a beamer is used to project an into the operating area.
+The current lighting situation can be measured by an rgb color sensor that is mounted on top of the copter.
 
-The range-sensor is also mainly used for interaction.
-Ranging values enable the FINken robots to implement attraction-repulsion-beheaviour.
+The new range sensor is also mainly used for interaction between the robots.
+It can be used to create environmental input for exmple to probvide points of interest or to mark certain locations that shall be avoided by other quadcopters
+Ranging values enable the FINken robots to interact with each other based on their distance i.e. by implementing attraction-repulsion-beheaviour. \todo{more?}
 
 \subsection{Hardware Description}
 There are different ranging technologies that might be used in a FINken quadcopter.
@@ -135,7 +146,7 @@ However there are different components that can interfere with the new sensor th
 \section{Evaluation of Existing Ranging Solutions}
 
 \todo{mehr fokus auf andere copter projekte}
-Keeping the requirements from that in mind  there are some technologies that can be used for ranging.
+Keeping the requirements from \autoref{req} in mind  there are some technologies that can be used for ranging.
 The usual application for most of those technologies in research is positioning, which makes it difficult to find comparable numbers for ranging-only applications.
 
 
