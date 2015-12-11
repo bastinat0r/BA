@@ -1,3 +1,4 @@
+
 \section{Hardware}
 
 \subsection{Ranging Hardware}
@@ -10,15 +11,25 @@ It is planned to use 802.15.4 modules from dresden elektronik which are already 
 \todo{other frequency}
 Another way to integrate this approach to ranging into the FINken robots is to miniaturize the REB233SMAD-modules, by leaving unused PCB-area and connectors.
 
+\subsection{Assembly}
+
+As it is unclear which version of the ranging hardware is best for the FINken robots there are several ways to fasten the ranging modules.
+
+If a module from dresden elektronik is used it can simply be plugged into the DE-header currently used for the telemerie module.
+If a new PCB is used it can be mounted using the fixed hole spacing of \SI{30.5}{mm} that is used by a lot of quatcopter hardware components.
+
+Maybe an extra mounting method is needed for the antenna.
+The antenna might be placed on top of the sensor tower to lower interference with the other components of the copter.
+
 \subsection{Autopilot}
-The FINken robots use the LISA/MX autopilot board in hardware revision 2.1.
-This board is used for higher level auto pilot functions as well as pure stabilization–unlike other UAV projects where there are different units for stabilization control and higher levelfunctions like pathfinding.
-This means that all sensors are connected to this board; every computation from evaluation of sensor input to the output of PWM signals to the motors controllers is done on this board.
+The FINken robots are controlled by a micro controller handling all the computation needed.
+There is no distinction between higher level logic like pathplanning and stabilization of the copter.
+The exact board that is used is the LISA/MX autopilot board in hardware revision 2.1~\cite{lisamx} wich runs the paparazzi autopilot firmware\cite{paparazzi}.
+The paparazzi framework provides an easy way to implement new hardware drivers for alle devices that are connected to the board via several possible interfaces.
 
 \section{Interconnect}
-There are diffrent solutions to connecting the ranging board to the Paparazzi autopilot.
-All of the following methods of connecting hardware are supported by the LISA/MX board and one has to be chosen for the new ranging sensors.
-
+There are some different methods of connecting the new sensor to the paparazzi autopilot.
+All of the following ways of connecting hardware are supported by the LISA/MX board and one has to be chosen for the new ranging sensors.
 
 \subsection{Pulse width modulation / Analog value}
 Using a single GPIO pin or analog value is completely impractical, but a good example to explain the problems the honest solutions need to address.
