@@ -3,12 +3,12 @@
 \subsection{Ranging Hardware}
 
 There are several different possible hardware plattforms for the Atmel ranging software.
-At the time this thesis started however we only had a precompiled libary for the Atmel ranging modules \todo{exact name}.
-For the evaluation scenario those modules are quite useable, but there are better options available with the binaries for other hardware plattforms.
-On the copters we want to use \$Module from dresden elektronik which is already integrated into the new hardware revision of the FINken robots.
+At the time this thesis started using the firmware of the Atmel Ranging Toolbox~\cite{atmelrtb} for the REB233SMAD Evaluation Kit~\cite{REB233SMAD} was the only setup that was already supporting ranging.
 
-The disadvantage of the Atmel sensors is that they are not designed for production use but as development plattforms and therefore are quite big and heavy and not really suited to be used on the FINken quadcopters.
-It is possible however to build a simmilar hardware setup that is much smaller by using smaller packages of the same chips, leaving lots of unused PCB area and unused connectors.
+For evaluation those modules are quite useable, but there are better options available for use in the real application, as the sensors from the evaluatio kit are quite big and heavy.
+It is planned to use 802.15.4 modules from dresden elektronik which are already integrated into the new hardware revision of the FINken robots as telemetrie transmitter.
+\todo{other frequency}
+Another way to integrate this approach to ranging into the FINken robots is to miniaturize the REB233SMAD-modules, by leaving unused PCB-area and connectors.
 
 \subsection{Autopilot}
 The FINken robots use the LISA/MX autopilot board in hardware revision 2.1.
