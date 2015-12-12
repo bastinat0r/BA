@@ -9,7 +9,7 @@ Additionally the settings of the modules can be changed by the same interface.
 
 The sensor has different functions described by i2c-registers that can be written to by the master device.
 The registers are described by \autoref{i2ccommands}.
-In usual operation the master device will set reflector and initiator address, initiate the ranging and read the resulting range value afterwards.
+In normal operation the master device will set reflector and initiator address, initiate the ranging and read the resulting range value afterwards.
 Some functionality like changing the addresses and setup of the devices are provided as well.
 
 \autoref{rangefields} describes how the structure for transmitting range values is organized.
@@ -75,8 +75,9 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 \section{Python Scripts}
 
 For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as i2c master.
-Using this setup for testing has proven really effective even before integrating attaching the sensor nodes to one of the finken robots.
-Python might also be a very powerfull tool to prototype mathematical processing of the sensor inputs like filtering and fusion of different ranging results.
+Using this setup for testing has proven really usefull.
+Gathering data with those scripts might be a suitable way to develop and test software using higher level concepts, without the need to write code for embedded devices.
 
 \emph{i2cranging.py} contains functions for the master side of I2C communication. Those can either be used from the python PEPL or by other scripts.
 \emph{poll\_range.py} contains a convenient method to take continous range readings from the unix shell and is mainly used to generate csv-files with ranging values.
+Those csv-files have been used for evaluating the ranging nodes.
