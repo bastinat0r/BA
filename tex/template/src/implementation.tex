@@ -1,22 +1,21 @@
 
-Somehow the sensordata needs to find its way into the control loops of the autopilot.
-We have established that i2c is the hardware solution to transmit the data.
+The basic idea for the firmware of the nodes is to provide an I2C interface to initiate measurements and read values.
+Additionally the settings of the modules can be changed by the same interface.
 
-Now it is important to pin down in which way the measurements get triggert and when and how the result is transmitted back.
 
-\section{Communication Protocol}
+\section{Communication Interface}
 
-There are two possible ways to talk to the sensor.
-You can define independent commands to start a measurement and retrieve data.
-The obvious disatvantage of this method is, that there is a bit of communication overhead and the master device won't read the data from the sensor as soon as it is possible—the master might event start a new measurement without even reading the result at all.
 
-The other way to do things is that the slave device writes the data onto the bus as soon as it is arriving.
-This way of sending results however has disatvantages that ar e far worse then reading measurements a bit later and even missing some measurements.
-Those disatvantages are caused by the way i2c handles slave writes.
 
 The sensor has different functions described by i2c-registers that can be written to by the master device.
-The registers and the format of the range response are described by \emph{i2c\_interface.h}.
+The registers are described by \autoref{i2ccommands}.
+In usual operation the master device will set reflector and initiator address, initiate the ranging and read the resulting range value afterwards.
+Some functionality like changing the addresses and setup of the devices are provided as well.
 
+\autoref{rangefields} describes how the structure for transmitting range values is organized.
+The reason why so many values are included into the range measurement is that the master device is most propably needs to do filtering based on status and dqf-values. The addresses of the nodes are included to match measurements in case one of the packets is lost or a new measurement is made before the old value is read.
+The data type for the range values is changed, not to block the i2c-device unnecessarily the data type of the range reading is changed.
+Instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} are more than plenty in our application.
 
 \begin{table}
 	
@@ -41,33 +40,37 @@ The registers and the format of the range response are described by \emph{i2c\_i
 	\end{tabularx}
 
 	\caption{Implemented I2C-Commands and Description}
+	\label{i2ccommands}
 	
 \end{table}
 
-Another design decision that has to be made is how the data structure for ranging results should look like.
-\todo{status, dqf, range, addresses, message id}
-Obviously the measured distance needs to be included in the message, but instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} can be expressed that way.
+\begin{table}
+	
+	\begin{tabularx}{\columnwidth}{l | l | X}
+	Type & Name & Description \\ \hline
+		uint8\_t  & status       & status of the range measurement \\
+		uint8\_t  & dqf          & quality of the range reading \\
+		uint16\_t & distance     & measured distance \\
+		uint16\_t & short\_addr1 & initiator address \\
+		uint16\_t & short\_addr2 & reflector address \\
+	\end{tabularx}
 
-The dqf value also needs to be transmitted, as the sensor node can not decide in wich way the values should be used by the master device, i.e. making application dependent filtering more accurate\footnote{
-	An application were the dqf-value is of much use is a Kalman-State-Filter, which could gain accuracy by using the dqf value to estimate the reliability of the range values.
-}.
-In secenarios with multiple ranging nodes or remote ranging the addresses of both nodes taking part in the range measurement also need to be included into the message.
-This information enables the master device to assign the range values to the right pair of devices, even if one of the messages gets lost or the order of measurements changes.
+	\caption{Fields included in one range measurement}
+	\label{rangefields}
+	
+\end{table}
 
-Depending on the setup the sensor nodes do not communicate measurement failures, but retransmit the old values again.
-As a consequence two more values should be transmitted: The status of the measurement and a message id.
-Those values enable the client to discard erroneous measurements and duplicate readings. 
 
 
 \todo{"TWI", "Phillips-I2C", "..."}
 
-\section{Paparazzi Module for Ranging}
-
-\todo{Treiber für  Ranging}
-\todo{(optional)Treiber für Pseudo GPS}
-
-Addressing is done using the unique aircraft id of the indivdual robots.
-Because the short addresses for the ranging nodes are 16 bit long and the aircraft ids are 8 bit values it is feasable to use a fixed prefix together with the ac-id as node addresses.
+%\section{Paparazzi Module for Ranging}
+%
+%\todo{Treiber für  Ranging}
+%\todo{(optional)Treiber für Pseudo GPS}
+%
+%Addressing is done using the unique aircraft id of the indivdual robots.
+%Because the short addresses for the ranging nodes are 16 bit long and the aircraft ids are 8 bit values it is feasable to use a fixed prefix together with the ac-id as node addresses.
 
 \section{Python Scripts}
 
