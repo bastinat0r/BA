@@ -6,37 +6,44 @@ On this occasion it is important to find a sensor that is capable to measure dis
 An obvious choice for this distance is measuring the spacial distance in between the robots\footnote{
 The mathematical distance-property might not actually need to be something as close to a physical property, but it is beneficial to be able to measure and watch the robots interacting with their physical environment.}.
 
+\todo{establish type of ranging (node <-> node)}
+
 \section{Requirements}
 \label{req}
-There are basically three requirements for this sensor. 
+There are basically three requirements for the ranging sensor.
 Those requirements will act as a base to choose and to evaluate the new sensor.
 
 \begin{enumerate}
 	\item interaction between the copter and the ranging modules shall be minimal
-	\item the ranging needs to be integrated into the copter
+	\item the ranging nodes need to be integrated into the copter
 	\item the values yielded by ranging shall be of usable quality
 \end{enumerate}
 
 \subsection{Interaction between Copter and Ranging}
 \label{req1}
 The copter shall not influence the function of the ranging modules and vice versa.
-I.e. using an ultrasonic ranging method might not be a good idea as the copter already uses multiple ultrasonic sensors.
-If no measures are taken to counteract medium access problems both sensors will disrupt each other to a point where the sensor values are completely useless.
-However this requirements is bendable to a certain degree.
-If there is interaction between copter and ranging sensors the copter might be changed to elimnate this interaction.
+I.e. using an ultrasonic ranging method might not be feasible as the copter already uses multiple ultrasonic sensors.
+If no measures are taken to counteract medium access problems both sensors will disrupt each other to a point where the sensor values of both sensors are completely useless.
+
+This requirements might be watered down to a certain degree.
+If there is interaction between copter and ranging sensors the setup of the quadcopter might be changed to eliminate the interaction.
+However the FINken robot is beeing used in research and changing one component usually means almost all components have to be touched as well, as most components are interdependable to some degree.\todo{wording}
 
 \subsection{Integration of the Ranging Modules}
 \label{req2}
-In order to be used in the FINken robots the sensors obviously need to be integrated into the robot.
-This means the ranging modules need to be lightweight and small enough to fit on a flying robot and there needs to be an interface that can transmit the data from the new sensor to the copter software.
+In order to be used in the FINken project the sensors need to be integrated into the robots.
+This means the ranging modules need to be lightweight and small enough to fit on a flying robot.
+Additionally there needs to be an interface that can transmit the data from the new sensor to the firmware controlling the robot.
+
 One of the aspects of integration is that the robots shall interact locally to form a swarm in contrast to multi agent systems that rely on global information.
+As a consequence measuring the positions of the copters with an external sensors and providing the distances via telemetry is not sufficient—the robots shall not be dependant on external sensors.
 
 \subsection{Yielding Usefull Values}
 \label{req3}
 Yielding usefull values seems to be a trivial requirement, but is actually the hardest of all three.
-The area of operation for the FINken robots is only \SI{3}{m} by \SI{4}{m} so the range measurements need to be pretty accurate in this scenario. \todo{provide metric for hypothesis}
+The area of operation for the FINken robots is only \SI{3}{m} by \SI{4}{m} so the range measurements need to be pretty accurate for small distances. \todo{provide metric for hypothesis}
 Additionally the update frequency needs to be quite high as the copters are able to move with great accelarations and velocities.
-
+\todo{moar!}
 
 \section{The FINken Robot Platform}
 
