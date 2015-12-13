@@ -1,4 +1,8 @@
 
+As stated in \autoref{req} the sensors shall be integrated into the FINken robot in a way that is does not disrupt the normal operation of the FINken robots.
+In order to do so a version\todo{wording} of the hardware has to be chosen that is not to big and heavy for a flying robot.
+Additionally an interface to the autopilot board has to be found that integrates well into the existing infrastructure.
+
 \section{Hardware}
 
 \subsection{Ranging Hardware}
@@ -11,15 +15,20 @@ It is planned to use 802.15.4 modules from dresden elektronik which are already 
 \todo{other frequency}
 Another way to integrate this approach to ranging into the FINken robots is to miniaturize the REB233SMAD-modules, by leaving unused PCB-area and connectors.
 
+In conclusion the dresden elektronik modules are best suited for the copters.
+If it would become apparent that those modules are not capable of ranging it would still be possible to create a miniaturized version of the Atmel sensors.
+As seen in \autoref{freqencyselection} using another frequency might cause a big improvement in ranging quality.
+This is especially if the modules can be used for ranging and telemetry at the same time.
+
 \subsection{Assembly}
 
 As it is unclear which version of the ranging hardware is best for the FINken robots there are several ways to fasten the ranging modules.
 
-If a module from dresden elektronik is used it can simply be plugged into the DE-header currently used for the telemerie module.
+If a module from dresden elektronik is used it can simply be plugged into the header currently used for the telemerie module.
 If a new PCB is used it can be mounted using the fixed hole spacing of \SI{30.5}{mm} that is used by a lot of quatcopter hardware components.
 
 Maybe an extra mounting method is needed for the antenna.
-The antenna might be placed on top of the sensor tower to lower interference with the other components of the copter.
+The best place for the antenna is probably on top of the sensor tower to lower interference with the other components of the copter.
 
 \subsection{Autopilot Software}
 The FINken robots are controlled by a micro controller handling all the computation needed.
@@ -35,8 +44,10 @@ Running filters on the sensor node might free up valuable processing power and m
 
 As the FINken robots autopilot is quite well resourced and the measurements are probably not good enough to be used without sophisticated filtering only the raw values of the sensors are used.
 However it might still be a good idea to provide higher level data computed by the sensor nodes later on.
-Position estimation for example is an application, that needs a lot of computation and memory that is quite simmilar for different applications of the ranging nodes.
-\todo{Integration of Position estimate into kalman}
+Position estimation is an application that needs a lot of computation and memory.
+Additionally computing postition estimates will be similiar accross different applications of the ranging modules.
+The position estimate might also be used as a direct input to filters that use additional information directly, especially if the computation of the position does not cause a delay in the sensor data.
+
 
 \section{Interconnect}
 There are some different methods of connecting the new sensor to the paparazzi autopilot.
@@ -49,31 +60,44 @@ First of all there is a limited number of GPIO or ADC-pins on both boards.
 On the autopilot board those pins are quite rare, especially because they cannot be shared easily between components.
 The second problem is that we do not only need to read a range value from the sensor but we also need to tell the sensor which value to fetch.
 Therefore some kind of bidirectional communication between autopilot and sensor need to take place.
-The big advantage of using a GPIO pin would be that only one single wire\footnote{Plus two wires for voltage supply} would be needed to connect autopilot and sensor.
+The big advantage of using a GPIO pin would be that only one single wire\footnote{Two additional wires are needed to supply the sensor with power, those wires will be needed regardless of the communication protocol.} would be needed to connect autopilot and sensor.
 
 \subsection{UART}
 The "Universal Asynchronous Receiver/Transmitter"-Protocol uses two wires to establish communication between devices.
 \cite{wingen_automatic_2004}
 
-The Disadvantage of UART-style Protocols is that it is a bidirectional connection.
-That two pins are needed on sender and reciever side and if another device should be connected two new pins are needed.
+The disadvantage of the UART protocol is that it is a strictly bidirectional connection.
+It is not possible to connect multiple slave devices to one UART port of the master device.
 On the Lisa/MX autopilot there are four dedicated UART connections that might be used, but already three of them are used.
 
+Using the last of those ports is not feasible as there are other better options available.
+\todo{not clocked -> slow?}
+
 \subsection{SPI}
-6 Pins, Clocked, Chainable, DMA
+Serial Peripheral Interface is a four wired bus that also allows bidirectional communications.
+There are two modes of operation that can be used in SPI.
+In the independent slave configuration a single IO-pin defines which of the slaves is currently active.
+As the LisaMX only has one chip select pin this mode is not really interesting to be used by the sensor nodes.
+
+
+The daisy-chain-configuration uses the chip select pin to pass all data along the modules and works much like a shift register.
+The other applications planned for the SPI port are communication with a high level processor and fast data logging to a micro SD-card that will need a lot of bandwith.
+This means the sensor would need to be capable of high clock speeds and data rates in order to keep the bandwith for the other applications up\todo{wording}.
 
 \subsection{CAN bus}
-Would be ok, no can device yet, pins for canbus already in use, would be solvable, but not easy to implement on ranging nodes
+Controller Area Network is a bus protocol mainly known for its applications in the automotive area\todo{wording}.
+CAN is an option available on the paparazzi board, however implementation on the sensor side would mean a lot of effort compared to the other communication protocols.
+
 
 \subsection{I2C}
 
 I2C is a two wired bus protocol that can be used to connect multiple slave devices to one master device.
+As every communication in I2C is directed to the devices via an address it is quite simple to connect new devices in a star configuration simply by attaching it to the two wires of the bus.
 There already are multiple sensors connected to the autopilot via I2C.
-All of the ultrasound-sensors and also the optionalcolorsensor use I2C to communicate with the autopilot.
-The autopilot board also supports to have two independent i2c-networks.
+All of the ultrasound-sensors and also the optional color sensor use I2C to communicate with the autopilot.
+This also means that there is already know how and code that can be utilized to connect the new sensors.
 
-Especially the fact that there already is a sensor network on the FINken makes it the best choice as a communication protocol for the new sensor.
+One of the disadvantages of I2C is that misbehaving slave devices can disrupt the communication of all devices on the bus.
+The autopilot board supports to have two independent I2C-networks which makes it possible to separate critical and non-critical devices which helps to mitigate this problem.
 
-\todo{problem: slaves can block the bus}
-
-\todo{Welche funktion für master, welche für slave.}
+Especially the fact that there already is a sensor network on the FINken makes I2C the best choice as a communication protocol for the new sensor.
