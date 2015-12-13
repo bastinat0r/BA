@@ -6,16 +6,26 @@ Additionally the settings of the modules can be changed by the same interface.
 \section{Communication Interface}
 
 
-
-The sensor has different functions described by i2c-registers that can be written to by the master device.
-The registers are described by \autoref{i2ccommands}.
+\subsection{I2C Registers}
+The sensor has different functions available as I2C-registers.
+The master device writes one byte to the register followed by arguments for the different functions.
+Either the sensor node answers with an acknowledge byte or the data answering the request.
+The registers are listed in \autoref{i2ccommands}.
 In normal operation the master device will set reflector and initiator address, initiate the ranging and read the resulting range value afterwards.
-Some functionality like changing the addresses and setup of the devices are provided as well.
+This is achieved with the START\_RANGING and READ\_LAST\_RANGING commands.
 
-\autoref{rangefields} describes how the structure for transmitting range values is organized.
-The reason why so many values are included into the range measurement is that the master device is most propably needs to do filtering based on status and dqf-values. The addresses of the nodes are included to match measurements in case one of the packets is lost or a new measurement is made before the old value is read.
-The data type for the range values is changed, not to block the i2c-device unnecessarily the data type of the range reading is changed.
-Instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} are more than plenty in our application.
+Additionally some basic configuration can be might via the I2C interface.
+The I2C-address is the address of the I2C-device, that needs to be changed to avoid address collisions i.e. when multiple ranging nodes are used with one master device.
+The short address is the address describing the ranging node.
+It is independent from the I2C address in order to allow multiple ranging nodes on one I2C master device as well as using ranging devices with equal addresses on multiple devices.
+
+The FINken robots will certainly share one I2C address for the ranging nodes and use the aircraft-ID of the robot as short address.
+As the aircraft-ID of the FINken is only one byte the higher byte of the ranging short addresses might be used to distinguish between other robots in the swarm and nodes in the environment.
+
+Initiator and reflector address refer to the short addresses of the nodes on both ends of one measurement.
+The initiator is the ranging node starting the ranging process, the reflector its target.
+Because the nodes are capable of remote ranging the initiator might be a different node than the one connected via I2C.
+In particular this means that remote range readings can be taken without the need of additional communication.
 
 \begin{table}
 	
@@ -25,24 +35,31 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 	0x1  & START\_RANGING & trigger range measurement\\
 	0x3  & START\_REMOTE\_RANGING & trigger remote measurement\\
 	0x2  & READ\_LAST\_RANGING & read measured distance\\
-	0xFE & SET\_I2C\_ADDRESS & set new i2c address\\
+	0xFE & SET\_I2C\_ADDRESS & set new I2C address\\
 	0xFD & SET\_SHORT\_ADDRESS & set new ranging short address\\
 	0xFC & SET\_REFLECTOR\_ADDRESS & set reflector address\\
 	0xFB & SET\_INITIATOR\_ADDRESS & set initiator address\\
 	0xED & GET\_SHORT\_ADDRESS & get ranging address\\
 	0xEC & GET\_REFLECTOR\_ADDRESS & get reflector address\\
 	0xEB & GET\_INITIATOR\_ADDRESS & get initiator address\\
-	0xFF & CLEAR\_BUFFER & clear i2c write buffer\\
+	0xFF & CLEAR\_BUFFER & clear I2C write buffer\\
 	0xCA & SET\_FREQ\_START & set lower ranging frequency\\
 	0xCB & SET\_FREQ\_STEP & set ranging frequency spacing\\
-	0xCC & I2C\_SET\_FREQ\_STOP & set upper frequency\\
-	0xCD & SET\_DIVERSITY & turn on/off antenna bdiversity\\
+	0xCC & SET\_FREQ\_STOP & set upper frequency\\
+	0xCD & SET\_DIVERSITY & turn on/off antenna diversity\\
 	\end{tabularx}
 
-	\caption{Implemented I2C-Commands and Description}
+	\caption[Implemented I2C-Commands and Description]{Implemented I2C-Commands and Description.}
 	\label{i2ccommands}
 	
 \end{table}
+
+\subsection{Datafields in the Ranging Result}
+\autoref{rangefields} describes how the structure for transmitting range values is organized.
+The reason why so many values are included into the range measurement is that the master device is most propably needs to do filtering based on status and dqf-values. The addresses of the nodes are included to match measurements in case one of the packets is lost or a new measurement is made before the old value is read.
+
+The data type for the range values is changed, not to block the I2C-device unnecessarily the data type of the range reading is changed.
+Instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} are more than plenty in our application.
 
 \begin{table}
 	
@@ -62,7 +79,7 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 
 
 
-\todo{"TWI", "Phillips-I2C", "..."}
+%\todo{"TWI", "Phillips-I2C", "..."}
 
 %\section{Paparazzi Module for Ranging}
 %
@@ -74,7 +91,7 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 
 \section{Python Scripts}
 
-For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as i2c master.
+For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as I2C master.
 Using this setup for testing has proven really usefull.
 Gathering data with those scripts might be a suitable way to develop and test software using higher level concepts, without the need to write code for embedded devices.
 
