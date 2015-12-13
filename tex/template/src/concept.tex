@@ -21,11 +21,22 @@ If a new PCB is used it can be mounted using the fixed hole spacing of \SI{30.5}
 Maybe an extra mounting method is needed for the antenna.
 The antenna might be placed on top of the sensor tower to lower interference with the other components of the copter.
 
-\subsection{Autopilot}
+\subsection{Autopilot Software}
 The FINken robots are controlled by a micro controller handling all the computation needed.
 There is no distinction between higher level logic like pathplanning and stabilization of the copter.
 The exact board that is used is the LISA/MX autopilot board in hardware revision 2.1~\cite{lisamx} wich runs the paparazzi autopilot firmware\cite{paparazzi}.
 The paparazzi framework provides an easy way to implement new hardware drivers for alle devices that are connected to the board via several possible interfaces.
+
+An important design desicion is how to devide the process of ranging and filtering the results between autopilot and sensor node.
+The sensor could yield it's raw values to the master device and be done.
+This allows to implement fine tuned and application specific filtering, however it also means that there is no convenient way of getting reasonable values that are already filtred.
+Another factor that influences this decision is the processing power of the sensor nodes.
+Running filters on the sensor node might free up valuable processing power and memory in the master device.
+
+As the FINken robots autopilot is quite well resourced and the measurements are probably not good enough to be used without sophisticated filtering only the raw values of the sensors are used.
+However it might still be a good idea to provide higher level data computed by the sensor nodes later on.
+Position estimation for example is an application, that needs a lot of computation and memory that is quite simmilar for different applications of the ranging nodes.
+\todo{Integration of Position estimate into kalman}
 
 \section{Interconnect}
 There are some different methods of connecting the new sensor to the paparazzi autopilot.
@@ -55,6 +66,7 @@ On the Lisa/MX autopilot there are four dedicated UART connections that might be
 Would be ok, no can device yet, pins for canbus already in use, would be solvable, but not easy to implement on ranging nodes
 
 \subsection{I2C}
+
 I2C is a two wired bus protocol that can be used to connect multiple slave devices to one master device.
 There already are multiple sensors connected to the autopilot via I2C.
 All of the ultrasound-sensors and also the optionalcolorsensor use I2C to communicate with the autopilot.
@@ -64,3 +76,4 @@ Especially the fact that there already is a sensor network on the FINken makes i
 
 \todo{problem: slaves can block the bus}
 
+\todo{Welche funktion für master, welche für slave.}
