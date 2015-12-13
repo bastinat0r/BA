@@ -30,9 +30,9 @@ If a new PCB is used it can be mounted using the fixed hole spacing of \SI{30.5}
 Maybe an extra mounting method is needed for the antenna.
 The best place for the antenna is probably on top of the sensor tower to lower interference with the other components of the copter.
 
-\subsection{Autopilot Software}
+\section{Autopilot Software}
 The FINken robots are controlled by a micro controller handling all the computation needed.
-There is no distinction between higher level logic like pathplanning and stabilization of the copter.
+There is no distinction between higher level logic like pathplanning and and low level code as the stabilization of the copter in terms of hardware.
 The exact board that is used is the LISA/MX autopilot board in hardware revision 2.1~\cite{lisamx} wich runs the paparazzi autopilot firmware\cite{paparazzi}.
 The paparazzi framework provides an easy way to implement new hardware drivers for alle devices that are connected to the board via several possible interfaces.
 
@@ -83,11 +83,13 @@ As the LisaMX only has one chip select pin this mode is not really interesting t
 The daisy-chain-configuration uses the chip select pin to pass all data along the modules and works much like a shift register.
 The other applications planned for the SPI port are communication with a high level processor and fast data logging to a micro SD-card that will need a lot of bandwith.
 This means the sensor would need to be capable of high clock speeds and data rates in order to keep the bandwith for the other applications up\todo{wording}.
+\todo{fact-check}
+
 
 \subsection{CAN bus}
 Controller Area Network is a bus protocol mainly known for its applications in the automotive area\todo{wording}.
 CAN is an option available on the paparazzi board, however implementation on the sensor side would mean a lot of effort compared to the other communication protocols.
-
+\todo{more, fact-check}
 
 \subsection{I2C}
 
