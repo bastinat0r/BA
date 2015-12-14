@@ -1,3 +1,9 @@
+The \todo{ranging modules} fullfill the first two of the requirements set for the ranging sensors.
+However the quality of the data is the most important factor for the usefullnes of the ranging nodes in the FINken project\footnote{see \autoref{req3}}.
+
+The evaluation of the sensors is made difficult by the fact, that there are many interdependend variables that influence each other in unclear ways.
+The ranging method itself can only be treated as a black box up to the ranging api provided by the Atmel RTB firmware.
+Especially the effects of RF-noise and multipath propagation are environmental influences that are not controlable and hard to measure but still have great influence on ranging quality.
 
 \section{Robustness of Implementation}
 
@@ -28,7 +34,7 @@ This would mean the autopilot has to rely on expired data and it might break any
 The most important question for the FINken project is: \enquote{Can the ranging values be used by the FINken robots}.
 To answer this question some understanding of the magnitude and distribution of the ranging error is needed.
 
-Finding out how accurate the range values actually are proves rather diffucult, because there are lots of interdependend variables that influence ranging accuracy.
+Finding out how accurate the range values actually are proves rather difficult, because there are lots of interdependend variables that influence ranging accuracy.
 
 \subsection{Frequency Selection}
 \label{freqencyselection}
