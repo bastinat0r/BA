@@ -30,6 +30,7 @@ To integrate positional data into the FINken two steps are needed: Implementing 
 An aditional benefit of using anchor nodes to compute a position estimate is that we can find out our current heading and the direction of other swarm entities much easier
 
 \subsection{Distance Based Bounding Box}
+\label{boundingbox}
 Currently nets and ultrasound reflecting foil are used to enclose the flight area.
 Those could be replaced by ranging beacons that enclose the operating area, either by computing a position and defining coordinates which should not be left or by placing ranging nodes in the area and defining a minmum distance to the nearest node.
 This could be a nice setup for mobile deployment of the FINken robots.
@@ -47,6 +48,11 @@ Swarm behavior can be used for multi objective optimization.
 One of those objectives might be based on the measured distance i.e. stay close to a specific node or stay away from a specific node.
 Keeping a minimal distance and maximizing the distance between the robots might be used to avoid collisions between multiple robots.
 Avoiding collisions of course is one of the most important requirement for ermergence of swarm behavior in a robotic swarm.
+
+\subsection{Collision Avoidance}
+Similar to the bounding boxes from \autoref{boundingbox} the distance sensors may be used to enhance collision avoidance in between the copters belonging to the swarm.
+This might especially usefull if the safty distance in between the robots shall be higher then the safty distance kept to nearyby objects that are not part of the swarm.
+As the copters influence each other by creating a lot of turbulence this strategy might provide benefits for the behavior of the swarm in small environments.
 
 \subsection{Formation Flying}
 \todo{get simulation data}
