@@ -1,5 +1,5 @@
-\section{Misc}
-\todo{find better caption}
+\section{Improving the Ranging Sensor}
+\todo{Improving vs. Influenco of Movement}
 \subsection{Influence of Movement}
 Since it was not possible to move the nodes in a predictable way while still measuring a reference value in our lab, there is no data on the effect of movement on the ranging nodes.
 As the copters are capable of flying very fast the fact that they are moving could alter the measurement quality, since multiple phase-differce measruments are combined into one range value.
@@ -9,7 +9,8 @@ As the copters are capable of flying very fast the fact that they are moving cou
 Albeit the range measurements are not great the ranging sensors might still be an improvement to having no ranging capabilities at all.
 To achieve this one of the possible hardware solutions from \autoref{ranginghardware} needs to be purchased and integrated into the FINken.
 The final sensor should be evaluated again.
-\todo{comparable to uwb-paper}
+Lanzisera, Lin and Pister~\cite{lanzisera2006} show how inflight validation of range measurements is done for TOF localisation.
+A similar setup might be used to validate the ranging capabilities of the new FINken sensor.
 
 \subsection{Improve Range Values}
 
@@ -26,6 +27,7 @@ As there are big changes in the measured range values when small changes in the 
 
 
 
+\section{General Applications for Quadcopters}
 \subsection{Flying with Pseudo-GPS}
 One of the things that can be done with ranging is position estimation via multilateration.
 Even if the FINken project is mainly interested in gaining a viable distance measure between individuals in a swarm a position estimate would be beneficial for the performance of the autopilot-especially as the normal use case for the Paparazzi autopilot is outdoors and with a GPS reciever attatched.
