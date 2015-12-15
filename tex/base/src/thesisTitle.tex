@@ -1,0 +1,69 @@
+\pagestyle{empty}
+\vspace*{6.5cm}
+\begin{minipage}[]{\textwidth}
+  \begin{flushleft}
+    \hspace*{\fill} \LARGE \myAuthors \\
+    \setlength{\unitlength}{0.1\textwidth}
+    \begin{picture}(10,1)
+      \put(0,0){\line(1,0){10}}
+    \end{picture}\\[0.5cm]
+
+    \huge \textbf{\myTitle}\\%[0.5cm]
+    \setlength{\unitlength}{0.1\textwidth}
+
+    \begin{picture}(10,1)
+      \put(0, 0.4){\line(1,0){10}}
+    \end{picture}\\[0.5cm]
+  \end{flushleft}
+\end{minipage}
+\cleardoublepage
+
+\def\HAbst{0.5cm}
+\begin{titlepage}
+    \begin{flushleft}
+        \begin{center}
+            \includegraphics[width=14cm]{figures/signet/INF_SIGN_druck}
+            {\large \myDepartment\\}
+			\vspace{1.5cm}
+			{\Large \myType \\[2cm]}
+            {\Large \bf \myTitle\\[0.5cm]}
+        \end{center}
+    \vspace*{\fill}
+	\large
+	\begin{tabular}[t]{ll}
+		\LangAuthor: 		&	\myAuthors	\\ & \\
+		\LangProf:	&	\myProf		\\ & \\
+		\LangTutor:	&	\myTutorA	\\ & \\
+		\ifdefined\myTutorB
+		\LangTutor:	&	\myTutorB	\\ & \\
+		\fi
+		\ifdefined\myTutorC
+		\LangTutor:	&	\myTutorC	\\ & \\
+		\fi
+		\ifdefined\myTutorD
+		\LangTutor:	&	\myTutorD	\\ & \\
+		\fi
+	\end{tabular}
+	\vspace{1cm}
+	\begin{tabular}{cc}
+    	\myTerm & \myYear
+	\end{tabular}
+\end{flushleft}
+\newpage
+\vspace*{\fill}
+%		\begin{tabular}[b]{l}
+%          \normalsize Universit\"at Magdeburg \\
+%			\normalsize Fakult\"at f\"ur Informatik \\
+%			\normalsize Postfach 4120 \\
+%			\normalsize D-39016 Magdeburg \\
+%			\normalsize Germany \\
+%		\end{tabular}
+\begin{minipage}[]{\textwidth-2cm}
+  \textbf{\myAuthors: }\emph{\myTitle}\\
+  \myType, Otto-von-Guericke-Universit\"at\\Magdeburg, \myYear.\\
+	\myGroup - \myDepartment%%TODO UNI, Institut, Addresse, Jahr
+\end{minipage}
+\end{titlepage}
+%\newpage
+
+\cleardoublepage

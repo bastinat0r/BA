@@ -1,0 +1,285 @@
+\documentclass[twoside, 12pt, a4paper, openright, fleqn, cleardoublepage=empty]{scrreprt}
+
+\input{setup}
+
+\ifdefined\myLanguage
+\else
+    \def\myLanguage{german}
+\fi
+
+\def\LangEng{english}
+\def\LangGer{german}
+
+\ifx\myLanguage\LangEng
+    \def\LangToF{Table of Figures}
+    \def\LangToT{Table of Tables}
+    \def\LangToL{Table of Listings}
+    \def\LangToA{Table of Acronyms}
+    \def\LangRef{Bibliography}
+    \def\LangDate{Date}
+    \def\LangAuthor{Author}
+    \def\LangProf{Professor}
+    \def\LangTutor{Tutor}
+    \def\LangType{Type}
+    \usepackage[english]{babel}
+\fi
+
+\ifx\myLanguage\LangGer
+    \def\LangToF{Abbildungsverzeichnis}
+    \def\LangToT{Tabellenverzeichnis}
+    \def\LangToL{Quellcodeverzeichnis}
+    \def\LangToA{Abkürzungsverzeichnis}
+    \def\LangRef{Literaturverzeichnis}
+    \def\LangDate{Datum}
+    \def\LangAuthor{Autor}
+    \def\LangProf{Professor}
+    \def\LangTutor{Betreuer}
+    \def\LangType{Typ}
+    \usepackage[ngerman]{babel}
+\fi
+
+%Input kram, UTF-8 support, sowie deutsche Sonderzeichen
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+%Einbinden von Grafiken
+\usepackage[pdftex]{graphicx}
+%MetaUML support
+\DeclareGraphicsRule{*}{mps}{*}{}
+
+%PDF links
+%\usepackage[pdftex,plainpages=false,colorlinks,citecolor=green,linkcolor=red,urlcolor=blue,bookmarksopen]{hyperref}
+\usepackage[pdftex,plainpages=false,colorlinks,citecolor=black,linkcolor=black,urlcolor=black,bookmarksopen]{hyperref}
+%Kopf und Fußzeilen
+\usepackage[automark,komastyle,markusedcase]{scrpage2}
+%Berechnungen innerhalb LATEXs
+\usepackage{calc}
+%Absatztrennung durch Leerzeile statt Einrückung
+\usepackage{parskip}
+
+%Deutsches Format für Referenzen
+\usepackage{bibgerm}
+%Support für \url, zur korrekten Darstellung von URLs
+\usepackage{url}
+%Erweiterte Mathesymbole
+\usepackage{amssymb}
+%Erweiterte Mathefunktionen
+\usepackage[fleqn]{amsmath}
+%Floating figures in figure Umgebung
+\usepackage{subfigure}
+
+\usepackage{multirow}
+
+\usepackage{listings}
+\usepackage[printonlyused]{acronym}
+
+\usepackage{expdlist}
+\usepackage{pdflscape}
+
+\ifdefined\myPackages
+\input{\myPackages}
+\fi
+
+\usepackage[colorinlistoftodos]{todonotes}
+
+\hypersetup{
+    pdftitle    = {\myTitle},
+    pdfsubject  = {\myType},
+    pdfkeywords = {},
+    pdfauthor   = {\textcopyright\ \myAuthors},
+  }
+\pdfcompresslevel=9
+
+\makeatletter
+\providecommand*{\toclevel@algorithm}{0}
+\makeatother
+\textwidth 14cm
+\textheight 21cm
+\headsep 3em
+\headheight 1em
+\evensidemargin 1cm
+\oddsidemargin 1cm
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.5ex}
+\pagestyle{scrheadings}
+\setlength{\headheight}{3\baselineskip}
+\setheadsepline{.4pt}
+\DeclareGraphicsExtensions{.jpg,.pdf,bmp,.png}
+\graphicspath{{./figure/}{./build/figure/}{./build/table/}{./build/code/}}
+
+% This is 'SCHUSTER.STY' as of 25. March 1990
+%
+% Disable single lines at the start of a paragraph (Schusterjungen)
+\clubpenalty = 10000
+%
+% Disable single lines at the end of a paragraph (Hurenkinder)
+\widowpenalty = 10000 \displaywidowpenalty = 10000
+
+\title{\sc \myTitle}
+\author{\myAuthors}
+\date{\today}
+
+\ifdefined\myCommands
+\input{\myCommands}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\ifx\myLanguage\LangGer
+    \shorthandoff{"}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PREAMBLE 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{\myStyle Title}
+
+\sloppy
+\pagenumbering{Roman}
+
+\deftripstyle{chap}[0pt][0.5pt]{}{}{}{}{\pagemark}{}
+\deftripstyle{nonChap}[0pt][0.5pt]{}{}{\headmark}{}{\pagemark}{}
+\renewcommand*{\chapterpagestyle}{chap}
+\pagestyle{nonChap}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myAbstract
+\abstract
+\myAbstract
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PREFACE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\myVorwort
+\chapter*{Vorwort}
+\input{\myVorwort}
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LIST OF TODOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myShowTodos
+\renewcommand{\baselinestretch}{1.2}
+\small\normalsize
+\todototoc
+\listoftodos
+\renewcommand{\baselinestretch}{1}
+\small\normalsize
+
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TABLE OF CONTENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myShowTOC
+\renewcommand{\baselinestretch}{1.2}
+\small\normalsize
+\tableofcontents
+\renewcommand{\baselinestretch}{1}
+\small\normalsize
+
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LIST OF FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myShowTOF
+\renewcommand{\baselinestretch}{1.3}
+\small\normalsize
+\listoffigures
+\addcontentsline{toc}{chapter}{\LangToF}
+
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LIST OF TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myShowTOT
+\renewcommand{\baselinestretch}{1.3}
+\small\normalsize
+\listoftables
+\addcontentsline{toc}{chapter}{\LangToT}
+\renewcommand{\baselinestretch}{1.1}
+\small\normalsize
+
+\cleardoublepage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LIST OF LISTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myShowTOL
+\renewcommand{\baselinestretch}{1.3}
+\small\normalsize
+\renewcommand*{\lstlistlistingname}{\LangToL}
+\lstlistoflistings
+\addcontentsline{toc}{chapter}{\LangToL}
+\renewcommand{\baselinestretch}{1.1}
+\small\normalsize
+
+\cleardoublepage
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% LIST OF ACRONYMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\myAcronyms
+\renewcommand{\baselinestretch}{1.3}
+\small\normalsize
+\chapter*{\LangToA}
+\input{\myAcronyms}
+\addcontentsline{toc}{chapter}{\LangToA}
+\renewcommand{\baselinestretch}{1.1}
+\small\normalsize
+\fi
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% CONTENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\automark[section]{chapter}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{\myContent}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BIBLIOGRAPY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\myBibs
+\cleardoublepage
+\ifdefined\myBibStyle
+\bibliographystyle{\myBibStyle}
+\else
+\bibliographystyle{plain}
+\fi
+\bibliography{\myBibs}
+\addcontentsline{toc}{chapter}{\LangRef}
+\cleardoublepage
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Selbständigkeitserklärung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+\ifdefined\myDeclaration
+\input{\myDeclaration}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Ende
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
