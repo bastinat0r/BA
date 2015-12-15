@@ -26,8 +26,6 @@ Another problem that may occure is that i2c data packets can get lost.
 This would mean the autopilot has to rely on expired data and it might break any kind of derivate computed from the range value. \todo{jaja, als ob man da was sinvolles ausrechnen könnte :(}.
 \todo{measure}
 
-\subsection{Integration Test for Quadcopter}
-
 
 \section{Ranging Accuracy}
 
@@ -240,6 +238,7 @@ However the lack of symmetry might be utilized.
 \end{equation}
 The remote ranging ability of the nodes can be exploited to gather both values $A \rightarrow B$ and $B \rightarrow A$ by averaging those values the error might be lowered. \todo{data}
 The new value shown in \autoref{symavg} will be symmetric.
+The messurement error will be reduced because of the averaging.
 
 \subsection{Triangle Inequality}
 The triangle inequality will also be broken by noise.

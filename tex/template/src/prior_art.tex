@@ -3,11 +3,11 @@
 The FINken project aims to create a swarm of autonomously flying quadcopters to research swarm intelligence beheaviour on robots.
 Many algorithms in swarm intelligence are based on distance values. \todo{source}
 As a consequence it is important to find a sensor that is capable of measuring distances between copters and to integrate it into the FINken robots.
-An obvious choice for this distance is measuring the distance in between the robots\footnote{
-The mathematical distance-property might not actually need to be something as close to a physical property, but it is beneficial to be able to measure and watch the robots interacting with their physical environment.}.
+An obvious choice for this distance function is measuring the distance in between the robot.
 
-
-\todo{establish type of ranging (node <-> node)}
+There are already ranging sensors that are incorporated into the FINken robots.
+However those sensors measure the distance to arbitrary objects in the environment.
+The new sensor shall be able to measure the distance to another sensor based queried by address.
 
 \section{Requirements}
 \label{req}
@@ -26,7 +26,7 @@ The copter shall not influence the function of the ranging modules and vice vers
 I.e. using an ultrasonic ranging method might not be feasible as the copter already uses multiple ultrasonic sensors.
 If no measures are taken to counteract medium access problems both sensors will disrupt each other to a point where the sensor values of both sensors are completely useless.
 
-This requirements might be watered down to a certain degree.
+This requirement might be mitigated to a certain degree.
 If there is interaction between copter and ranging sensors the setup of the quadcopter might be changed to eliminate the interaction.
 However the FINken robot is beeing used in research and changing one component usually means almost all components have to be touched as well, as most components are interdependable to some degree.\todo{wording}
 
@@ -85,7 +85,6 @@ Usually the altitude of operation is between \SI{0.5}{\metre} to \SI{1}{\metre}.
 To prevent damage when the quadcopters crash the floor is coverd with mats that work well with ultrasound and infrared sensors.
 It is possible to create virtual environmental factors by using a projector and an rgb-sensor mounted on top of the robots.
 This virtual environment can be used research the beheaviour of the quadcopters if a certain task is assigned to the robot, e.g. finding the brightest spot.
-\todo{foto}
 
 
 \subsection{Sensor Concept}
@@ -97,7 +96,6 @@ Of course the sensors needed for autonoms flight must not be disturbed by the ot
 
 To simplify the control of the quadcopters no complex movements shall be made.
 The robots shall be able to fly at a given height and navigate in x-y-direction to perform their given tasks.
-%Highly dynamic maneuvers are possible for the airframe, but are not realizable with the sensor data we currently get. \todo{ref to christophs ba}
 Flying autonomously like this requires to solve two major problems: Height control and navigation.
 
 For controlling the height of the copters either the ultrasound distance measurement of the optical flow sensors are used, alternativly the height is measured by an infrared sensor that needs to be equipped when the optical flow sensors are not.
@@ -152,7 +150,6 @@ However there are different components that can interfere with the new sensor th
 
 \section{Evaluation of Existing Ranging Solutions}
 
-\todo{mehr fokus auf andere copter projekte}
 Keeping the requirements from \autoref{req} in mind  there are some technologies that can be used for ranging.
 The usual application for most of those technologies in research is positioning, which makes it difficult to find comparable numbers for ranging-only applications.
 
@@ -184,8 +181,8 @@ As such external tracking would be a valuable tool for evaluation, but is not me
 \subsection{Indor Time of Flight}
 An obvious approach for replacing the GPS signal is to use a simmilar approach indoors.
 
-The problem is that very short timespans have to be measured accuratly, because radio waves are so damn fast. \todo{wording}
-\cite{lanzisera2006} states, that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} was measured in different indoor scenarios.
+The problem is that very short timespans have to be measured accuratly, because radio waves travel at the speed of light.
+Lanzisera, Lin and Pister~\cite{lanzisera2006} state, that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} was measured in different indoor scenarios.
 With an operating area only \SI{3}{\metre} wide this approach is not suited for our robots.
 
 
