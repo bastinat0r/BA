@@ -25,8 +25,8 @@ function plot_corridor(df, confidence, min_samples)
 	return plot(x[x[:samples] .> min_samples,:],
 	layer(x=:range, y=:range, Geom.line),
 	layer(x=:range, ymin=:lower, ymax=:upper, Geom.ribbon, Theme(default_color=color("green"))),
-	layer(x=:range, y=:samples, Geom.line)
-	)
+	Guide.xlabel("range"),
+	Guide.ylabel("distance"))
 end
 
 function test_vector(model, v)
