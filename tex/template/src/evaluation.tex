@@ -98,10 +98,32 @@ However the measurements are done in a very specific manner to improve the quali
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/messaufbau.png}
-	\caption{Measurement Setup}
+	\caption[ Measurement Setup ]{ Measurement Setup. RaspberryPi microcomputer is connected to the ranging node via I2C. }
 	\label{aufbau}
 \end{figure}
 
+\subsection{Data Sets}
+
+The evaluation of the ranging nodes rely on three datasets that have been recorded.
+Before those datasets were recorded many other measurements where made.
+These measurments are not directly used in the evaluation, but for finding disrupting influences before the actual evaluation data was measured.
+
+\subsubsection*{\enquote{Nightshift}}
+RF-noise plays a major role in the quality of the ranging measurments and almost everyone in the faculty uses \SI{2.4}{GHz} devices.
+As a consequence data recorded at night is less noisy then data recorded during daytime.
+
+Because of this fact all the data was recorded at nighttime.
+The \enquote{Nightshift}-dataset consists of range values measured for distances between \SI{16}{cm} and \SI{250}{cm} in \SI{2}{cm} intervalls.
+For each of the distances 200 range values have been measured.
+
+\subsubsection*{Angle Dataset}
+To determine the influence of rotation another dataset has been recorded at \SI{50}{cm}, \SI{100}{cm} and \SI{150}{cm}.
+At each distance one of the sensors was rotated in \SI{30}{\degree}-steps.
+
+\subsubsection*{Symmetry}
+To check if the range measurements are symmetrical the remote measurement capabilities of the ranging nodes where utilized.
+Three nodes where used to generate more data, while still beeing able to automatically measure at nighttime.
+It was intended to also evaluate the triangle equation with this data, however this has proven to be impractical.
 
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
@@ -136,13 +158,7 @@ This leads to bad consequences.
 	\label{2m}
 \end{figure}
 
-%\subsection{Influence of Input Voltage}
-%
-%The input voltage has a huge impact on the quality of range values.
-%This especially means that the battery compartment of the ranging modules must not be used.
-%\todo{messreihe}
-
-\subsection{Influence of Distance}
+\subsection{Relationship between Distance and Measured Range}
 
 It is important to know how the ranging nodes behave at different distances.
 In \autoref{boxplot} this relationship is shown.
@@ -182,21 +198,8 @@ The result of this approach is shown in \autoref{buckets}.
 However we can not simply measure 20 values to compute a filtered value at once, especially as the values must not be measured at the same distance.
 As long as the quadcopter is moving measurements could be taken continuously.
 
-\subsection{Antenna Orientation}
-\todo{ (diversity, no diversity) * (parallel, perpendicular) }
-
-
-
 \subsection{Orientation of Devices}
 
-
-\subsection{Moving Nodes}
-Movement has an influence on the quality of the range values depending on the ranging method used.
-For the phase different measurements a moving node could mess up the range value if the phase differces measured at multiple frequencys don't match the same distance because the node moved in between. \todo{wording}
-
-However moving the node in a defined way and taking a measurement at a fixed distance is a sophisticated task.
-
-\subsection{Ranging on FINken Robots}
 
 \section{Properties of a Distance Function}
 The ranging sensor on the FINken robot shall be used to provide a distance between two quadcopters, similar to a distance measure used in swarm intelligence algorithms.
