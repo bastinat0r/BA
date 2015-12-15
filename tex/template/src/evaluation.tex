@@ -108,6 +108,9 @@ The evaluation of the ranging nodes rely on three datasets that have been record
 Before those datasets were recorded many other measurements where made.
 These measurments are not directly used in the evaluation, but for finding disrupting influences before the actual evaluation data was measured.
 
+To avoid confusion the measured range in the dataset is called \enquote{range} and the reference measurement for the distance is called \enquote{distance}.
+The same nomenclature can be found in this thesis.
+
 \subsubsection*{\enquote{Nightshift}}
 RF-noise plays a major role in the quality of the ranging measurments and almost everyone in the faculty uses \SI{2.4}{GHz} devices.
 As a consequence data recorded at night is less noisy then data recorded during daytime.
@@ -155,6 +158,13 @@ Also notable is that the ideal value (shown as blue line) is always within the i
 	\centering
 	\input{figures/corridor.pgf}
 	\caption[ Measured range vs. Real Distance ]{Measured range vs. Real Distance. In this diagram for each possible range value the 0.9-quantile of the real distances are plottet as green area. The blue line shows the ideal value.}
+	\label{corridor}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\input{figures/rmse.pgf}
+	\caption[ RMSE over distance ]{RMSE value for each distance.}
 	\label{corridor}
 \end{figure}
 
@@ -221,7 +231,12 @@ This leads to bad consequences.
 
 
 \subsection{Orientation of Devices}
-
+\begin{figure}[H]
+	\centering
+	\input{figures/rmse_angle.pgf}
+	\caption[RMSE for given angle and distance]{RMSE for given angle and distance. In each diagram you see a the RMSE values for each angle at a fixed distance.}
+	\label{2m}
+\end{figure}
 
 \section{Properties of a Distance Function}
 The ranging sensor on the FINken robot shall be used to provide a distance between two quadcopters, similar to a distance measure used in swarm intelligence algorithms.

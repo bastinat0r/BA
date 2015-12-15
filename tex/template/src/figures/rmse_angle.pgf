@@ -1,0 +1,247 @@
+\begin{tikzpicture}[x=1mm,y=-1mm]
+\definecolor{mycolor000000}{rgb}{0,0,0}
+\definecolor{mycolorD0D0E0}{rgb}{0.82,0.82,0.88}
+\definecolor{mycolor564A55}{rgb}{0.34,0.29,0.33}
+\definecolor{mycolor6C606B}{rgb}{0.42,0.38,0.42}
+\definecolor{mycolor00BFFF}{rgb}{0,0.75,1}
+\definecolor{mycolor000000}{rgb}{0,0,0}
+\definecolor{mycolorFFFFFF}{rgb}{1,1,1}
+\begin{scope}
+\begin{scope}
+\draw (78.81,108.39) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={-0: (0,1.81)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{angle}$};
+\end{scope}
+\begin{scope}
+\clip  (12.61,5) -- (145,5) -- (145,105.39) -- (12.61,105.39);
+\begin{scope}
+\clip  (12.61,5) -- (145,5) -- (145,105.39) -- (12.61,105.39);
+\begin{scope}
+\clip  (12.61,5) -- (145,5) -- (145,105.39) -- (12.61,105.39);
+\draw (29.24,101.72) node [text=mycolor6C606B,rotate around={-0: (55.88,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (57.18,101.72) node [text=mycolor6C606B,rotate around={-0: (27.94,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (85.12,101.72) node [text=mycolor6C606B,rotate around={-0: (0,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{200}$};
+\draw (113.06,101.72) node [text=mycolor6C606B,rotate around={-0: (-27.94,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{300}$};
+\draw (141,101.72) node [text=mycolor6C606B,rotate around={-0: (-55.88,1.34)},inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{400}$};
+\end{scope}
+\begin{scope}
+\clip  (27.24,78.79) -- (143,78.79) -- (143,100.72) -- (27.24,100.72);
+\begin{scope}
+\clip  (27.24,78.79) -- (143,78.79) -- (143,100.72) -- (27.24,100.72);
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor000000,draw opacity=0] (27.24,78.79) rectangle +(115.76,21.93);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,98.72) -- (143,98.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,92.74) -- (143,92.74);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,86.76) -- (143,86.76);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,80.79) -- (143,80.79);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (29.24,78.79) -- (29.24,100.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (57.18,78.79) -- (57.18,100.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (85.12,78.79) -- (85.12,100.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (113.06,78.79) -- (113.06,100.72);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (141,78.79) -- (141,100.72);
+\end{scope}
+\begin{scope}
+\begin{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (29.24,87.99) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (37.63,94.01) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (46.01,94) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (54.39,93.46) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (62.77,92.2) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (71.15,86.64) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (79.53,90.55) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (87.92,91.68) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (96.3,86.08) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (104.68,94.39) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (113.06,92.65) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (121.44,88.74) circle [radius=0.9];
+\end{scope}
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (29.24,87.99) -- (37.63,94.01) -- (46.01,94) -- (54.39,93.46) -- (62.77,92.2) -- (71.15,86.64) -- (79.53,90.55) -- (87.92,91.68) -- (96.3,86.08) -- (104.68,94.39) -- (113.06,92.65) -- (121.44,88.74);
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (26.24,98.72) node [text=mycolor6C606B,rotate around={-0: (-2.51,-8.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (26.24,92.74) node [text=mycolor6C606B,rotate around={-0: (-2.51,-2.99)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (26.24,86.76) node [text=mycolor6C606B,rotate around={-0: (-2.51,2.99)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (26.24,80.79) node [text=mycolor6C606B,rotate around={-0: (-2.51,8.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\end{scope}
+\begin{scope}
+\draw (16.42,87.75) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{200}$};
+\end{scope}
+\begin{scope}
+\clip  (27.24,54.86) -- (143,54.86) -- (143,74.79) -- (27.24,74.79);
+\begin{scope}
+\clip  (27.24,54.86) -- (143,54.86) -- (143,74.79) -- (27.24,74.79);
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor000000,draw opacity=0] (27.24,54.86) rectangle +(115.76,19.93);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,72.79) -- (143,72.79);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,67.48) -- (143,67.48);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,62.17) -- (143,62.17);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,56.86) -- (143,56.86);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (29.24,54.86) -- (29.24,74.79);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (57.18,54.86) -- (57.18,74.79);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (85.12,54.86) -- (85.12,74.79);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (113.06,54.86) -- (113.06,74.79);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (141,54.86) -- (141,74.79);
+\end{scope}
+\begin{scope}
+\begin{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (29.24,70.14) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (37.63,67.88) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (46.01,67.91) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (54.39,69.07) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (62.77,69.3) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (71.15,69.08) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (79.53,70.53) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (87.92,67.41) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (96.3,67.72) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (104.68,69.28) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (113.06,68.89) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (121.44,69.54) circle [radius=0.9];
+\end{scope}
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (29.24,70.14) -- (37.63,67.88) -- (46.01,67.91) -- (54.39,69.07) -- (62.77,69.3) -- (71.15,69.08) -- (79.53,70.53) -- (87.92,67.41) -- (96.3,67.72) -- (104.68,69.28) -- (113.06,68.89) -- (121.44,69.54);
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (26.24,72.79) node [text=mycolor6C606B,rotate around={-0: (-2.51,-7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (26.24,67.48) node [text=mycolor6C606B,rotate around={-0: (-2.51,-2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (26.24,62.17) node [text=mycolor6C606B,rotate around={-0: (-2.51,2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (26.24,56.86) node [text=mycolor6C606B,rotate around={-0: (-2.51,7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\end{scope}
+\begin{scope}
+\draw (16.42,62.82) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{150}$};
+\end{scope}
+\begin{scope}
+\clip  (27.24,30.93) -- (143,30.93) -- (143,50.86) -- (27.24,50.86);
+\begin{scope}
+\clip  (27.24,30.93) -- (143,30.93) -- (143,50.86) -- (27.24,50.86);
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor000000,draw opacity=0] (27.24,30.93) rectangle +(115.76,19.93);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,48.86) -- (143,48.86);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,43.55) -- (143,43.55);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,38.24) -- (143,38.24);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,32.93) -- (143,32.93);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (29.24,30.93) -- (29.24,50.86);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (57.18,30.93) -- (57.18,50.86);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (85.12,30.93) -- (85.12,50.86);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (113.06,30.93) -- (113.06,50.86);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (141,30.93) -- (141,50.86);
+\end{scope}
+\begin{scope}
+\begin{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (29.24,46.46) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (37.63,46.64) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (46.01,46.5) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (54.39,45.88) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (62.77,45.89) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (71.15,45.4) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (79.53,44.78) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (87.92,47.2) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (96.3,46.63) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (104.68,46.36) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (113.06,45.75) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (121.44,45.08) circle [radius=0.9];
+\end{scope}
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (29.24,46.46) -- (37.63,46.64) -- (46.01,46.5) -- (54.39,45.88) -- (62.77,45.89) -- (71.15,45.4) -- (79.53,44.78) -- (87.92,47.2) -- (96.3,46.63) -- (104.68,46.36) -- (113.06,45.75) -- (121.44,45.08);
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (26.24,48.86) node [text=mycolor6C606B,rotate around={-0: (-2.51,-7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (26.24,43.55) node [text=mycolor6C606B,rotate around={-0: (-2.51,-2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (26.24,38.24) node [text=mycolor6C606B,rotate around={-0: (-2.51,2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (26.24,32.93) node [text=mycolor6C606B,rotate around={-0: (-2.51,7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\end{scope}
+\begin{scope}
+\draw (16.42,38.89) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{100}$};
+\end{scope}
+\begin{scope}
+\clip  (27.24,7) -- (143,7) -- (143,26.93) -- (27.24,26.93);
+\begin{scope}
+\clip  (27.24,7) -- (143,7) -- (143,26.93) -- (27.24,26.93);
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor000000,draw opacity=0] (27.24,7) rectangle +(115.76,19.93);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,24.93) -- (143,24.93);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,19.62) -- (143,19.62);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,14.31) -- (143,14.31);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (27.24,9) -- (143,9);
+\end{scope}
+\begin{scope}
+[dash pattern=on 0.5mm off 0.5mm,line width=0.2mm]
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (29.24,7) -- (29.24,26.93);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (57.18,7) -- (57.18,26.93);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (85.12,7) -- (85.12,26.93);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (113.06,7) -- (113.06,26.93);
+\path [fill=mycolor000000,draw=mycolorD0D0E0]  (141,7) -- (141,26.93);
+\end{scope}
+\begin{scope}
+\begin{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (29.24,20.48) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (37.63,22.61) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (46.01,21.08) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (54.39,20.74) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (62.77,22.89) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (71.15,23.56) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (79.53,21.25) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (87.92,23.38) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (96.3,21.16) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (104.68,20.17) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (113.06,21.39) circle [radius=0.9];
+\path [fill=mycolor00BFFF,draw=mycolorFFFFFF] (121.44,23.59) circle [radius=0.9];
+\end{scope}
+\end{scope}
+\begin{scope}
+[line width=0.3mm]
+\path [fill=mycolor000000,fill opacity=0,draw=mycolor00BFFF]  (29.24,20.48) -- (37.63,22.61) -- (46.01,21.08) -- (54.39,20.74) -- (62.77,22.89) -- (71.15,23.56) -- (79.53,21.25) -- (87.92,23.38) -- (96.3,21.16) -- (104.68,20.17) -- (113.06,21.39) -- (121.44,23.59);
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (26.24,24.93) node [text=mycolor6C606B,rotate around={-0: (-2.51,-7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{0}$};
+\draw (26.24,19.62) node [text=mycolor6C606B,rotate around={-0: (-2.51,-2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{50}$};
+\draw (26.24,14.31) node [text=mycolor6C606B,rotate around={-0: (-2.51,2.65)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{100}$};
+\draw (26.24,9) node [text=mycolor6C606B,rotate around={-0: (-2.51,7.96)},left,inner sep=0.0]{\fontsize{2.82mm}{3.39mm}\selectfont $\text{150}$};
+\end{scope}
+\begin{scope}
+\draw (16.42,14.96) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{50}$};
+\end{scope}
+\end{scope}
+\end{scope}
+\begin{scope}
+\draw (8.81,53.19) node [text=mycolor564A55,draw=mycolor000000,draw opacity=0,rotate around={90: (0,2)},inner sep=0.0]{\fontsize{3.88mm}{4.66mm}\selectfont $\text{RMSE by Distance}$};
+\end{scope}
+\end{scope}
+\end{tikzpicture}
