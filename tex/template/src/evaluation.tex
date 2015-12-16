@@ -10,7 +10,7 @@ Especially the effects of RF-noise and multipath propagation are environmental i
 For use in the FINken robots not only the quality of the measurements is relevant.
 The sensor also needs to be well integrated into the autopilot framework.
 
-With the current hardware this integration can not be done completly, because the current hardware plattform is simply to big to fly.
+With the current hardware this integration can not be done completely, because the current hardware plattform is simply to big to fly.
 This step of integration will be done with the \todo{de-modules}.
 
 \subsection{Bus hangup}
@@ -33,6 +33,18 @@ The most important question for the FINken project is: \enquote{Can the ranging 
 To answer this question some understanding of the magnitude and distribution of the ranging error is needed.
 
 Finding out how accurate the range values actually are proves rather difficult, because there are lots of interdependend variables that influence ranging accuracy.
+
+Noticable disturbing effects are:
+\begin{itemize}
+	\item multipath effects
+	\item supplied voltage
+	\item RF-noise
+	\item	antenna characteristics
+	\item chosen frequency
+\end{itemize}
+
+To get meaningfull and reproducable measurement results these effects need to be minimized or be contstant over the course of the measurements.
+The same antennas where used throughout all measurements and the frequency range was selected prior to the measurements used in this evaluation.
 
 \subsection{Frequency Selection}
 \label{freqencyselection}
@@ -199,7 +211,7 @@ Also notable is that the ideal value (shown as blue line) is always within the i
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
 It is reasonable to expect a huge amount of scatter for lower DQF values.
-As \autoref{1m_scatterplot} shows this is not how the range value behaves.
+As can be seen in \autoref{1m_scatterplot} this expecatation is not fullfilled.
 
 %For the values measured with \SI{1}{\metre} real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
 %Also values measured with lower quality are closer to each other than those with higher signal quality.
@@ -212,9 +224,12 @@ As \autoref{1m_scatterplot} shows this is not how the range value behaves.
 	\label{1m_scatterplot}
 \end{figure}
 
-As you can see in \autoref{me_dqf} there is a clear relationship between mean error and dqf.
-This relationship might be utilized to lower the overall error.
-In \autoref{me_dqf_distance} this is true accross the measured distances.
+Instead there is a clear relationship between mean error and dqf as shown in \autoref{me_dqf}.
+For lower DQF-values the average measurement $(< 80)$ error is negative and for biger DQF-values $(> 90)$ positive.
+As such the DQF-value might be used to improve the range values. 
+
+In \autoref{me_dqf_distance} this relationship exists for serveral of the measured distances.
+
 %\autoref{range_05_to_2m} shows measurements taken at different distances.
 %The values for further distances have far more noise than values for lower distances.
 %This leads to bad consequences.
@@ -250,9 +265,15 @@ In \autoref{me_dqf_distance} this is true accross the measured distances.
 	\centering
 	\input{figures/rmse_angle.pgf}
 	\caption[RMSE for given angle and distance]{RMSE for given angle and distance. In each diagram you see a the RMSE values for each angle at a fixed distance.}
-	\label{2m}
+	\label{rms_eangle}
 \end{figure}
 
+\begin{figure}[h]
+	\centering
+	\input{figures/me_angle.pgf}
+	\caption[Mean Error for given Angle]{.}
+	\label{me_angle}
+\end{figure}
 \section{Properties of a Distance Function}
 The ranging sensor on the FINken robot shall be used to provide a distance between two quadcopters, similar to a distance measure used in swarm intelligence algorithms.
 In the pure mathematical sense a distance function has to fullfill certian properties.
@@ -265,7 +286,7 @@ f(x, y) = f(y, x) \\
 f(x, z) \le f(x, y) + f(y, z)
 \end{eqnarray}
 
-Of course the value measured by any real sensor will not completly accomplish to satisfy those conditions.
+Of course the value measured by any real sensor will not completely accomplish to satisfy those conditions.
 For use in swarm robotics it is therefore very interesting to know in which way the range values break the pattern of a mathematical distance function.
 
 \subsection{Non-negativity and Coincidence}
