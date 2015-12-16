@@ -172,17 +172,18 @@ It is still interesting to search for positioning applications, since many of th
 Most projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
 
 The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
-The most affordable solution from Optitrack that is able to track 5 targets at once costs more then \SI{10000}{\$}\cite{optitrack.com}.
+The most affordable solution from Optitrack that is able to track 5 targets at once costs more then \SI{10000}{\$}~\cite{optitrack.com}.
 The price is justified by the superior performance of this method.
 This means tracking accuracy as well as the possibility to measure orientation at a very high update frequency.
 \todo{research performance statistics for ranging solutions}
 
 \todo{ETH}
 
-Achtelik et al\cite{Achtelik2009} develop a cheaper vision tracking system.
-Nevetheless using an external tracking system is exactly the multi agent systems approach to provide global knowlegde that has been gathered by the tracking system to the agents in contrast to swarm beheaviour that is relying on local information.
-The biggest drawback of this approach is that we gather global knowledge about our system, rather than creating beheaviour based on local interaction.
-As such external tracking would be a valuable tool for evaluation, but is not meeting the requirements for gathering sensor data.
+Even a tracking system that is more cost efficient like the one developed by Achtelik et al\cite{Achtelik2009} is not a good solution for the FINken project.
+A tracking system provides information that is gathered for the entire operating area and afterwards broadcasted to the robots.
+The big advantage of swarm beheaviour—that no common information base is required in order to form a functioning swarm—would be lost.
+
+As such external tracking might be a valuable tool for observe the resulting beheaviour, but it is not meeting the requirements for gathering the sensor data the robots shall act on (see \autoref{req2}).
 
 %A huge drawback to this method is that many components are used that need to be integrated into the environment and cannot be carried by the robots themselves.
 %For swarm robotics this is not an ideal solution as using external tracking would mean communicating with some kind of centralized tracking interface-destroying the scalability and the priciple of local interaction leading to global beheaviour.
@@ -192,26 +193,30 @@ An obvious approach for replacing the GPS signal is to use a simmilar approach i
 
 The problem is that very short timespans have to be measured accuratly, because radio waves travel at the speed of light.
 Lanzisera, Lin and Pister~\cite{lanzisera2006} state, that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} was measured in different indoor scenarios.
-With an operating area only \SI{3}{\metre} wide this approach is not suited for our robots.
+With an operating area only \SI{3}{\metre} wide this solution is not suited for our robots.
 
 
-% \cite{uwb_decawave} claims that an accuracy of \SI{10}{\centi\metre} can be achieved and the nodes are availeble for purchase at reasonable prices. \todo{begründen warum wir das nicht benutzen} \todo{wiederspruch mit den 10cm, more like 50cm}
-A project that looks more promising is decaWave.
-According to \cite{uwb_localisation_copter} the measurement error is generally under \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
-The proposed method of filtering needs 27 measurements to compute one range value.\todo{wording}
-However the decaWave project was unkown to us when we started looking for ranging possibilities so \todo{blabla}
+According to Kempke, Pannuto and Dutta~\cite{uwb_localisation_copter} the measurement error is generally under \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
+\todo{The proposed method of filtering needs 27 measurements to compute one range value.}
+Mahfouz et al\cite{uwb_decawave} even claims that an accuracy of \SI{10}{\centi\metre} can be achieved.
+While the DecaWave modules seem like suitable ranging sensors for the FINken the hardware was not available to us at the time.
 
 \subsection{Ultrasonic Time of Flight Ranging}
 A very clever approach to ranging is used by ranging solutions like cricket~\cite{cricket_01} and active bat~\cite{active_bat}. 
 RF-Signals travel at the speed of light and therefore very short time-periods need to be measured accurately to compute distances from time of flight.
 Sound however travels at a speed much slower than radio waves so the time periods that need to be measured are much longer.
-Infact the time periods get so long that another problem comes up.
+Unfortunately the slower propagation speed causes a different problem.
 
 Using sound as medium there is an upper bound to the update frequency for all nodes sharing the medium (i.e. close enough to sense each other).~\cite{active_bat} claims that one ranging measurement can be done in a \SI{20}{\milli\second} slot.
-That means we can have 50 range updates per second. Assuming we have a swarm of five robots that form a fully connected graph we would need at least ten range measurements to get all swarm distances.
+That means we can have 50 range updates per second.
+Assuming we have a swarm of five robots that form a fully connected graph we would need at least ten range measurements to get all swarm distances.
 So the upper boundary for ranging update frequency in a swarm of five robots is \SI{5}{\hertz}.
-Considering that this is the upper limit this is a solid disadvantage of this method.
-Furthermore the FINken robots currently use sonar based distance sensor to measure the distance to the nearest object in some direction so either the update frequency would be diminished much further.
+Considering that this is the upper limit this is a solid disadvantage of this method. \todo{upper limit will not be reached}
+
+Currently the FINken robots use sonar based distance sensors to measure the distance to the neareby objects.
+It is highly unlikely that those distance sensors and an ultrasonic ranging method can be used in parallel without disrupting each other.
+This problem could only be solved by implementing some kind of medium access control protocol and by doing so reducing the maximal update frequencys for both sensors.
+
 
 %Another problem is the noise created by motors and propellers.
 %The sound made by the quadcopters is not ending in the hearable spectrum but also extends to the ultrasound range.
