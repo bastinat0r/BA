@@ -128,7 +128,7 @@ To check if the range measurements are symmetrical the remote measurement capabi
 Three nodes where used to generate more data, while still beeing able to automatically measure at nighttime.
 It was intended to also evaluate the triangle equation with this data, however this has proven to be impractical.
 
-\begin{table}
+\begin{table}[h]
 	\centering	
 	\begin{tabular}{l | r | r}
 	           & RMSE (cm) & Samples \\ \hline
@@ -201,37 +201,52 @@ One value the ranging api provides is the DQF\footnote{Data Quality Factor}-valu
 It is reasonable to expect a huge amount of scatter for lower DQF values.
 As \autoref{1m_scatterplot} shows this is not how the range value behaves.
 
-For the values measured with \SI{1}{\metre} real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
-Also values measured with lower quality are closer to each other than those with higher signal quality.
-As long as we only look at the values taken at \SI{1}{\metre} real distance it seams like we could be able to improve the range estimate by including the dqf value into the computation of the distance.
-To do that this behaviour would need to be stable accross different distances, i.e. no matter if the measurement is taken at \SI{1}{\metre} or \SI{3}{\metre} distance the when the dqf is low the measured range is lower and if dqf is high the measured range is higher.
-\begin{figure}[H]
+%For the values measured with \SI{1}{\metre} real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
+%Also values measured with lower quality are closer to each other than those with higher signal quality.
+%As long as we only look at the values taken at \SI{1}{\metre} real distance it seams like we could be able to improve the range estimate by including the dqf value into the computation of the distance.
+%To do that this behaviour would need to be stable accross different distances, i.e. no matter if the measurement is taken at \SI{1}{\metre} or \SI{3}{\metre} distance the when the dqf is low the measured range is lower and if dqf is high the measured range is higher.
+\begin{figure}[h]
 	\centering
 	\input{figures/scatterplot_1000_1m.pgf}
 	\caption{1000 values measured at \SI{1}{\metre} distance}
 	\label{1m_scatterplot}
 \end{figure}
 
-\autoref{range_05_to_2m} shows measurements taken at different distances.
-The values for further distances have far more noise than values for lower distances.
-This leads to bad consequences.
-\begin{figure}[H]
+As you can see in \autoref{me_dqf} there is a clear relationship between mean error and dqf.
+This relationship might be utilized to lower the overall error.
+In \autoref{me_dqf_distance} this is true accross the measured distances.
+%\autoref{range_05_to_2m} shows measurements taken at different distances.
+%The values for further distances have far more noise than values for lower distances.
+%This leads to bad consequences.
+%\begin{figure}[h]
+%	\centering
+%	\input{figures/range_05_to_2m.pgf}
+%	\caption{values measured at \SI{0.5}{\metre} to \SI{2}{\metre} real distance}
+%	\label{range_05_to_2m}
+%\end{figure}
+%
+%\begin{figure}[h]
+%	\centering
+%	\input{figures/2m.pgf}
+%	\caption{100 values measured at \SI{2}{\metre} distance}
+%	\label{2m}
+%\end{figure}
+\begin{figure}[h]
 	\centering
-	\input{figures/range_05_to_2m.pgf}
-	\caption{values measured at \SI{0.5}{\metre} to \SI{2}{\metre} real distance}
-	\label{range_05_to_2m}
+	\input{figures/me_dqf.pgf}
+	\caption{Mean Error by DQF}
+	\label{me_dqf}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
-	\input{figures/2m.pgf}
-	\caption{100 values measured at \SI{2}{\metre} distance}
-	\label{2m}
+	\input{figures/distance_emean_dqf.pgf}
+	\caption{Mean Error by DQF accross diffrent distances}
+	\label{me_dqf_distance}
 \end{figure}
-
 
 \subsection{Orientation of Devices}
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\input{figures/rmse_angle.pgf}
 	\caption[RMSE for given angle and distance]{RMSE for given angle and distance. In each diagram you see a the RMSE values for each angle at a fixed distance.}
