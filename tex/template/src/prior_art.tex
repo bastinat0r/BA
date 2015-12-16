@@ -3,7 +3,7 @@
 The FINken project aims to create a swarm of autonomously flying quadcopters to research swarm intelligence beheaviour on robots.
 Many algorithms in swarm intelligence are based on distance values. \todo{source}
 As a consequence it is important to find a sensor that is capable of measuring distances between copters and to integrate it into the FINken robots.
-An obvious choice for this distance function is measuring the distance in between the robot.
+An obvious choice for this distance function is measuring the euclidian distance in between the robot.
 
 There are already ranging sensors that are incorporated into the FINken robots.
 However those sensors measure the distance to arbitrary objects in the environment.
@@ -13,6 +13,7 @@ The new sensor shall be able to measure the distance to another sensor based que
 \label{req}
 There are basically three requirements for the ranging sensor.
 Those requirements will act as a base to choose and to evaluate the new sensor.
+Fulfilling these requirements ist the goal of this thesis.
 
 \begin{enumerate}
 	\item interaction between the copter and the ranging modules shall be minimal
@@ -42,20 +43,23 @@ As a consequence measuring the positions of the copters with an external sensors
 \subsection{Yielding Usefull Values}
 \label{req3}
 Yielding usefull values seems to be a trivial requirement, but is actually the hardest of all three.
-The area of operation for the FINken robots is only \SI{3}{m} by \SI{4}{m} so the range measurements need to be pretty accurate for small distances. \todo{provide metric for hypothesis}
-Additionally the update frequency needs to be quite high as the copters are able to move with great accelarations and velocities.
+The area of operation for the FINken robots is only \SI{3}{m} by \SI{4}{m} so the range measurements need to be sufficiently accurate for those small distances. \todo{provide metric for hypothesis}
+In particular it is desireable that the range measurements fulfill the properties of a distance function.
+
+Additionally the update frequency needs to be high enough to supportthe great accelarations and velocities of the FINken robots.
+
 \todo{moar!}
 
 \section{The FINken Robot Platform}
 
 
-Goal of the FINken project is to implement intelligent swarm beheaviour on flying robots and research how swarm collaboration works in a real world application.
+Goal of the FINken project is to implement intelligent swarm beheaviour on flying robots and research how swarm collaboration performs in a real world application.
 The robots need to fly in an stable manner on their own and be capable of interacting without disrupting the operation of the other swarm members.
 Those robots shall perform given tasks defined to encurage swarm based interaction, their beheaviour can be evaluated and compared to the theoretical models developed by swarm intelligence research.
 
 \subsection{Robot Description}
 
-The robots are propelled by four rotors that are directly attached to a brushless motor.
+The robots are propelled by four rotors that are directly attached to brushless motors.
 In combination the motors can be controlled to change the direction of the thrustvector (pitch and roll), to change the overall amount of lift generated (thrust) and to change the orientation of the airframe (yaw).
 The airframe houses all the actuators, processors and batteries needed for flight.
 Additionally it carries a multitude of sensors used for operating autonomsly.
@@ -72,9 +76,10 @@ This is mainly because the robots need lots of payload capacity to carry differe
 However the capability for dynamic beheaviour is not usefull for our research.
 Of course the high power of the motors can also be used to stabilize the copter better, which is exactly what is needed for the FINken research.
 If the copter is angled by only $6\degree$ and it's height is kept stable it is accelerating at about \SI{1}{\metre\per\square\second} if the height stays the same during that time.
-This means the copter reaches a velocity of over \SI{2}{\metre\per\second} when travelling through the arena at this pretty small angle. \todo{kleine störung-> rel. großer effekt}
+This means the copter reaches a velocity of over \SI{2}{\metre\per\second} when travelling through the arena at this small angle. \todo{kleine störung-> rel. großer effekt}
 
 \subsection{Environment}
+\todo{general indoor flight}
 When doing research things do not always work perfectly.
 Therefore the environment for the FINken robots is designed to protect the robots from mechanical damage.
 It is also designed not to intefere with the function of the sensors the robot is using. 
@@ -125,14 +130,15 @@ The current lighting situation can be measured by an rgb color sensor that is mo
 
 The new range sensor is also mainly used for interaction between the robots.
 It can be used to create environmental input for exmple to probvide points of interest or to mark certain locations that shall be avoided by other quadcopters
-Ranging values enable the FINken robots to interact with each other based on their distance i.e. by implementing attraction-repulsion-beheaviour. \todo{more?}
+Ranging values enable the FINken robots to interact with each other based on their distance i.e. by implementing attraction-repulsion-beheaviour.\todo{more,structure -> annotations}
+
 
 \subsection{Hardware Description}
 There are different ranging technologies that might be used in a FINken quadcopter.
 However there are different components that can interfere with the new sensor that shall be integrated e.g. by disturbing the measurments made by the new sensor.
 
 %The FINken 3 robots are quadcopters controlled by the Lisa\/MX 2.1 autopilot-board\cite{_lisa/mx_????} using the opensource autopilot firmware Paparazzi\cite{_paparazziuav_????}.
-\begin{table}[H]
+\begin{table}[h]
 	\begin{tabularx}{\columnwidth}{l | X}
 	Part & Description \\ \hline
 	Frame & The Frame is made of GFK material and plastic and rotor to rotor distance is \SI{10}{\centi\metre} \\
@@ -144,6 +150,7 @@ However there are different components that can interfere with the new sensor th
 	IR-Sensor & IR-Distance sensor measuring distance to ground, alternativ to optical flow sensor \\
 	Telemetry & BTLE-/Zigbee modules to exchange data with the ground station \\
 	RC-Control &  2.4GHz based Radio Control to manually control the robots \\
+	Autopilot & Lisa/MX version 2.1~\cite{lisamx} running the paparazzi~\cite{paparazzi} autopilot firmware.
 	\end{tabularx}
 	\caption{Hardware Components of the FIKen 3 robots}
 \end{table}
@@ -152,10 +159,11 @@ However there are different components that can interfere with the new sensor th
 
 Keeping the requirements from \autoref{req} in mind  there are some technologies that can be used for ranging.
 The usual application for most of those technologies in research is positioning, which makes it difficult to find comparable numbers for ranging-only applications.
+In positioning usually more than four or more range measurements are combined to compute one position.
+By dooing so ranging errors are mitigated to some degree.
+When only dooing ranging this method of error mitigation is not available.
 
-
-
-It is still interesting to search for positioning applications, since many of those positioning technologies are based on multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which is what we are interested in because only ranging measurments are used, \emph{multiangular}—which is no use  to us, because angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions–which is also no use to us.}.
+It is still interesting to search for positioning applications, since many of those positioning technologies are based on multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which relevant for this work, because only ranging measurments are used. \emph{Multiangular}—where angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions.}.
 \cite{_multilateration_2015}
 \todo{keep it or throw it away?}
 
@@ -171,7 +179,8 @@ This means tracking accuracy as well as the possibility to measure orientation a
 
 \todo{ETH}
 
-However this approach is exactly the multi agent systems approach to provide global knowlegde that has been gathered by the tracking system to the agents in contrast to swarm beheaviour that is relying on local information.
+Achtelik et al\cite{Achtelik2009} develop a cheaper vision tracking system.
+Nevetheless using an external tracking system is exactly the multi agent systems approach to provide global knowlegde that has been gathered by the tracking system to the agents in contrast to swarm beheaviour that is relying on local information.
 The biggest drawback of this approach is that we gather global knowledge about our system, rather than creating beheaviour based on local interaction.
 As such external tracking would be a valuable tool for evaluation, but is not meeting the requirements for gathering sensor data.
 
@@ -186,7 +195,7 @@ Lanzisera, Lin and Pister~\cite{lanzisera2006} state, that standard errors of \S
 With an operating area only \SI{3}{\metre} wide this approach is not suited for our robots.
 
 
-% \cite{uwb_decawave} claims that an accuracy of \SI{10}{\centi\metre} can be achieved and the nodes are aviable for purchase at reasonable prices. \todo{begründen warum wir das nicht benutzen} \todo{wiederspruch mit den 10cm, more like 50cm}
+% \cite{uwb_decawave} claims that an accuracy of \SI{10}{\centi\metre} can be achieved and the nodes are availeble for purchase at reasonable prices. \todo{begründen warum wir das nicht benutzen} \todo{wiederspruch mit den 10cm, more like 50cm}
 A project that looks more promising is decaWave.
 According to \cite{uwb_localisation_copter} the measurement error is generally under \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
 The proposed method of filtering needs 27 measurements to compute one range value.\todo{wording}
@@ -223,7 +232,7 @@ Additionally radio waves might be weakend when travelling through the FINken rob
 
 \subsection{Atmel RTB, Dresden Elektronik, Meterionic}
 
-Another thing that can be measured phase shift.
+Another thing that can be measured phase shift~\cite{2_kluge_eggert_2009}.
 This is a principle that is used by some of the ultrasonic methods.
 However the phase difference can also be measured in radio waves.
 This is utilized by the ranging hardware from the Atmel Ranging Toolbox.
