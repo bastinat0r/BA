@@ -10,7 +10,7 @@ Especially the effects of RF-noise and multipath propagation are environmental i
 For use in the FINken robots not only the quality of the measurements is relevant.
 The sensor also needs to be well integrated into the autopilot framework.
 
-With the current hardware this integration can not be done completely, because the current hardware plattform is simply to big to fly.
+With the current hardware this integration cannot be done completely, because the current hardware plattform is simply to big to fly.
 This step of integration will be done with the \todo{de-modules}.
 
 \subsection{Bus hangup}
@@ -66,7 +66,7 @@ All the frequencys in this range look quite simmilar to the sample taken at \aut
 This values have to be taken with a grain of salt.
 It is really hard to reproduce what kind of RF-noise interfering with the nodes is currently generated in the swarmlab.
 
-There are other factors that impact ranging quality that can not be measured that easily – at least the quality of the antennas for different frequencies and the impact of the number of aviable channels in the frequency range and channel spacing are variables that can not be directly measured in our lab\footnote{The sourcecode and algorithms used by the modules is closed source, so we are not able to infere the effect of channel spacing and number of channels from that.}. 
+There are other factors that impact ranging quality that cannot be measured that easily – at least the quality of the antennas for different frequencies and the impact of the number of aviable channels in the frequency range and channel spacing are variables that cannot be directly measured in our lab\footnote{The sourcecode and algorithms used by the modules is closed source, so we are not able to infere the effect of channel spacing and number of channels from that.}. 
 \todo{Find out antanna measurements / calibrated antennas}
 In the end this means finding the right parameters for ranging frequency settings is a really hard problem, especially because measuring the ranging error over many frequencys takes lots of labtime. \todo{wording}
 It is not viable to measure all aviable combinations for those parameters.
@@ -122,6 +122,7 @@ These measurments are not directly used in the evaluation, but for finding disru
 
 To avoid confusion the measured range in the dataset is called \enquote{range} and the reference measurement for the distance is called \enquote{distance}.
 The same nomenclature can be found in this thesis.
+All the distance and range values used in the datasets are in \emph{cm}.
 
 \subsubsection*{\enquote{Nightshift}}
 RF-noise plays a major role in the quality of the ranging measurments and almost everyone in the faculty uses \SI{2.4}{GHz} devices.
@@ -146,7 +147,7 @@ It was intended to also evaluate the triangle equation with this data, however t
 	           & RMSE (cm) & Samples \\ \hline
 	Nightshift & 23.75     & 23600   \\ 
 	Angle      & 42.74     & 9597    \\
-	Symmetry   & \\
+	Symmetry   & 32.58     & 17999   \\
 	
 	\end{tabular}
 
@@ -169,14 +170,14 @@ Also notable is that the ideal value (shown as blue line) is always within the i
 \begin{figure}[h]
 	\centering
 	\input{figures/corridor.pgf}
-	\caption[ Measured range vs. Real Distance ]{Measured range vs. Real Distance. In this diagram for each possible range value the 0.9-quantile of the real distances are plottet as green area. The blue line shows the ideal value.}
+	\caption[ Measured range vs. Real Distance ]{Measured range (cm) vs. Real Distance (cm). In this diagram for each possible range value the 0.9-quantile of the real distances are plottet as green area. The blue line shows the ideal value.}
 	\label{corridor}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\input{figures/rmse.pgf}
-	\caption[ RMSE over distance ]{RMSE value for each distance.}
+	\caption[ RMSE over distance ]{RMSE value (cm) for each distance (cm).}
 	\label{corridor}
 \end{figure}
 
@@ -220,7 +221,7 @@ As can be seen in \autoref{1m_scatterplot} this expecatation is not fullfilled.
 \begin{figure}[h]
 	\centering
 	\input{figures/scatterplot_1000_1m.pgf}
-	\caption{1000 values measured at \SI{1}{\metre} distance}
+	\caption{1000 values (cm) measured at \SI{1}{\metre} distance}
 	\label{1m_scatterplot}
 \end{figure}
 
@@ -228,7 +229,7 @@ Instead there is a clear relationship between mean error and dqf as shown in \au
 For lower DQF-values the average measurement $(< 80)$ error is negative and for biger DQF-values $(> 90)$ positive.
 As such the DQF-value might be used to improve the range values. 
 
-In \autoref{me_dqf_distance} this relationship exists for serveral of the measured distances.
+In \autoref{me_dqf_distance} can bee seen that this relationship exists for serveral of the measured distances.
 
 %\autoref{range_05_to_2m} shows measurements taken at different distances.
 %The values for further distances have far more noise than values for lower distances.
@@ -249,29 +250,39 @@ In \autoref{me_dqf_distance} this relationship exists for serveral of the measur
 \begin{figure}[h]
 	\centering
 	\input{figures/me_dqf.pgf}
-	\caption{Mean Error by DQF}
+	\caption[Mean Error by DQF]{Mean Error (cm) by DQF}
 	\label{me_dqf}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\input{figures/distance_emean_dqf.pgf}
-	\caption{Mean Error by DQF accross diffrent distances}
+	\caption{Mean Error (cm) by DQF accross diffrent distances (cm)}
 	\label{me_dqf_distance}
 \end{figure}
 
 \subsection{Orientation of Devices}
-\begin{figure}[h]
-	\centering
-	\input{figures/rmse_angle.pgf}
-	\caption[RMSE for given angle and distance]{RMSE for given angle and distance. In each diagram you see a the RMSE values for each angle at a fixed distance.}
-	\label{rms_eangle}
-\end{figure}
+
+The angle-dataset has been gathered to determine if the angle has an influence on the measured range values.
+When comparing the datasets it becomes apparent that the squared error in the angle-dataset is much bigger than in the other datasets.
+One might believe the higher error stems from the rotation of the devices.
+This is not the case, as the RMSE is even higher for an angle of zero (\SI{51.88}{cm}), the same angle that was used to record all the other datasets.
+
+There is no clear relationship between angle and error.
+An explanation for the higher RMSE cannot be provided.
+Maybe the wiring of the nodes was changing in a way that caused the error while the angle of the nodes was modified.
+Maybe there was RF-noise even if the measurement was made at night or the changed angle was interacting with multipath effects that where there all along.
+%\begin{figure}[h]
+%	\centering
+%	\input{figures/rmse_angle.pgf}
+%	\caption[RMSE for given angle and distance]{RMSE (cm) for given angle and distance (cm). In each diagram you see a the RMSE values for each angle at a fixed distance.}
+%	\label{rms_eangle}
+%\end{figure}
 
 \begin{figure}[h]
 	\centering
 	\input{figures/me_angle.pgf}
-	\caption[Mean Error for given Angle]{.}
+	\caption[Mean Error for given Angle]{Mean Error (cm) for given Angle}
 	\label{me_angle}
 \end{figure}
 \section{Properties of a Distance Function}
@@ -300,7 +311,7 @@ Having two modules occupy the same physical spot is obviosly not possible so the
 
 In this section the following notation will be used: $A \rightarrow B$ means a range reading is taken from node A with B as reflector node.
 
-Symmetry is a property that can not be achieved by the ranging sensors because of noise. 
+Symmetry is a property that cannot be achieved by the ranging sensors because of noise. 
 A range reading $A \rightarrow B$ will not be equal to the reading for $B \rightarrow A$ just because the two readings will be altered by noise.
 The question that remains is: Do we have the same error for both directions.
 
