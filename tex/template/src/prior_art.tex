@@ -231,11 +231,19 @@ A property that can be used to do RF-based ranging is signal strength.
 The further the source of the signal is away the weaker the signal gets.
 RSSI\footnote{Received Signal Strength Indicator}-based ranging is done for serveral different wireless technologies: Bluetooth\cite{pei_using_2010}, WLAN\cite{wlanrssi, wlanrssi2}, RFID\cite{rfidrssi}.
 
-The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
-As a consequence the orientation of the antenna might have a much bigger impact on signal strength then the distance.
-Additionally radio waves might be weakend when travelling through the FINken robots.
+There are serveral drawbacks to RSSI based ranging. Zanca \cite{Zanca} writes: "Unfortunately, the indoor radio channel is very
+unpredictable, since reflections of the signal against walls, floor and ceiling may result in severe multi–path interference at the receiv-
+ing antenna.".
+Furthermore no antenna will transmit radio waves equally in every direction–especially if it is mounted on a robot containing lots of wiring.
 
-\subsection{Atmel RTB, Dresden Elektronik, Meterionic}
+Ultimatly the orientaion and location of the quadcopter might have a much bigger impact on the RSSI value than the actual range has.
+Thus an RSSI based ranging method will probably not yield sufficient results.
+%The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
+%As a consequence the orientation of the antenna might have a much bigger impact on signal strength then the distance.
+%Additionally radio waves might be weakend when travelling through the FINken robots.
+
+
+\subsection{Phase Difference}
 
 Another thing that can be measured phase shift~\cite{2_kluge_eggert_2009}.
 This is a principle that is used by some of the ultrasonic methods.
@@ -243,9 +251,10 @@ However the phase difference can also be measured in radio waves.
 This is utilized by the ranging hardware from the Atmel Ranging Toolbox.
 Multiple frequencys are used to measure a phase difference.
 Because the wave length changes with different frequencys you can take all of the measured phase differences and compute a distance.
-\todo{quelle}
+\todo{quelle!}
 Similar hardware using the same software stack is also sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
 
-Using phase differences in RF discards the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
+Using phase differences in RF mitigates the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
 Therefore it seems like a feasible approach for the FINken robots.
 
+\todo{tabelle -> ranging methoden übersichtlich vergleichen}
