@@ -1,5 +1,16 @@
-\section{Improving the Ranging Sensor}
-\todo{Improving vs. Influenco of Movement}
+In this chapter an outlook is given on what needs to be done to further integrate the ranging modules into the FINken robots and to improve the values yielded.
+
+Additionaly possible applications for the ranging sensors have been gathered during this work.
+
+\section{Next Steps}
+
+There are some things that might be done to immediately improve on this work.
+Further evaluation might still yield interesting results and of course the sensor still needs to be integrated into the FINken.
+
+\subsection{Evaluation of RF-noise}
+With more equippment and expertise in high-frequency engineering a much more detailed analysis of RF-noise, antenna- and frequency selection could be done.
+The ranging quality might benefit hugely from optimizing on those parameters.
+
 \subsection{Influence of Movement}
 Since it was not possible to move the nodes in a predictable way while still measuring a reference value in our lab, there is no data on the effect of movement on the ranging nodes.
 As the copters are capable of flying very fast the fact that they are moving could alter the measurement quality, since multiple phase-differce measruments are combined into one range value.
@@ -7,9 +18,10 @@ As the copters are capable of flying very fast the fact that they are moving cou
 \subsection{Further Integration}
 
 Albeit the range measurements are not great the ranging sensors might still be an improvement to having no ranging capabilities at all.
-To achieve this one of the possible hardware solutions from \autoref{ranginghardware} needs to be purchased and integrated into the FINken.
+To achieve this one of the possible hardware solutions suggested in \autoref{ranginghardware} needs to be purchased and integrated into the FINken.
+
 The final sensor should be evaluated again.
-Lanzisera, Lin and Pister~\cite{lanzisera2006} show how inflight validation of range measurements is done for TOF localisation.
+Kempke, Pannuto and Dutta~\cite{uwb_localisation_copter} show how inflight validation of range measurements is done for TOF localisation.
 A similar setup might be used to validate the ranging capabilities of the new FINken sensor.
 
 \subsection{Improve Range Values}
@@ -28,14 +40,20 @@ As there are big changes in the measured range values when small changes in the 
 
 
 \section{General Applications for Quadcopters}
+
+The motivation to integrate the range sensors was to get a distance measure within the swarm of robots.
+Nevertheless the robots could benefit from the new sensors in other ways.
+
 \subsection{Flying with Pseudo-GPS}
-One of the things that can be done with ranging is position estimation via multilateration.
-Even if the FINken project is mainly interested in gaining a viable distance measure between individuals in a swarm a position estimate would be beneficial for the performance of the autopilot-especially as the normal use case for the Paparazzi autopilot is outdoors and with a GPS reciever attatched.
+Normally the paparzzi autopilot is used outdoors.
+The FINken robots can only use a small subset of the autopilots features as many of those features rely on a GPS based position- and heading estimate.
 
-To integrate positional data into the FINken two steps are needed: Implementing the multilateration algorithm on the sensors and writing a new GPS module that uses the data from the sensor.
-An aditional benefit of using anchor nodes to compute a position estimate is that we can find out our current heading and the direction of other swarm entities much easier
+A GPS device might be emulated using a ranging based position estimate.
+In order to use such an emulated GPS a multilateration algorithm has to be implemented for the ranging nodes.
+Furthermore the position estimate needs to be integrated with a new GPS module for paparazzi.
 
-\subsection{Distance Based Fencing}
+
+\subsection{Virtual Walls}
 \label{boundingbox}
 Currently nets and ultrasound reflecting foil are used to enclose the flight area.
 Those could be replaced by ranging beacons that enclose the operating area, either by computing a position and defining coordinates which should not be left or by placing ranging nodes in the area and defining a minmum distance to the nearest node.
@@ -44,10 +62,14 @@ This could be a nice setup for mobile deployment of the FINken robots.
 
 \section{Applications in Swarm Robotics}
 
+Finally there are some challenges and opportunities in implementing range based swarm behavior for the FINken robots.
+
 \subsection{Direction}
 A value that the ranging sensors don't yield is the direction of the other sensor it is ranging with.
-For use in swarm algorithms this is a problem: Normally we compute a force towards or from the other swarm entities that is based on distance and direction.
-This way is still blocked for us as we can't measure direction.
+For use in some swarm algorithms this is a problem: Acting based on virtual attraction and repulsion forces is a common approach in swarm intelligence.
+However those forces are directed forces and this approach is not directy applicable for the FINken robots.
+
+\todo{A sense of direction might be gained by using anchor nodes for orientation.}
 
 \subsection{Distance Based Swarm Objectives}
 Swarm behavior can be used for multi objective optimization.
