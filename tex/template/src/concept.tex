@@ -14,6 +14,7 @@ For evaluation those modules are quite useable, but there are better options ava
 It is planned to use 802.15.4 modules from dresden elektronik which are already integrated into the new hardware revision of the FINken robots as telemetrie transmitter.
 \todo{other frequency}
 Another way to integrate this approach to ranging into the FINken robots is to miniaturize the REB233SMAD-modules, by leaving unused PCB-area and connectors.
+This can be done by using the ATZB-X0-256-3-0-C ZigBit~\cite{atmelzigbit} modules, that use the same radio module and processor as the REB233SMAD-kits.
 
 In conclusion the dresden elektronik modules are best suited for the copters.
 If it would become apparent that those modules are not capable of ranging it would still be possible to create a miniaturized version of the Atmel sensors.
@@ -52,9 +53,11 @@ The paparazzi framework provides an easy way to implement new hardware drivers f
 	\label{flow}
 	\caption[ Information Flow in the FINken Robots ]
 	{Information Flow in the FINken Robots. 
-	All software componenst of the the autopilot board are shown in green.
+	All software components of the the autopilot board are shown in green.
 	Sensor hardware is shown in orange and actuator hardware is shown in yellow.}
 \end{figure}
+
+ 
 
 An important design desicion is how to devide the process of ranging and filtering the results between autopilot and sensor node.
 The sensor could yield it's raw values to the master device and be done.
@@ -63,6 +66,7 @@ Another factor that influences this decision is the processing power of the sens
 Running filters on the sensor node might free up valuable processing power and memory in the master device.
 
 As the FINken robots autopilot is quite well resourced and the measurements are probably not good enough to be used without sophisticated filtering only the raw values of the sensors are used.
+
 However it might still be a good idea to provide higher level data computed by the sensor nodes later on.
 Position estimation is an application that needs a lot of computation and memory.
 Additionally computing postition estimates will be similiar accross different applications of the ranging modules.
@@ -70,8 +74,52 @@ The position estimate might also be used as a direct input to filters that use a
 
 
 \section{Interconnect}
-There are some different methods of connecting the new sensor to the paparazzi autopilot.
-All of the following ways of connecting hardware are supported by the LISA/MX board and one has to be chosen for the new ranging sensors.
+All components of the FINken communicate directly with the autopilot board as can be seen in \autoref{bubble}.
+The new sensor shall be connected to the autopilot as well.
+
+Different methods can be used to achieve this.
+In \autoref{hwconnection} all the interfaces supported by the LISA/MX board and the connected devices are listed.
+One of those interfaces will be used for the new sensor.
+
+\begin{figure}[h]
+	\centering	
+	\smartdiagramset{
+		distance planet-satellite=4.5cm,
+		planet color=green,
+		planet size=4cm,
+		satellite size=2.5cm,
+		uniform connection color=true,
+		set color list={yellow, orange, orange, orange, magenta, magenta, orange, orange},
+		/tikz/connection planet satellite/.append style={<->}
+	}
+	\smartdiagram[constellation diagram]
+	{Autopilot, Motors, Sonsar\\Sensors, IR-Sensor, Color\\Sensor, Telemetry\\Module, RC-Reciever, Optical Flow\\Sensor, Ranging\\Sensor}	
+	\label{bubble}
+	\caption[Onboard Communication of the FINken Quadcopters]
+	{Onboard Communication of the FINken Quadcopters. All sensor and actuator hardware is directly communicating with the autopilot board.
+		\\
+		Sensors are shown in organge, actuators are yellow and radio links are shown in magenta.
+	}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|r|r | l | l|}
+		\hline
+		Available  & Used & Type       & Conneceted Hardware \\ \hline \hline
+		4          &   2  & Analog Pin & IR-Sensor \\
+		           &      &            & Battery Voltage \\ \hline
+		4          &   3  & UART       & Telemetry \\
+		           &      &            & RC-Reciever\\
+		           &      &            & Optical Flow Sensor\\ \hline
+		8          &   4  & PWM Output & 4 Motorcontrollers\\ \hline
+		2          &   1  & I2C        & Ultrasound Sensors\\ \hline
+		           &      &            & Color Sensor\\ \hline
+		1          &   0  & CAN        & — \\ \hline
+	\end{tabular}
+	\caption{FINken 3—Hardware Ports and Usage}
+	\label{hwconnection}
+\end{table}
 
 \subsection{Pulse width modulation / Analog value}
 Using a single GPIO pin or analog value is completely impractical, but a good example to explain the problems the honest solutions need to address.
