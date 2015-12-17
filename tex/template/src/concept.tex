@@ -30,11 +30,31 @@ If a new PCB is used it can be mounted using the fixed hole spacing of \SI{30.5}
 Maybe an extra mounting method is needed for the antenna.
 The best place for the antenna is probably on top of the sensor tower to lower interference with the other components of the copter.
 
-\section{Autopilot Software}
+\section{Software Architecture}
 The FINken robots are controlled by a micro controller handling all the computation needed.
 There is no distinction between higher level logic like pathplanning and and low level code as the stabilization of the copter in terms of hardware.
 The exact board that is used is the LISA/MX autopilot board in hardware revision 2.1~\cite{lisamx} wich runs the paparazzi autopilot firmware\cite{paparazzi}.
 The paparazzi framework provides an easy way to implement new hardware drivers for alle devices that are connected to the board via several possible interfaces.
+
+\begin{figure}[H]
+	\centering	
+	\tikzset{every shadow/.style={fill=none,shadow scale=0}}
+	\smartdiagramset{
+		module shape=rectangle,
+		%border color=none,
+		uniform arrow color=true,
+		arrow color=gray,
+		back arrow disabled=true,
+		set color list={orange, green, green, green, yellow, yellow, yellow}
+	}
+	\smartdiagram[flow diagram:horizontal]
+	{Sensors, Sensor Module, Navigation, Stabilization, Motor Control}
+	\label{flow}
+	\caption[ Information Flow in the FINken Robots ]
+	{Information Flow in the FINken Robots. 
+	All software componenst of the the autopilot board are shown in green.
+	Sensor hardware is shown in orange and actuator hardware is shown in yellow.}
+\end{figure}
 
 An important design desicion is how to devide the process of ranging and filtering the results between autopilot and sensor node.
 The sensor could yield it's raw values to the master device and be done.
@@ -66,12 +86,14 @@ The big advantage of using a GPIO pin would be that only one single wire\footnot
 The "Universal Asynchronous Receiver/Transmitter"-Protocol uses two wires to establish communication between devices.
 \cite{wingen_automatic_2004}
 
-The disadvantage of the UART protocol is that it is a strictly bidirectional connection.
+The disadvantage of the UART protocol is that it is a strictly point-to-point connection.
 It is not possible to connect multiple slave devices to one UART port of the master device.
 On the Lisa/MX autopilot there are four dedicated UART connections that might be used, but already three of them are used.
 
-Using the last of those ports is not feasible as there are other better options available.
-\todo{not clocked -> slow?}
+Additionally UART is a character based communication protocol.
+As there is no detection for bit errors and no framing sophisticated protocoll design would be a neccesity for implementation.
+
+%Using the last of those ports is not feasible as there are other better options available.
 
 \subsection{SPI}
 Serial Peripheral Interface is a four wired bus that also allows bidirectional communications.
@@ -89,6 +111,8 @@ This means the sensor would need to be capable of high clock speeds and data rat
 \subsection{CAN bus}
 Controller Area Network is a bus protocol mainly known for its applications in the automotive area\todo{wording}.
 CAN is an option available on the paparazzi board, however implementation on the sensor side would mean a lot of effort compared to the other communication protocols.
+
+Additional hardware would be needed as well.
 \todo{more, fact-check}
 
 \subsection{I2C}
@@ -103,3 +127,10 @@ One of the disadvantages of I2C is that misbehaving slave devices can disrupt th
 The autopilot board supports to have two independent I2C-networks which makes it possible to separate critical and non-critical devices which helps to mitigate this problem.
 
 Especially the fact that there already is a sensor network on the FINken makes I2C the best choice as a communication protocol for the new sensor.
+
+\subsection{Findings}
+
+It is possible to integrate the ranging nodes into the FINken robot.
+I2C is the protocoll best suited for communication with the autopilot.
+
+For an application in the robots a miniaturized version of the module is needed.
