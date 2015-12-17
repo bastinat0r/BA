@@ -2,6 +2,30 @@
 The basic idea for the firmware of the nodes is to provide an I2C interface to initiate measurements and read values.
 Additionally the settings of the modules can be changed by the same interface.
 
+\section{Description of the Ranging Process}
+
+While the ranging itself is treated as a black box in this thesis it is still needed to konw how a measurement is executed.
+For ranging there are three functions a node can fullfill.
+The \emph{reflector} is the target node of the ranging.
+The \emph{initiator} is the node sending the original signal and measuring the actual phase difference of the reflected signal.
+The measured range will be the distance between initator and refletor node.
+The third node type is only needed for remote ranging.
+The \emph{coordinater} node is used to trigger a range reading between two other ranging nodes.
+
+Each of the ranging nodes is able to act as reflector, coordinator and reflector without changing the firmware.
+If the nodes are configured correctly the nodes communicate about the pending measurement on a seperated RF-channel.
+
+The measuring a range value works as follows:
+\begin{enumerate}
+	\item set initiator and refletor node
+	\item start measurement
+	\item wait for measurement to finish
+	\item fetch the result
+\end{enumerate}
+
+As result of the ranging process two values are put out: Range and DQF.
+The range value is the estimated range in cm.
+The DQF is an additional parameter tells the user how accutrate the range value is assumed to be.
 
 \section{Communication Interface}
 
@@ -91,10 +115,16 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 
 \section{Python Scripts}
 
-For testing the sensor nodes and also for aquiering the data for evaluating the sensors I set up a RapsberryPi minicomputer as I2C master.
-Using this setup for testing has proven really usefull.
-Gathering data with those scripts might be a suitable way to develop and test software using higher level concepts, without the need to write code for embedded devices.
+For testing the sensor nodes and collecting sample data a raspberryPi minicomputer was set up as an I2C master device.
+The scripting language python was used to implement all the functions the I2C interface of the ranging nodes provide.
 
 \emph{i2cranging.py} contains functions for the master side of I2C communication. Those can either be used from the python PEPL or by other scripts.
 \emph{poll\_range.py} contains a convenient method to take continous range readings from the unix shell and is mainly used to generate csv-files with ranging values.
 Those csv-files have been used for evaluating the ranging nodes.
+
+Gathering data with those scripts may not only prove usefull for this work.
+It might be an efficient approach to develop and evaluate algorithms for filtering and position estimation using higher level concepts.
+Implementing only those algorithms on the embedded devices that prove to be usefull.
+
+
+
