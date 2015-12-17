@@ -22,10 +22,31 @@ As a consequence a malfunctioning sensor might render the others sensors useless
 At the moment the ranging sensors cause bus hangups, when range readings are requested to often.
 However if this query rate was not exceeded the sensor bus was working many days without errors.
 
-\subsection{I2C errors per time}
+\subsection{Missing Sensor Values}
 Another problem that may occure is that I2C data packets can get lost.
 This would mean the autopilot has to rely on expired data and it might break any kind of derivate computed from the range value.
-Those errors also did not happen in the test setup as long as no error condition was provoked (i.e. by wrong wiring or exceeding the query rate).
+
+If there is uplanned latency in the sensor values the control algorithms implemeted might not be able to stabilize the system any more, as many control algorithms only work with update frequencies that are high enough.
+
+Those errors did not happen in the test setup as long as no error condition was provoked (i.e. by wrong wiring or exceeding the query rate).
+
+\begin{figure}[h]
+	\centering
+	\input{figures/errors_distance.pgf}
+	\caption[ Missing Values vs. Real Distance ]{ Missing Values vs. Distance (cm).}
+	\label{missingdistance}
+\end{figure}
+
+However the ranging algorithm itself might provide a range measurement with a DQF value of zero.
+This means the range measured range value shall not be used.
+
+These errors are very rare when only small amounts of RF interference are present.
+In the nightshift-dataset less than \SI{5}{\percent} of the values where rejected because the measured value was impossibly high($> 5m$) or the DQF value was zero.
+
+In \autoref{missingdistance} it can be seen that those errors mostly happen when the two nodes are very close to each other.
+As the quadcopters cause a lot of turbulence a much bigger safety margin will be needed to avoid collisions.
+Hence the distance where most measurements fail will be uncommon in real life application.
+
 
 \section{Ranging Accuracy}
 
@@ -328,8 +349,8 @@ The new value shown in \autoref{symavg} will be symmetric.
 The messurement error will be reduced because of the averaging.
 
 \subsection{Triangle Inequality}
-The triangle inequality will be broken by noise.
-I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might as well break the condition of the Triangle Inequality.
+The triangle inequality will be violated by noise.
+I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might not meet the triangle inequality.
 
 In \autoref{triangle} the density function for one setup of three nodes is shown.
 The triangle equation is clearly violated as the \si{200}{cm} distance is underestimated by far.
