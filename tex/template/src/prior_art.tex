@@ -195,16 +195,14 @@ The usual methods for positioning are: \emph{multilateral}—which is relevant f
 \cite{_multilateration_2015}
 
 \subsection{Optical Tracking}
-Most projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
+Many projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
 
 The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
 The most affordable solution from Optitrack able to track five targets at once costs more then \SI{10000}{\$}~\cite{optitrack.com}.
 The price is justified by the superior performance of this method.
-Optical tracking is highly accurate at a very high update frequency.
+Optical tracking can be highly accurate at a very high update frequency. (See \cite{flyingmachinearena})
 Additionally, it is able to measure the orientation of the quadcopters.
-\todo{research performance statistics for ranging solutions}
 
-\todo{ETH}
 
 Even a tracking system that is more cost efficient such as the one developed by Achtelik et al\cite{Achtelik2009} is not an appropriate solution for the FINken project.
 A tracking system provides information that is gathered for the entire operating area and afterwards broadcasted to the robots.
@@ -251,7 +249,6 @@ By doing so the maximum update frequencys for both sensors would be reduced.
 %The sound made by the quadcopters is not ending in the hearable spectrum but also extends to the ultrasound range.
 In conclusion, ultrasound based ranging is a very neat approach to ranging that is already used in other quadcopter projects~\cite{ultrasonic_erlangen}.
 Still integrating an ultrasonic ranging sensor into the FINken is impractical, because other ultrasound sensors are already in use.
-%\todo{accuracy / price, moving objects}
 
 
 \subsection{Signal Strength}
@@ -266,7 +263,6 @@ Furthermore, no antenna will transmit radio waves equally in every direction–e
 
 Ultimately, the orientaion and location of the quadcopter might have a bigger impact on the RSSI value than the actual range has.
 Thus an RSSI based ranging method will probably not yield sufficient results.
-%The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
 %As a consequence the orientation of the antenna might have a much bigger impact on signal strength then the distance.
 %Additionally, radio waves might be weakend when travelling through the FINken robots.
 
@@ -275,9 +271,8 @@ Thus an RSSI based ranging method will probably not yield sufficient results.
 
 Another thing that can be measured is phase shift~\cite{2_kluge_eggert_2009}.
 This is utilised by the ranging hardware from Atmel.
-Multiple frequencys are used to measure a phase difference.
-As the wave length changes with different frequencys a distance can be computed from all of the measured phase differences.
-\todo{quelle!}
+Multiple frequencys are used to measure the phase difference of the signal.
+As the wave length changes with different frequencys a distance can be computed from all of the measured phase differences~\cite{atmelranging}.
 Similar hardware using the same software stack is sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
 
 Using phase differences in radio waves mitigates the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
