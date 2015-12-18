@@ -28,7 +28,7 @@ A similar setup might be used to validate the ranging capabilities of the new FI
 
 Of course the range values can also be improved mathematically.
 In this work no filtering of valid measurements was performed.
-However the results might be improved by computing range values based on multiple measurements.
+However, the results might be improved by computing range values based on multiple measurements.
 A good way of dooing this would be to find a “clever” way of filtering, that takes into consideration the distribution of the values.
 To exploit the distribution of the values a better theoretical model for this distribution would be needed.
 
@@ -67,7 +67,7 @@ Finally there are some challenges and opportunities in implementing range based 
 \subsection{Direction}
 A value that the ranging sensors don't yield is the direction of the other sensor it is ranging with.
 For use in some swarm algorithms this is a problem: Acting based on virtual attraction and repulsion forces is a common approach in swarm intelligence.
-However those forces are directed forces and this approach is not directy applicable for the FINken robots.
+However, those forces are directed forces and this approach is not directy applicable for the FINken robots.
 
 \todo{A sense of direction might be gained by using anchor nodes for orientation.}
 
@@ -79,7 +79,7 @@ Avoiding collisions of course is one of the most important requirement for ermer
 
 \subsection{Collision Avoidance}
 Similar to the bounding boxes from \autoref{boundingbox} the distance sensors may be used to enhance collision avoidance in between the copters belonging to the swarm.
-This might especially usefull if the safty distance in between the robots shall be higher then the safty distance kept to nearyby objects that are not part of the swarm.
+This might especially usefull if the safty distance in between the robots should be higher then the safty distance kept to nearyby objects that are not part of the swarm.
 As the copters influence each other by creating a lot of turbulence this strategy might provide benefits for the behavior of the swarm in small environments.
 
 \subsection{Formation Flying}

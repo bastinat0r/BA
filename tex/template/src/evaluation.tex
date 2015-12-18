@@ -1,32 +1,34 @@
-The \todo{ranging modules} fullfill the first two of the requirements set for the ranging sensors.
-However the quality of the data is the most important factor for the usefullnes of the ranging nodes in the FINken project\footnote{see \autoref{req3}}.
+The REB233SMAD-kits fulfill the first two requirements set for the ranging sensors.
+However, the quality of the data is the most important factor for the usefulness of the ranging nodes in the FINken project\footnote{see \autoref{req3}}.
 
 The evaluation of the sensors is made difficult by the fact, that there are many interdependend variables that influence each other in unclear ways.
-The ranging method itself can only be treated as a black box up to the ranging api provided by the Atmel RTB firmware.
-Especially the effects of RF-noise and multipath propagation are environmental influences that are not controlable and hard to measure but still have great influence on ranging quality.
+The ranging process itself can only be treated as a black box until the range value is returned by the ranging API of the Atmel RTB firmware.
+Especially the effects of RF-noise and multipath propagation are environmental influences that are not controllable and hard to measure.
+Nevertheless, they still have great influence on ranging quality.
 
 \section{Robustness of Implementation}
 
-For use in the FINken robots not only the quality of the measurements is relevant.
+Not only the quality of the measurements is relevant for use in the FINken robots. 
 The sensor also needs to be well integrated into the autopilot framework.
 
 With the current hardware this integration cannot be done completely, because the current hardware plattform is simply to big to fly.
-However the software is already stable enough to be used in a real life scenario.
+However, the software is already stable enough to be used in a real life scenario.
 
 
 \subsection{Bus hangup}
 I2C is an easy to implement and use bus protocol.
 One of the drawbacks of I2C is that misbehaving clients are able to block the whole bus.
-As a consequence a malfunctioning sensor might render the others sensors useless, in worst case crashing the copter.
+As a consequence, a malfunctioning sensor might render all others sensors useless, in the worst case the copter crashes.
 
-At the moment the ranging sensors cause bus hangups, when range readings are requested to often.
-However if this query rate was not exceeded the sensor bus was working many days without errors.
+At the moment the ranging sensors cause bus hangups if range readings are requested too often.
+However, if this query rate was not exceeded, the sensor bus has been working for many days without errors.
 
 \subsection{Missing Sensor Values}
-Another problem that may occure is that I2C data packets can get lost.
-This would mean the autopilot has to rely on expired data and it might break any kind of derivate computed from the range value.
+Another problem that may occur is that I2C data packets can get lost.
+As a consequence, the autopilot has to rely on expired data.
+This breaks any kind of derivate computed from the range value.
 
-If there is uplanned latency in the sensor values the control algorithms implemeted might not be able to stabilize the system any more, as many control algorithms only work with update frequencies that are high enough.
+If there is unplanned latency in the sensor values, the control algorithms implemented may not be able to stabilise the system any more.
 
 Those errors did not happen in the test setup as long as no error condition was provoked (i.e. by wrong wiring or exceeding the query rate).
 
@@ -37,10 +39,10 @@ Those errors did not happen in the test setup as long as no error condition was 
 	\label{missingdistance}
 \end{figure}
 
-However the ranging algorithm itself might provide a range measurement with a DQF value of zero.
-This means the range measured range value shall not be used.
+However, the ranging algorithm itself can provide range measurements with a DQF value of zero.
+This means the measured range value should not be used.
 
-These errors are very rare when only small amounts of RF interference are present.
+These errors are very rare as long as only small amounts of RF interference are present.
 In the nightshift-dataset less than \SI{5}{\percent} of the values where rejected because the measured value was impossibly high($> 5m$) or the DQF value was zero.
 
 In \autoref{missingdistance} it can be seen that those errors mostly happen when the two nodes are very close to each other.
@@ -50,12 +52,12 @@ Hence the distance where most measurements fail will be uncommon in real life ap
 
 \section{Ranging Accuracy}
 
-The most important question for the FINken project is: \enquote{Can the ranging values be used by the FINken robots}.
+The most important question for the FINken project is: \enquote{Can the ranging values be used by the FINken robots?}.
 To answer this question some understanding of the magnitude and distribution of the ranging error is needed.
 
-Finding out how accurate the range values actually are proves rather difficult, because there are lots of interdependend variables that influence ranging accuracy.
+Finding out how accurate the range values actually are proves rather difficult, as there are lots of interdependend variables that influence ranging accuracy.
 
-Noticable disturbing effects are:
+Noticable disruptive effects are:
 \begin{itemize}
 	\item multipath effects
 	\item supplied voltage
@@ -64,34 +66,34 @@ Noticable disturbing effects are:
 	\item chosen frequency
 \end{itemize}
 
-To get meaningfull and reproducable measurement results these effects need to be minimized or be contstant over the course of the measurements.
+To get meaningful and reproducable measurement results these effects need to be minimised or be constant over the course of the measurements.
 The same antennas where used throughout all measurements and the frequency range was selected prior to the measurements used in this evaluation.
 
 \subsection{Frequency Selection}
 \label{freqencyselection}
 \todo{move to implementation?}
-The frequencys used by the ranging can be chosen by the user of the ranging nodes,
+The frequencies used by the ranging can be chosen by the user,
 however frequency selection greatly influences the quality of the measurements.
-This is especially because normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencys as the ranging modules the selection of a well working one is crucial to ranging performance.
+This is especially true, as normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencies as the ranging modules the selection of a well working one is crucial to ranging performance.
 In \autoref{spectrum2437} there is an analysis on the frequency utilization on wifi channel 6.
 A download was started and then ended which is noticable in the waterfall plot.
 
-Comparing the utilization on this channel with the frequency range shown in \autoref{spectrum2483} which is right next to the first frequency used by the ranging modules several things can be noticed.
-The noise in the frequency range for ranging is much lower then on frequencys with used for wifi—about \SI{15}{dB} in average and \SI{20}{dB} in peak.
+Comparing the utilisation on this channel with the frequency range shown in \autoref{spectrum2483} which is right next to the first frequency used by the ranging modules several aspects can be noticed.
+The noise in the frequency range for ranging is much lower then on frequencies with used for wifi—about \SI{15}{dB} in average and \SI{20}{dB} in peak.
 You can also see the peak generated by the ranging modules.
 The line at the center frequency \SI{2.4831}{\giga\hertz} is an artifact created by the SDR that was used, but the line at \SI{2.483}{\giga\hertz} is created by the ranging modules (which is exactly why the center frequency was chosen right next to the actual frequency).
-You can already see that the peak can still be lost in noise like it is shown in the FFT plot but is very stable over time as you can see in the waterfall plot.
 
-Because of the lower utilization of those frequencys a range of \SI{2.480}{\giga\hertz} to \SI{2.500}{\giga\hertz} has been chosen.
-All the frequencys in this range look quite simmilar to the sample taken at \autoref{spectrum2483}.
+Because of the lower utilisation of those frequencies a range of \SI{2.480}{\giga\hertz} to \SI{2.500}{\giga\hertz} has been chosen.
+All the frequencies in this range look quite similar to the sample taken at \autoref{spectrum2483}.
 This values have to be taken with a grain of salt.
 It is really hard to reproduce what kind of RF-noise interfering with the nodes is currently generated in the swarmlab.
 
-There are other factors that impact ranging quality that cannot be measured that easily – at least the quality of the antennas for different frequencies and the impact of the number of aviable channels in the frequency range and channel spacing are variables that cannot be directly measured in our lab\footnote{The sourcecode and algorithms used by the modules is closed source, so we are not able to infere the effect of channel spacing and number of channels from that.}. 
-\todo{Find out antanna measurements / calibrated antennas}
-In the end this means finding the right parameters for ranging frequency settings is a really hard problem, especially because measuring the ranging error over many frequencys takes lots of labtime. \todo{wording}
-It is not viable to measure all aviable combinations for those parameters.
-\todo{labtime + lab utilization ... ? or is this to mimimi}
+There are other factors impacting measurement quality that cannot be quantified easily.
+At least the performance of the antennas at different frequencies cannot be directly measured in our lab.
+The number of available channels in the frequency range and channel spacing are other variables that might influence ranging quality\footnote{The sourcecode and algorithms used by the modules is closed source, so we are not able to infere the effect of channel spacing and number of channels from that.}. 
+
+In the end this means finding the right parameters for ranging frequency settings is a really hard problem, especially because measuring the ranging error for many frequencies takes a lot of labtime.
+It is not viable to measure all available combinations for those parameters.
 
 
 \begin{figure}[H]
@@ -109,20 +111,21 @@ It is not viable to measure all aviable combinations for those parameters.
 \end{figure}
 
 
-Even with those frequencies the measurement is only really working when the lab is empty, as basically every person in the lab uses several devices that use the \SI{2.4}{GHz} frequency range.
-To create a usefull evaluation all the following measurements have been made with an empty lab out of the working hours of the people in the buliding.
-However this problem must be addressed before the sensors can be used in a real world application.
-This is especially true because the remote control is causing the worst interference with the ranging nodes observed so far.
+Even with the selected frequencies the measurement is only really working when the lab is empty, as basically every person in the faculty uses devices that use the \SI{2.4}{GHz} frequency range.
+To create a useful evaluation all the following measurements have been made with an empty lab.
+Therefore, the measurements were made at night.
+However, this problem must be addressed before the sensors can be used in a real world application.
+This is especially true, as the remote control is causing the worst interference with the ranging nodes observed so far and the quadcopters will not work without the remote control.
 
 There are two possible solutions to the general problem: Either the noise in the environment needs to be reduced or the ranging nodes need to use different frequencies.
 
 
 \subsection{Measurement Setup}
 
-All the following evaluation is done by analysing data gathered by the ranging nodes.
-However the measurements are done in a very specific manner to improve the quality of the measured data.
+All the following evaluation is done by analysing the data gathered by the ranging nodes.
+However, the measurements are done in a very specific manner to improve the quality of the measured data.
 \begin{itemize}
-	\item the nodes are lifted from the table to minimize multipath effects
+	\item the nodes are lifted from the table to minimise multipath effects
 	\item a stable 3.3V input voltage is provided by different voltage regulators, the battery slots are not used
 	\item antennas are always used in the same orientation
 	\item measurements are not taken in the working hours of the faculty (mostly deep at night) when the least ammount of RF interference by \SI{2.4}{GHz} devices can be expected
@@ -137,20 +140,20 @@ However the measurements are done in a very specific manner to improve the quali
 
 \subsection{Data Sets}
 
-The evaluation of the ranging nodes rely on three datasets that have been recorded.
+The evaluation of the ranging nodes relies on three datasets that have been recorded.
 Before those datasets were recorded many other measurements where made.
-These measurments are not directly used in the evaluation, but for finding disrupting influences before the actual evaluation data was measured.
+These measurements are not directly used in the evaluation, but for finding disrupting influences that would compromise the evaluation data.
 
 To avoid confusion the measured range in the dataset is called \enquote{range} and the reference measurement for the distance is called \enquote{distance}.
 The same nomenclature can be found in this thesis.
 All the distance and range values used in the datasets are in \emph{cm}.
 
 \subsubsection*{\enquote{Nightshift}}
-RF-noise plays a major role in the quality of the ranging measurments and almost everyone in the faculty uses \SI{2.4}{GHz} devices.
-As a consequence data recorded at night is less noisy then data recorded during daytime.
-
+RF-noise greatly influences the ranging measurements and almost everyone in the faculty uses \SI{2.4}{GHz} devices.
+As a consequence, data recorded at night is less noisy than data recorded during daytime.
 Because of this fact all the data was recorded at nighttime.
-The \enquote{Nightshift}-dataset consists of range values measured for distances between \SI{16}{cm} and \SI{250}{cm} in \SI{2}{cm} intervalls.
+
+The \enquote{Nightshift}-dataset consists of range values measured for distances between \SI{16}{cm} and \SI{250}{cm} in \SI{2}{cm} intervals.
 For each of the distances 200 range values have been measured.
 
 \subsubsection*{Angle Dataset}
@@ -182,11 +185,12 @@ It was intended to also evaluate the triangle equation with this data, however t
 It is important to know how the ranging nodes behave at different distances.
 For this analysis the \enquote{nightshift}-dataset is used.
 
-In \autoref{corridor} for each possible range value an interval is shown in between wich the real distance is located with a confidence of \SI{90}{\percent}.
-The average size of this intervall is \SI{50}{cm} for all range values smaller than \SI{2}{m}.
-It is also notable that the intervalls get bigger for greater distances, which might be expected.
-For ranges below \SI{1}{m} the intervall is only \SI{38}{cm} big for ranges between \SI{1}{m} and \SI{2}{m} the average intervall-size is \SI{60}{cm}
-Also notable is that the ideal value (shown as blue line) is always within the intervalls boundaries.
+In \autoref{corridor} for each possible range value an interval is showed in which the real distance is located with a confidence of \SI{90}{\percent}.
+The average size of this interval is \SI{50}{cm} for all range values smaller than \SI{2}{m}.
+It is also notable that the intervals get bigger for greater distances, which may not be suprising.
+For ranges below \SI{1}{m} the interval is only \SI{38}{cm} big, for ranges between \SI{1}{m} and \SI{2}{m} the average interval-size is \SI{60}{cm}.
+
+Another notable fact is that the ideal value (showed as blue line) is always within the intervals.
 
 \begin{figure}[h]
 	\centering
@@ -233,7 +237,7 @@ Also notable is that the ideal value (shown as blue line) is always within the i
 \subsection{Influence of DQF on Range Values}
 One value the ranging api provides is the DQF\footnote{Data Quality Factor}-value.
 It is reasonable to expect a huge amount of scatter for lower DQF values.
-As can be seen in \autoref{1m_scatterplot} this expecatation is not fullfilled.
+As can be seen in \autoref{1m_scatterplot} this expectation is not met.
 
 %For the values measured with \SI{1}{\metre} real distance we can see that the values measered with lower quality do not have the same mean value as those with higher quality.
 %Also values measured with lower quality are closer to each other than those with higher signal quality.
@@ -246,11 +250,11 @@ As can be seen in \autoref{1m_scatterplot} this expecatation is not fullfilled.
 	\label{1m_scatterplot}
 \end{figure}
 
-Instead there is a clear relationship between mean error and dqf as shown in \autoref{me_dqf}.
-For lower DQF-values the average measurement $(< 80)$ error is negative and for biger DQF-values $(> 90)$ positive.
+Instead, there is a clear relationship between mean error and DQF as showed in \autoref{me_dqf}.
+For low DQF-values the average measurement $(< 80)$ error is negative and for high DQF-values $(> 90)$ positive.
 As such the DQF-value might be used to improve the range values. 
 
-In \autoref{me_dqf_distance} can bee seen that this relationship exists for serveral of the measured distances.
+In \autoref{me_dqf_distance} can be seen that this relationship is present at all of the measured distances.
 
 %\autoref{range_05_to_2m} shows measurements taken at different distances.
 %The values for further distances have far more noise than values for lower distances.
@@ -278,7 +282,7 @@ In \autoref{me_dqf_distance} can bee seen that this relationship exists for serv
 \begin{figure}[h]
 	\centering
 	\input{figures/distance_emean_dqf.pgf}
-	\caption{Mean Error (cm) by DQF accross diffrent distances (cm)}
+	\caption[Mean Error by DQF across different distances]{Mean Error (cm) by DQF across different distances (cm).}
 	\label{me_dqf_distance}
 \end{figure}
 
@@ -303,12 +307,11 @@ Maybe there was RF-noise even if the measurement was made at night or the change
 \begin{figure}[h]
 	\centering
 	\input{figures/me_angle.pgf}
-	\caption[Mean Error for given Angle]{Mean Error (cm) for given Angle}
+	\caption[Mean Error for Given Angle]{Mean Error (cm) for Given Angle}
 	\label{me_angle}
 \end{figure}
 \section{Properties of a Distance Function}
-The ranging sensor on the FINken robot shall be used to provide a distance between two quadcopters, similar to a distance measure used in swarm intelligence algorithms.
-In the pure mathematical sense a distance function has to fullfill certian properties.
+The ranging sensor on the FINken robot should be used to provide a distance between two quadcopters, similar to a distance measure used in swarm intelligence algorithms.
 
 If $f(x, y)$ is a distance function it has to have the following properties.
 \begin{eqnarray}
@@ -319,14 +322,14 @@ f(x, z) \le f(x, y) + f(y, z)
 \end{eqnarray}
 
 Of course the value measured by any real sensor will not completely accomplish to satisfy those conditions.
-For use in swarm robotics it is therefore very interesting to know in which way the range values break the pattern of a mathematical distance function.
+For use in swarm robotics it is therefore very interesting to know, in which way the range values violate the properties of a mathematical distance function.
 
 \subsection{Non-negativity and Coincidence}
 
-The first property of a mathematical distance measure to look at is non-negativity. This is quite easy: The values yielded by the ranging modules are clearly positiv.
-Also the property of coincidence is always given.
-Each module has a unique address and is therefore able to check, if it is ranging itself.
-Having two modules occupy the same physical spot is obviosly not possible so there cannot be two different modules that are equvivalent in a mathematical sense.
+The first property of a mathematical distance measure to look at is non-negativity. This is quite easy: The values yielded by the ranging modules are positiv.
+The condition for coincidence is always met as well.
+Each module has a unique address and is therefore able to check if it is ranging with itself.
+Having two modules occupy the same physical spot is obviously not possible, so there cannot be two different modules that are equivalent in a mathematical sense.
 
 \subsection{Symmetry}
 
@@ -334,47 +337,48 @@ In this section the following notation will be used: $A \rightarrow B$ means a r
 
 Symmetry is a property that cannot be achieved by the ranging sensors because of noise. 
 A range reading $A \rightarrow B$ will not be equal to the reading for $B \rightarrow A$ just because the two readings will be altered by noise.
-The question that remains is: Do we have the same error for both directions.
+The remaining question is: Is the error statistically equal for both directions?
 
 \todo{plot, evaluate, spoiler alert: Nope!}
 
 
-However the lack of symmetry might be utilized.
+However, the lack of symmetry might be utilised.
 \begin{equation}
 \frac{ d(A \rightarrow B) + d(B \rightarrow A) }{2}
 \label{symavg}
 \end{equation}
-The remote ranging ability of the nodes can be exploited to gather both values $A \rightarrow B$ and $B \rightarrow A$ by averaging those values the error might be lowered. \todo{data}
-The new value shown in \autoref{symavg} will be symmetric.
-The messurement error will be reduced because of the averaging.
+The remote ranging capability of the nodes can be exploited to gather both values $A \rightarrow B$ and $B \rightarrow A$ by averaging those values the error can be mitigated.
+
+The new value showed in \autoref{symavg} will be symmetric.
+Additionally, the measurement error will be reduced because of the averaging.
 
 \subsection{Triangle Inequality}
 The triangle inequality will be violated by noise.
-I.e. if we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might not meet the triangle inequality.
+If we measure $d(A,B) + X + d(B,C) + X$ and $d(A, C) + X$ the measurement error $X$ might cause the triangle inequality not to be met.
 
-In \autoref{triangle} the density function for one setup of three nodes is shown.
+In \autoref{triangle} the density function for one setup of three nodes is showed.
 The triangle equation is clearly violated as the \si{200}{cm} distance is underestimated by far.
 This will happen a lot as there is a lot of noise especially for longer distances.
 \begin{figure}[H]
 	\centering
 	\input{figures/triangle.pgf}
-	\caption[Density functions for 3 nodes]{Density functions for 3 nodes, Nodes were placed in a straight line with numbers 1, 2, 3. Distance 1-2 was \SI{150}{cm}, distance 2-3 was \SI{50}{cm}. }
+	\caption[Density Functions for 3 Nodes]{Density Functions for 3 Nodes. Nodes were placed in a straight line with numbers 1, 2, 3. Distance 1-2 was \SI{150}{cm}, distance 2-3 was \SI{50}{cm}. }
 	\label{triangle}
 \end{figure}
 
 
 \section{Conclusion}
 
-Let's take a look at the requirements from \autoref{req}.\todo{-> unpersonal lingo}
+Taking a look at the requirements from \autoref{req}—will the new sensor be suitable for application in the FINken robots?
 It is possible to integrate the sensor nodes into the FINken robots, however not in the current hardware setup.
-The interference of copters and sensors is not as easy as was thought.
-RF-Interference disturbes the function of our distance sensor.
-At least the functionality of the copters does not seem to be disrupted by the ranging nodes.
+The interference of copters and ranging nodes is stronger than expected.
+RF-Interference disrupts the function the distance sensor.
+At least the copters do not seem to be disrupted by the ranging nodes.
 It is still possible to solve this problem by changing the hardware on the copter or the frequency the ranging nodes operate at.
 
-In the end the quality of the range measurements is deciding\todo{wording?} if the requirements are met.
-The measured range values are not as good as was hoped for.
-A filter needs to be implemented to compute a usable range estimate should be given.
-This would introduce a time delay into the measurement which is not desireable. \todo{wording}
+The quality of the range measurements is the important factor showing if the requirements are met.
+The measured range values are not as good as expected.
+A filter needs to be implemented to compute usable range estimates.
+This would introduce a time delay into the measurement which is not desireable.
 
-If the right method for filtering is applied the sensor nodes can still be usefull for the FINken robots.
+If the right method of filtering is applied, the sensor nodes can still be useful for the FINken robots.

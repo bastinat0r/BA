@@ -184,49 +184,50 @@ However, different components can interfere with the new sensor.
 
 \section{Evaluation of Existing Ranging Solutions}
 
-Keeping the requirements from \autoref{req} in mind  there are some technologies that can be used for ranging.
+Keeping the requirements from \autoref{req} in mind, there are some technologies that can be used for ranging.
 The usual application for most of those technologies in research is positioning, which makes it difficult to find comparable numbers for ranging-only applications.
-In positioning usually more than four or more range measurements are combined to compute one position.
-By dooing so ranging errors are mitigated to some degree.
-When only dooing ranging this method of error mitigation is not available.
+In positioning usually more than four range measurements are combined to compute one position.
+By doing so ranging errors are mitigated to some degree.
+When only doing ranging this method of error mitigation is not available.
 
-It is still interesting to search for positioning applications, since many of those positioning technologies are based on multilateration\footnote{The usual methods for positioning are: \emph{multilateral}—which relevant for this work, because only ranging measurments are used. \emph{Multiangular}—where angle measurements are used and by \emph{orientating in a map} with different factors like beacon-positions.}.
+It is still interesting to search for positioning applications, since many of those positioning technologies are based on multilateration\footnote{
+The usual methods for positioning are: \emph{multilateral}—which is relevant for this work, because only ranging measurments are used. \emph{Multiangular}—where angle measurements are used and \emph{orientating in a map} with different factors like beacon-positions.}.
 \cite{_multilateration_2015}
-\todo{keep it or throw it away?}
 
 \subsection{Optical Tracking}
-
 Most projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
 
 The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
-The most affordable solution from Optitrack that is able to track 5 targets at once costs more then \SI{10000}{\$}~\cite{optitrack.com}.
+The most affordable solution from Optitrack able to track five targets at once costs more then \SI{10000}{\$}~\cite{optitrack.com}.
 The price is justified by the superior performance of this method.
-This means tracking accuracy as well as the possibility to measure orientation at a very high update frequency.
+Optical tracking is highly accurate at a very high update frequency.
+Additionally, it is able to measure the orientation of the quadcopters.
 \todo{research performance statistics for ranging solutions}
 
 \todo{ETH}
 
-Even a tracking system that is more cost efficient like the one developed by Achtelik et al\cite{Achtelik2009} is not a good solution for the FINken project.
+Even a tracking system that is more cost efficient such as the one developed by Achtelik et al\cite{Achtelik2009} is not an appropriate solution for the FINken project.
 A tracking system provides information that is gathered for the entire operating area and afterwards broadcasted to the robots.
-The big advantage of swarm behaviour—that no common information base is required in order to form a functioning swarm—would be lost.
+The big advantage of swarm behaviour would be lost.
+No common information base is required in order to form a functioning swarm.
 
-As such external tracking might be a valuable tool for observe the resulting behaviour, but it is not meeting the requirements for gathering the sensor data the robots should act on (see \autoref{req2}).
+As such external tracking could be a valuable tool for observing the swarm behaviour.
+However, it is not meeting the requirements for the sensor the robots should use (see \autoref{req2}).
 
 %A huge drawback to this method is that many components are used that need to be integrated into the environment and cannot be carried by the robots themselves.
 %For swarm robotics this is not an ideal solution as using external tracking would mean communicating with some kind of centralized tracking interface-destroying the scalability and the priciple of local interaction leading to global behaviour.
 
-\subsection{Indor Time of Flight}
-An obvious approach for replacing the GPS signal is to use a simmilar approach indoors.
+\subsection{Indoor Time of Flight}
+An obvious approach for replacing the GPS signal is to use a similar approach indoors.
 
-The problem is that very short timespans have to be measured accuratly, because radio waves travel at the speed of light.
-Lanzisera, Lin and Pister~\cite{lanzisera2006} state, that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} was measured in different indoor scenarios.
-With an operating area only \SI{3}{\metre} wide this solution is not suited for our robots.
+The problem is that very short timespans have to be measured accurately, because radio waves travel at the speed of light.
+Lanzisera, Lin and Pister~\cite{lanzisera2006} state that standard errors of \SI{2.6}{\metre_{RMS}} and \SI{1.8}{\metre_{RMS}} were measured in different indoor scenarios.
+With an operating area only \SI{3}{\metre} wide this solution is not suited for the robots.
 
-
-According to Kempke, Pannuto and Dutta~\cite{uwb_localisation_copter} the measurement error is generally under \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
-\todo{The proposed method of filtering needs 27 measurements to compute one range value.}
+A more promising project is DecaWave.
+According to Kempke, Pannuto and Dutta~\cite{uwb_localisation_copter} the measurement error is generally less than \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
 Mahfouz et al\cite{uwb_decawave} even claims that an accuracy of \SI{10}{\centi\metre} can be achieved.
-While the DecaWave modules seem like suitable ranging sensors for the FINken the hardware was not available to us at the time.
+While the DecaWave modules seem like suitable ranging sensors for the FINken the hardware was not available to the FINken project at the time.
 
 \subsection{Ultrasonic Time of Flight Ranging}
 A very clever approach to ranging is used by ranging solutions like cricket~\cite{cricket_01} and active bat~\cite{active_bat}. 
@@ -234,20 +235,21 @@ RF-Signals travel at the speed of light and therefore very short time-periods ne
 Sound however travels at a speed much slower than radio waves so the time periods that need to be measured are much longer.
 Unfortunately the slower propagation speed causes a different problem.
 
-Using sound as medium there is an upper bound to the update frequency for all nodes sharing the medium (i.e. close enough to sense each other).~\cite{active_bat} claims that one ranging measurement can be done in a \SI{20}{\milli\second} slot.
-That means we can have 50 range updates per second.
-Assuming we have a swarm of five robots that form a fully connected graph we would need at least ten range measurements to get all swarm distances.
-So the upper boundary for ranging update frequency in a swarm of five robots is \SI{5}{\hertz}.
-Considering that this is the upper limit this is a solid disadvantage of this method. \todo{upper limit will not be reached}
+When using sound as medium there is an upper bound to the update frequency for all nodes sharing the medium. Woodman and Harle~\cite{active_bat} claim that one ranging measurement can be done in a \SI{20}{\milli\second} time slot.
+As a result, there can be up to 50 range updates per second.
+A swarm of five robots that form a fully connected graph would need at least ten range measurements to obtain all swarm distances.
+So the upper boundary for ranging update frequency in this swarm of five robots is \SI{5}{\hertz}.
+Considering that this is not the actual performance but the upper limit, this is a solid disadvantage of this method.
 
-Currently the FINken robots use sonar based distance sensors to measure the distance to the neareby objects.
+Currently the FINken robots use sonar based distance sensors to measure the distance to the nearby objects.
 It is highly unlikely that those distance sensors and an ultrasonic ranging method can be used in parallel without disrupting each other.
-This problem could only be solved by implementing some kind of medium access control protocol and by doing so reducing the maximal update frequencys for both sensors.
+This problem could only be solved by implementing some kind of medium access control protocol
+By doing so the maximum update frequencys for both sensors would be reduced.
 
 
 %Another problem is the noise created by motors and propellers.
 %The sound made by the quadcopters is not ending in the hearable spectrum but also extends to the ultrasound range.
-In conclusion ultrasound based ranging is a very neat approach to ranging that is already used in other quadcopter projects~\cite{ultrasonic_erlangen}.
+In conclusion, ultrasound based ranging is a very neat approach to ranging that is already used in other quadcopter projects~\cite{ultrasonic_erlangen}.
 Still integrating an ultrasonic ranging sensor into the FINken is impractical, because other ultrasound sensors are already in use.
 %\todo{accuracy / price, moving objects}
 
@@ -259,11 +261,10 @@ The further the source of the signal is away the weaker the signal gets.
 RSSI\footnote{Received Signal Strength Indicator}-based ranging is done for serveral different wireless technologies: Bluetooth\cite{pei_using_2010}, WLAN\cite{wlanrssi, wlanrssi2}, RFID\cite{rfidrssi}.
 
 There are serveral drawbacks to RSSI based ranging. Zanca \cite{Zanca} writes: "Unfortunately, the indoor radio channel is very
-unpredictable, since reflections of the signal against walls, floor and ceiling may result in severe multi–path interference at the receiv-
-ing antenna.".
+unpredictable, since reflections of the signal against walls, floor and ceiling may result in severe multi–path interference at the receiving antenna.".
 Furthermore, no antenna will transmit radio waves equally in every direction–especially if it is mounted on a robot containing lots of wiring.
 
-Ultimatly the orientaion and location of the quadcopter might have a much bigger impact on the RSSI value than the actual range has.
+Ultimately, the orientaion and location of the quadcopter might have a bigger impact on the RSSI value than the actual range has.
 Thus an RSSI based ranging method will probably not yield sufficient results.
 %The main factor that rules out RSSI-based ranging is that radio-waves are not propageted equally in every direction. \todo{typical propagation pattern picture}
 %As a consequence the orientation of the antenna might have a much bigger impact on signal strength then the distance.
@@ -272,16 +273,14 @@ Thus an RSSI based ranging method will probably not yield sufficient results.
 
 \subsection{Phase Difference}
 
-Another thing that can be measured phase shift~\cite{2_kluge_eggert_2009}.
-This is a principle that is used by some of the ultrasonic methods.
-However, the phase difference can also be measured in radio waves.
-This is utilised by the ranging hardware from the Atmel Ranging Toolbox.
+Another thing that can be measured is phase shift~\cite{2_kluge_eggert_2009}.
+This is utilised by the ranging hardware from Atmel.
 Multiple frequencys are used to measure a phase difference.
-Because the wave length changes with different frequencys you can take all of the measured phase differences and compute a distance.
+As the wave length changes with different frequencys a distance can be computed from all of the measured phase differences.
 \todo{quelle!}
-Similar hardware using the same software stack is also sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
+Similar hardware using the same software stack is sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
 
-Using phase differences in RF mitigates the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
-Therefore it seems like a feasible approach for the FINken robots.
+Using phase differences in radio waves mitigates the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
+Therefore, it seems like a feasible approach for the FINken robots.
 
 \todo{tabelle -> ranging methoden übersichtlich vergleichen}

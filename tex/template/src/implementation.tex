@@ -1,31 +1,31 @@
 
 The basic idea for the firmware of the nodes is to provide an I2C interface to initiate measurements and read values.
-Additionally the settings of the modules can be changed by the same interface.
+Additionally, the settings of the modules can be changed by the same interface.
 
 \section{Description of the Ranging Process}
 
-While the ranging itself is treated as a black box in this thesis it is still needed to konw how a measurement is executed.
-For ranging there are three functions a node can fullfill.
-The \emph{reflector} is the target node of the ranging.
+While the ranging itself is treated as a black box in this thesis, it is still needed to konw how a measurement is executed.
+For ranging there are three functions a node can fulfill.
+The \emph{reflector} is the target node of the range measurement.
 The \emph{initiator} is the node sending the original signal and measuring the actual phase difference of the reflected signal.
-The measured range will be the distance between initator and refletor node.
+The measured range will be the distance between initator- and reflector node.
 The third node type is only needed for remote ranging.
 The \emph{coordinater} node is used to trigger a range reading between two other ranging nodes.
 
-Each of the ranging nodes is able to act as reflector, coordinator and reflector without changing the firmware.
-If the nodes are configured correctly the nodes communicate about the pending measurement on a seperated RF-channel.
+Each of the ranging nodes is able to act as an initiator, coordinator and reflector without changing the firmware.
+If the nodes are configured correctly the nodes communicate about the pending measurement on a seperated RF-channel and executed it afterwards.
 
 The measuring a range value works as follows:
 \begin{enumerate}
-	\item set initiator and refletor node
+	\item set initiator and reflector node
 	\item start measurement
 	\item wait for measurement to finish
 	\item fetch the result
 \end{enumerate}
 
-As result of the ranging process two values are put out: Range and DQF.
+As result of the ranging process two values are returned: Range and DQF.
 The range value is the estimated range in cm.
-The DQF is an additional parameter tells the user how accutrate the range value is assumed to be.
+The DQF is an additional parameter which tells the user how accurate the range value is assumed to be.
 
 \section{Communication Interface}
 
@@ -33,22 +33,23 @@ The DQF is an additional parameter tells the user how accutrate the range value 
 \subsection{I2C Registers}
 The sensor has different functions available as I2C-registers.
 The master device writes one byte to the register followed by arguments for the different functions.
-Either the sensor node answers with an acknowledge byte or the data answering the request.
-The registers are listed in \autoref{i2ccommands}.
-In normal operation the master device will set reflector and initiator address, initiate the ranging and read the resulting range value afterwards.
+Either the sensor node answers with an acknowledge byte or the return value of the request.
+All the implemented registers are listed in \autoref{i2ccommands}.
+In normal operation the master device will set reflector and initiator address, initiate the ranging and request the resulting range value afterwards.
 This is achieved with the START\_RANGING and READ\_LAST\_RANGING commands.
 
-Additionally some basic configuration can be might via the I2C interface.
-The I2C-address is the address of the I2C-device, that needs to be changed to avoid address collisions i.e. when multiple ranging nodes are used with one master device.
-The short address is the address describing the ranging node.
-It is independent from the I2C address in order to allow multiple ranging nodes on one I2C master device as well as using ranging devices with equal addresses on multiple devices.
+Additionally, some basic configuration can be made via the I2C interface.
 
-The FINken robots will certainly share one I2C address for the ranging nodes and use the aircraft-ID of the robot as short address.
-As the aircraft-ID of the FINken is only one byte the higher byte of the ranging short addresses might be used to distinguish between other robots in the swarm and nodes in the environment.
+There are two types of address used by the ranging nodes, both can be set via the I2C interface.
+The I2C-address is the address of the I2C-device, that needs to be changed to avoid address collisions that will occur when multiple ranging nodes are used with one master device.
+The short address is the address used for ranging.
+It is independent from the I2C address in order to allow multiple ranging nodes on one I2C master device as well as using ranging devices with equal I2C-addresses on multiple devices.
+
+The FINken robots will certainly the same I2C address for the ranging nodes and use the aircraft-ID of the FINken as short address.
+As the aircraft-ID of the FINken is only one byte long the higher byte of the ranging short addresses might be used to distinguish between other robots in the swarm and nodes in the environment.
 
 Initiator and reflector address refer to the short addresses of the nodes on both ends of one measurement.
-The initiator is the ranging node starting the ranging process, the reflector its target.
-Because the nodes are capable of remote ranging the initiator might be a different node than the one connected via I2C.
+As the nodes are capable of remote ranging the initiator might be a different node than the one connected via I2C.
 In particular this means that remote range readings can be taken without the need of additional communication.
 
 \begin{table}
@@ -79,11 +80,12 @@ In particular this means that remote range readings can be taken without the nee
 \end{table}
 
 \subsection{Datafields in the Ranging Result}
-\autoref{rangefields} describes how the structure for transmitting range values is organized.
-The reason why so many values are included into the range measurement is that the master device is most propably needs to do filtering based on status and dqf-values. The addresses of the nodes are included to match measurements in case one of the packets is lost or a new measurement is made before the old value is read.
+\autoref{rangefields} describes how the data structure for transmitting range values is organized.
+The reason why so many fields are included into the range measurement is that the master device most propably needs to do filtering based on status and dqf-values.
+The addresses of the initator- and reflector node are included to match measurements in case one of the packets is lost or a new measurement is completed before the old value is read.
 
-The data type for the range values is changed, not to block the I2C-device unnecessarily the data type of the range reading is changed.
-Instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} are more than plenty in our application.
+The data type for the range values is changed, to not block the I2C-device unnecessarily.
+Instead of the original 32-Bit value only a 16-Bit value is used, as distances up to more than \SI{60}{\metre} are will never occur in our application.
 
 \begin{table}
 	
@@ -116,15 +118,15 @@ Instead of the original 32-Bit value only a 16-Bit value is used, as distances u
 \section{Python Scripts}
 
 For testing the sensor nodes and collecting sample data a raspberryPi minicomputer was set up as an I2C master device.
-The scripting language python was used to implement all the functions the I2C interface of the ranging nodes provide.
+The scripting language python was used to implement all the functions the I2C interface of the ranging nodes provides.
 
-\emph{i2cranging.py} contains functions for the master side of I2C communication. Those can either be used from the python PEPL or by other scripts.
-\emph{poll\_range.py} contains a convenient method to take continous range readings from the unix shell and is mainly used to generate csv-files with ranging values.
-Those csv-files have been used for evaluating the ranging nodes.
+\emph{i2cranging.py} contains functions for the master side of I2C communication. Those can either be used from the python REPL or by other scripts.
+\emph{poll\_range.py} is a convenient program to gather range readings continously from the unix shell and is mainly used to generate csv-files.
+Those csv-files are used for evaluating the ranging nodes.
 
-Gathering data with those scripts may not only prove usefull for this work.
-It might be an efficient approach to develop and evaluate algorithms for filtering and position estimation using higher level concepts.
-Implementing only those algorithms on the embedded devices that prove to be usefull.
+Gathering data with those scripts may not only prove useful for this work.
+It could be an efficient approach to develop and evaluate algorithms for filtering and position estimation using higher level concepts.
+By implementing only those algorithms on the embedded devices that prove to be useful a lot of implementation effort can be saved.
 
 
 
