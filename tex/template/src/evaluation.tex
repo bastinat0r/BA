@@ -71,7 +71,6 @@ The same antennas where used throughout all measurements and the frequency range
 
 \subsection{Frequency Selection}
 \label{freqencyselection}
-\todo{move to implementation?}
 The frequencies used by the ranging can be chosen by the user,
 however frequency selection greatly influences the quality of the measurements.
 This is especially true, as normal \SI{2.4}{\giga\hertz} wifi and serveral other technologies are using the same frequencies as the ranging modules the selection of a well working one is crucial to ranging performance.
@@ -208,7 +207,6 @@ Another notable fact is that the ideal value (showed as blue line) is always wit
 
 
 
-%\todo{prettify}
 %\begin{landscape}
 %	\begin{figure}[h]
 %		\centering
@@ -231,7 +229,6 @@ Another notable fact is that the ideal value (showed as blue line) is always wit
 %		\label{buckets}
 %	\end{figure}
 %\end{landscape}
-%\todo{caption for buckets (wording)}
 
 
 \subsection{Influence of DQF on Range Values}
@@ -335,12 +332,22 @@ Having two modules occupy the same physical spot is obviously not possible, so t
 
 In this section the following notation will be used: $A \rightarrow B$ means a range reading is taken from node A with B as reflector node.
 
+
+
 Symmetry is a property that cannot be achieved by the ranging sensors because of noise. 
 A range reading $A \rightarrow B$ will not be equal to the reading for $B \rightarrow A$ just because the two readings will be altered by noise.
 The remaining question is: Is the error statistically equal for both directions?
 
-\todo{plot, evaluate, spoiler alert: Nope!}
+As showed in \autoref{symmetrie_fromto} there is clearly an offset between all pairs of range value densities $A \rightarrow B$ and $B \rightarrow A$.
+Interestingly the distributions of range values look very similar for each pair densities.
+This might be due to multipath effects.
 
+\begin{figure}[h]
+	\centering
+	\input{figures/symmetrie_fromto.pgf}
+	\caption[Symmetric Rangings]{Symmetric Rangings. For each of the distances (cm) the density of the range (cm) has been plotted. The colour encodes from wich node to which node the ranging took place.} 
+	\label{symmetrie_fromto}
+\end{figure}
 
 However, the lack of symmetry might be utilised.
 \begin{equation}
@@ -368,7 +375,7 @@ This will happen a lot as there is a lot of noise especially for longer distance
 
 
 \section{Conclusion}
-
+\label{evalconclusio}
 Taking a look at the requirements from \autoref{req}—will the new sensor be suitable for application in the FINken robots?
 It is possible to integrate the sensor nodes into the FINken robots, however not in the current hardware setup.
 The interference of copters and ranging nodes is stronger than expected.

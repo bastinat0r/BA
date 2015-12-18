@@ -195,13 +195,13 @@ The usual methods for positioning are: \emph{multilateral}—which is relevant f
 \cite{_multilateration_2015}
 
 \subsection{Optical Tracking}
-Many projects use external optical tracking to measure the position and orientation of the quadcopters. \todo{refs}
-
+Many projects use external optical tracking to measure the position and orientation of the quadcopters.
 The most common optical tracking systems are very costly in comparison to the other ranging methods described here.
 The most affordable solution from Optitrack able to track five targets at once costs more then \SI{10000}{\$}~\cite{optitrack.com}.
 The price is justified by the superior performance of this method.
-Optical tracking can be highly accurate at a very high update frequency. (See \cite{flyingmachinearena})
-Additionally, it is able to measure the orientation of the quadcopters.
+Optical tracking can be highly accurate at a very high update frequency. 
+The motion capture system in the flying machine arena \cite{flyingmachinearena} captures images at 200 frames per second.
+In addition to the position of the quadcopters, motion capture systems are able to measure the orientation of the quadcopters.
 
 
 Even a tracking system that is more cost efficient such as the one developed by Achtelik et al\cite{Achtelik2009} is not an appropriate solution for the FINken project.
@@ -225,6 +225,7 @@ With an operating area only \SI{3}{\metre} wide this solution is not suited for 
 A more promising project is DecaWave.
 According to Kempke, Pannuto and Dutta~\cite{uwb_localisation_copter} the measurement error is generally less than \SI{1}{\metre} and with filtering can be brought to below \SI{15}{\centi\metre}.
 Mahfouz et al\cite{uwb_decawave} even claims that an accuracy of \SI{10}{\centi\metre} can be achieved.
+Additionally, the DecaWave modules are able to transmit the telemetry with high data rates on top of performing ranging~\cite{decawaveweb}.
 While the DecaWave modules seem like suitable ranging sensors for the FINken the hardware was not available to the FINken project at the time.
 
 \subsection{Ultrasonic Time of Flight Ranging}
@@ -269,13 +270,28 @@ Thus an RSSI based ranging method will probably not yield sufficient results.
 
 \subsection{Phase Difference}
 
-Another thing that can be measured is phase shift~\cite{2_kluge_eggert_2009}.
-This is utilised by the ranging hardware from Atmel.
+Another property that can be measured and used for ranging is phase shift~\cite{2_kluge_eggert_2009}.
+This is utilised by the Ranging Toolbox from Atmel.
 Multiple frequencys are used to measure the phase difference of the signal.
 As the wave length changes with different frequencys a distance can be computed from all of the measured phase differences~\cite{atmelranging}.
 Similar hardware using the same software stack is sold by \emph{Dresden Elektronik} and \emph{Meterionic}.
 
 Using phase differences in radio waves mitigates the medium access problems of ultrasonic methods as well as the wave propagation problems of RSSI-based methods.
+
 Therefore, it seems like a feasible approach for the FINken robots.
 
-\todo{tabelle -> ranging methoden übersichtlich vergleichen}
+
+\begin{table}
+	\begin{tabularx}{\columnwidth}{l|X|X|X|X}
+		\hline
+		Method & Interference expected & Update Frequency & Accuracy &  \\ \hline
+		Optical Tracking   & No & Very High & Very High & external\\
+		RSSI               & No &  High     & Very Low  & internal\\
+		Ultrasonic Ranging & Yes& Low       & High & internal\\
+		Time of Flight     & No & High      & High & internal\\
+		Phase Difference   & No & High      & High & internal\\
+		\hline
+	\end{tabularx}
+	\caption{Comparison of Ranging Methods}
+\end{table}
+
