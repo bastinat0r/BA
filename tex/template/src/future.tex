@@ -1,23 +1,23 @@
 In this chapter an outlook is given on what needs to be done to further integrate the ranging modules into the FINken robots and to improve the values yielded.
 
-Additionaly possible applications for the ranging sensors have been gathered during this work.
+Additionally, possible applications for the ranging sensors have been gathered during the course of this work.
 
 \section{Next Steps}
 
-There are some things that might be done to immediately improve on this work.
+There are some improvements that can be immediately made on this work.
 Further evaluation might still yield interesting results and of course the sensor still needs to be integrated into the FINken.
 
 \subsection{Evaluation of RF-noise}
-With more equippment and expertise in high-frequency engineering a much more detailed analysis of RF-noise, antenna- and frequency selection could be done.
-The ranging quality might benefit hugely from optimizing on those parameters.
+With more equipment and expertise in high-frequency engineering a much more detailed analysis of RF-noise, antenna- and frequency selection could be done.
+The ranging quality will benefit from optimising on those parameters.
 
 \subsection{Influence of Movement}
-Since it was not possible to move the nodes in a predictable way while still measuring a reference value in our lab, there is no data on the effect of movement on the ranging nodes.
-As the copters are capable of flying very fast the fact that they are moving could alter the measurement quality, since multiple phase-differce measruments are combined into one range value.
+Since it was not possible to move the nodes in a predictable manner while still measuring a reference value in our lab, there is no data on the effect of movement on the ranging nodes.
+As the copters are capable of flying very fast their movement could alter the measurement quality, since multiple phase difference measurements are combined into one range value.
 
 \subsection{Further Integration}
 
-Albeit the range measurements are not great the ranging sensors might still be an improvement to having no ranging capabilities at all.
+Albeit the range measurements are not great, the ranging sensors could still be an improvement to having no ranging capabilities at all.
 To achieve this one of the possible hardware solutions suggested in \autoref{ranginghardware} needs to be purchased and integrated into the FINken.
 
 The final sensor should be evaluated again.
@@ -26,65 +26,59 @@ A similar setup might be used to validate the ranging capabilities of the new FI
 
 \subsection{Improve Range Values}
 
-Of course the range values can also be improved mathematically.
+Of course the range values could also be improved algorithmically.
 In this work no filtering of valid measurements was performed.
-However, the results might be improved by computing range values based on multiple measurements.
-A good way of dooing this would be to find a “clever” way of filtering, that takes into consideration the distribution of the values.
-To exploit the distribution of the values a better theoretical model for this distribution would be needed.
+However, the results will be improved by computing range values based on multiple measurements.
+It would beneficial be to find a “clever” way of filtering, that takes the distribution of the values into consideration.
+A better theoretical model for the distribution of the error would be needed to exploit implement such a filter.
 
-\todo{formulieren als vorschlag}One way to filter the values like this is by using intervall arithmetics.
-As there are big changes in the measured range values when small changes in the distance of the nodes occur the intersection of the intervall might provide a good measure.
-
-\todo{filtering -> papers}
-
-
+An interesting way to implement such a filter is to use interval arithmetics.
+As there are big changes in the measured range values when small changes in the distance of the nodes occur the intersection of the intervals could provide good results.
 
 \section{General Applications for Quadcopters}
 
-The motivation to integrate the range sensors was to get a distance measure within the swarm of robots.
-Nevertheless the robots could benefit from the new sensors in other ways.
+The motivation to study the ranging sensors was to obtain a distance measure within the swarm of robots.
+Nevertheless, the robots could benefit from the new sensors in other ways.
 
 \subsection{Flying with Pseudo-GPS}
-Normally the paparzzi autopilot is used outdoors.
-The FINken robots can only use a small subset of the autopilots features as many of those features rely on a GPS based position- and heading estimate.
+Normally, the paparzzi autopilot is used outdoors.
+The FINken robots can only use a small subset of the autopilot's features, as many of those features rely on a GPS based position- and heading estimate.
 
-A GPS device might be emulated using a ranging based position estimate.
+A GPS device can be emulated using a ranging based position estimate.
 In order to use such an emulated GPS a multilateration algorithm has to be implemented for the ranging nodes.
-Furthermore the position estimate needs to be integrated with a new GPS module for paparazzi.
+Furthermore, the position estimate needs to be integrated as new GPS module for paparazzi.
 
 
 \subsection{Virtual Walls}
 \label{boundingbox}
-Currently nets and ultrasound reflecting foil are used to enclose the flight area.
-Those could be replaced by ranging beacons that enclose the operating area, either by computing a position and defining coordinates which should not be left or by placing ranging nodes in the area and defining a minmum distance to the nearest node.
-This could be a nice setup for mobile deployment of the FINken robots.
+Currently, nets and ultrasound reflecting foil are used to enclose the flight area.
+Those could be replaced by ranging beacons, that enclose the operating area.
+This can be achieved either by computing a position and defining coordinates which should not be left or by placing ranging nodes in the area and defining a minimal distance to the nearest node.
+This could be a convenient setup for mobile deployment of the FINken robots.
 
 
 \section{Applications in Swarm Robotics}
 
-Finally there are some challenges and opportunities in implementing range based swarm behavior for the FINken robots.
+Finally, some concepts for range based swarm behaviour for the FINken robots will be suggested.
 
 \subsection{Direction}
-A value that the ranging sensors don't yield is the direction of the other sensor it is ranging with.
+A value that the ranging sensors do not yield is the direction of the refletor node.
 For use in some swarm algorithms this is a problem: Acting based on virtual attraction and repulsion forces is a common approach in swarm intelligence.
-However, those forces are directed forces and this approach is not directy applicable for the FINken robots.
+However, those forces are directed and information about the direction of the nodes cannot be gathered with the ranging sensors.
 
-\todo{A sense of direction might be gained by using anchor nodes for orientation.}
+A sense of direction may still be gained, by using anchor nodes for orientation.
 
 \subsection{Distance Based Swarm Objectives}
-Swarm behavior can be used for multi objective optimization.
-One of those objectives might be based on the measured distance i.e. stay close to a specific node or stay away from a specific node.
-Keeping a minimal distance and maximizing the distance between the robots might be used to avoid collisions between multiple robots.
-Avoiding collisions of course is one of the most important requirement for ermergence of swarm behavior in a robotic swarm.
+Swarm behaviour can be used for multi-objective optimisation.
+Those objectives can be based on the measured distance i.~e. staying close to a specific node or staying away from a specific node.
+Keeping a minimal distance or maximising the distance between the robots might be used to avoid collisions between multiple robots.
+Avoiding collisions is an important requirement for the ermergence of a robotic swarm.
+
+By maintaining fixed distances among each other the swarm could form stable formations.
 
 \subsection{Collision Avoidance}
 Similar to the bounding boxes from \autoref{boundingbox} the distance sensors may be used to enhance collision avoidance in between the copters belonging to the swarm.
-This might especially usefull if the safty distance in between the robots should be higher then the safty distance kept to nearyby objects that are not part of the swarm.
-As the copters influence each other by creating a lot of turbulence this strategy might provide benefits for the behavior of the swarm in small environments.
+This will especially be useful if the safety distance in between the robots is higher than the safety distance kept to neareby objects that are not part of the swarm.
+As the copters influence each other by creating turbulences, this strategy could provide benefits for the behaviour of the swarm in particular in small rooms.
 
-\subsection{Formation Flying}
-\todo{get simulation data}
-One of the next steps is to \todo{übertragen} algorithms from swarm intelligence to the FINken robots.
-The robots should be able to form a stable formation by using virtual attraction and repulsion forces to hold a given distance to their neighbors.
-If those distances are stable enough formations like triangle meshes can be formed.
 
